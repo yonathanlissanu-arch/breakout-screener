@@ -60,9 +60,9 @@ def _parse_args() -> argparse.Namespace:
 
     # Data
     d = p.add_argument_group("Data")
-    d.add_argument("--source", choices=["yfinance", "fmp", "polygon"],
-                   default="yfinance",
-                   help="Data backend (default: yfinance — free, no key needed)")
+    d.add_argument("--source", choices=["yfinance", "yahoo", "fmp", "polygon"],
+                   default="yahoo",
+                   help="Data backend (default: yahoo — free, no key, works in cloud)")
     d.add_argument("--years",   type=int,   default=CFG.history_years,
                    help=f"Years of history to fetch (default {CFG.history_years})")
     d.add_argument("--refresh", action="store_true",
@@ -145,6 +145,9 @@ def main() -> None:
     elif args.source == "polygon":
         from fetcher_polygon import fetch_price_data_polygon
         price_data = fetch_price_data_polygon(tickers, history_years=CFG.history_years)
+    elif args.source == "yahoo":
+        from fetcher_yahoo import fetch_price_data_yahoo
+        price_data = fetch_price_data_yahoo(tickers, history_years=CFG.history_years)
     else:
         from fetcher import fetch_price_data
         price_data = fetch_price_data(tickers, history_years=CFG.history_years)

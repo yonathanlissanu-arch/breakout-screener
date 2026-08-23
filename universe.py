@@ -10,6 +10,7 @@ Sources (all free / no API key required):
 """
 
 import io
+import os
 import time
 import logging
 from typing import Dict, List, Tuple
@@ -24,22 +25,31 @@ logger = logging.getLogger(__name__)
 # Helpers
 # --------------------------------------------------------------------------- #
 
+_CA = os.environ.get("REQUESTS_CA_BUNDLE", "/root/.ccr/ca-bundle.crt")
+
 _HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-    )
+    ),
+    "Accept-Language": "en-US,en;q=0.9",
 }
+
+_SESSION = requests.Session()
+_SESSION.verify = _CA
+_SESSION.headers.update(_HEADERS)
 
 
 def _get(url: str, **kwargs) -> requests.Response:
-    resp = requests.get(url, headers=_HEADERS, timeout=30, **kwargs)
+    resp = _SESSION.get(url, timeout=30, **kwargs)
     resp.raise_for_status()
     return resp
 
 
 def _wiki_tables(url: str) -> List[pd.DataFrame]:
-    return pd.read_html(url, flavor="lxml")
+    """Fetch Wikipedia page via requests (respects proxy CA), then parse HTML."""
+    html = _get(url).text
+    return pd.read_html(io.StringIO(html), flavor="lxml")
 
 
 # --------------------------------------------------------------------------- #
@@ -90,42 +100,81 @@ def fetch_midcap400() -> pd.DataFrame:
 
 def fetch_russell2000() -> pd.DataFrame:
     """
-    Download IWM holdings from iShares.  The CSV has 2 preamble rows.
-    Falls back to an empty frame with a warning if the download fails.
+    Fetch Russell 2000 constituents.
+
+    Strategy (tries in order):
+    1. iShares IWM holdings CSV (requires cookie acceptance — often fails headlessly)
+    2. Wikipedia Russell 2000 Index page (lists a subset of notable members)
+
+    The Russell 2000 has ~2,000 components; Wikipedia only lists a sample.
+    For the full list, sign up for a free FTSE Russell data account or use
+    a paid API (Polygon/FMP both have constituent endpoints).
     """
-    url = (
+    # ── Attempt 1: iShares CSV ────────────────────────────────────────────────
+    iwm_url = (
         "https://www.ishares.com/us/products/239710/"
         "ishares-russell-2000-etf/1467271812596.ajax"
         "?fileType=csv&fileName=IWM_holdings&dataType=fund"
     )
     try:
-        resp = _get(url, allow_redirects=True)
-        df = pd.read_csv(io.StringIO(resp.text), skiprows=2)
-        # Keep equity rows only
-        if "Asset Class" in df.columns:
-            df = df[df["Asset Class"] == "Equity"]
-        tick_col = next(
-            (c for c in df.columns if c.lower() in ("ticker", "symbol")), None
-        )
-        name_col = next(
-            (c for c in df.columns if "name" in c.lower()), None
-        )
-        if tick_col is None:
-            raise ValueError(f"No ticker column found. Columns: {df.columns.tolist()}")
-        df = df.rename(columns={tick_col: "ticker"})
-        df["name"] = df[name_col] if name_col else ""
-        df["ticker"] = (
-            df["ticker"]
-            .astype(str)
-            .str.strip()
-            .str.replace(".", "-", regex=False)
-        )
-        df = df[df["ticker"].str.match(r"^[A-Z0-9\-]+$")]
-        df["index"] = "Russell 2000"
-        return df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+        resp = _get(iwm_url, allow_redirects=True)
+        if "<html" not in resp.text[:200].lower():
+            # Skip the two header lines with fund metadata
+            lines = resp.text.splitlines()
+            # Find the line that starts with 'Name,' or 'Ticker,'
+            data_start = next(
+                (i for i, l in enumerate(lines) if l.startswith(("Name,", "Ticker,", '"Name"'))),
+                2,
+            )
+            csv_body = "\n".join(lines[data_start:])
+            df = pd.read_csv(io.StringIO(csv_body))
+            if "Asset Class" in df.columns:
+                df = df[df["Asset Class"] == "Equity"]
+            tick_col = next(
+                (c for c in df.columns if c.lower() in ("ticker", "symbol")), None
+            )
+            name_col = next((c for c in df.columns if "name" in c.lower()), None)
+            if tick_col:
+                df = df.rename(columns={tick_col: "ticker"})
+                df["name"] = df[name_col] if name_col else ""
+                df["ticker"] = (
+                    df["ticker"].astype(str).str.strip().str.replace(".", "-", regex=False)
+                )
+                df = df[df["ticker"].str.match(r"^[A-Z0-9\-]+$")]
+                df["index"] = "Russell 2000"
+                result = df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if len(result) > 100:
+                    logger.info("  Russell 2000 (iShares): %d tickers", len(result))
+                    return result
     except Exception as exc:
-        logger.warning("Russell 2000 fetch failed (%s). Skipping.", exc)
-        return pd.DataFrame(columns=["ticker", "name", "index"])
+        logger.debug("iShares IWM fetch failed: %s", exc)
+
+    # ── Attempt 2: Wikipedia (partial list of ~100 notable names) ────────────
+    try:
+        tables = _wiki_tables("https://en.wikipedia.org/wiki/Russell_2000_Index")
+        for t in tables:
+            cols_lower = [c.lower() for c in t.columns]
+            if any("tick" in c or "symbol" in c for c in cols_lower):
+                tick_col = next(c for c in t.columns if "tick" in c.lower() or "symbol" in c.lower())
+                name_col = next((c for c in t.columns if "name" in c.lower() or "compan" in c.lower()), None)
+                df = t.rename(columns={tick_col: "ticker"})
+                df["name"] = df[name_col] if name_col else ""
+                df["ticker"] = df["ticker"].astype(str).str.strip().str.replace(".", "-", regex=False)
+                df = df[df["ticker"].str.match(r"^[A-Z0-9\-]+$")]
+                df["index"] = "Russell 2000"
+                result = df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if not result.empty:
+                    logger.warning(
+                        "Russell 2000: only %d tickers from Wikipedia (partial). "
+                        "For full ~2000-name list, use Polygon or FMP API.",
+                        len(result),
+                    )
+                    return result
+    except Exception as exc:
+        logger.debug("Wikipedia Russell 2000 fetch failed: %s", exc)
+
+    logger.warning("Russell 2000: could not fetch constituent list. Skipping.")
+    return pd.DataFrame(columns=["ticker", "name", "index"])
 
 
 # --------------------------------------------------------------------------- #
@@ -166,7 +215,7 @@ def _find_ticker_col(df: pd.DataFrame, hint: str) -> str | None:
     """Return the column name that most likely holds ticker symbols."""
     for candidate in [hint, "Ticker", "Symbol", "ISIN", "Code", "Abbr."]:
         for col in df.columns:
-            if candidate.lower() in col.lower():
+            if isinstance(col, str) and candidate.lower() in col.lower():
                 return col
     return None
 
@@ -174,7 +223,7 @@ def _find_ticker_col(df: pd.DataFrame, hint: str) -> str | None:
 def _find_name_col(df: pd.DataFrame) -> str | None:
     for candidate in ["Company", "Name", "Security", "Issuer"]:
         for col in df.columns:
-            if candidate.lower() in col.lower():
+            if isinstance(col, str) and candidate.lower() in col.lower():
                 return col
     return None
 
