@@ -10,6 +10,10 @@ Usage examples
 # US only (faster):
   python main.py --no-euronext
 
+# Choose data source (default: yfinance — free, no key):
+  python main.py --source fmp       # needs FMP_API_KEY env var
+  python main.py --source polygon   # needs POLYGON_API_KEY env var
+
 # Quick test on a handful of tickers:
   python main.py --tickers DELL MPC NVDA AAPL TSM
 
@@ -25,10 +29,14 @@ Usage examples
 
 import argparse
 import logging
+import os
 import sys
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from config import CFG
-from fetcher import fetch_price_data
 from screener import run_screen
 from universe import build_universe
 
@@ -52,6 +60,9 @@ def _parse_args() -> argparse.Namespace:
 
     # Data
     d = p.add_argument_group("Data")
+    d.add_argument("--source", choices=["yfinance", "fmp", "polygon"],
+                   default="yfinance",
+                   help="Data backend (default: yfinance — free, no key needed)")
     d.add_argument("--years",   type=int,   default=CFG.history_years,
                    help=f"Years of history to fetch (default {CFG.history_years})")
     d.add_argument("--refresh", action="store_true",
@@ -127,10 +138,16 @@ def main() -> None:
     )
 
     # ── Fetch price data ──────────────────────────────────────────────────────
-    price_data = fetch_price_data(
-        tickers=universe["ticker"].tolist(),
-        history_years=CFG.history_years,
-    )
+    tickers = universe["ticker"].tolist()
+    if args.source == "fmp":
+        from fetcher_fmp import fetch_price_data_fmp
+        price_data = fetch_price_data_fmp(tickers, history_years=CFG.history_years)
+    elif args.source == "polygon":
+        from fetcher_polygon import fetch_price_data_polygon
+        price_data = fetch_price_data_polygon(tickers, history_years=CFG.history_years)
+    else:
+        from fetcher import fetch_price_data
+        price_data = fetch_price_data(tickers, history_years=CFG.history_years)
 
     # ── Screen and rank ───────────────────────────────────────────────────────
     run_screen(price_data, universe, top_n=CFG.top_n)
