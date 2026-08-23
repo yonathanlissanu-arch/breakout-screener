@@ -21,7 +21,10 @@ from config import CFG
 
 logger = logging.getLogger(__name__)
 
-_CA = os.environ.get("REQUESTS_CA_BUNDLE", "/root/.ccr/ca-bundle.crt")
+_CCR_CA = "/root/.ccr/ca-bundle.crt"
+_CA = os.environ.get("REQUESTS_CA_BUNDLE") or (
+    _CCR_CA if os.path.exists(_CCR_CA) else True
+)
 _CHART_URL = "https://query2.finance.yahoo.com/v8/finance/chart/{ticker}"
 _CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb"
 _HOME_URL  = "https://finance.yahoo.com/"
