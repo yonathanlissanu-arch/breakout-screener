@@ -1,0 +1,168 @@
+{
+  "cohort_id": "2026-08-24",
+  "scan_date": "2026-08-23",
+  "entry_week": "2026-08-24",
+  "source_csv": "results/breakout_scan_20260823_0331.csv",
+  "positions": [
+    {
+      "ticker": "FCX",
+      "name": "Freeport-McMoRan",
+      "indices": "S&P 500",
+      "entry_price": 76.66,
+      "shares": 130.4461,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-21",
+      "volume_ratio": 1.98,
+      "rsi14": 69.3,
+      "pct_above_resistance": 7.15,
+      "score": 0.6176
+    },
+    {
+      "ticker": "ILMN",
+      "name": "Illumina, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 219.4,
+      "shares": 45.5789,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-20",
+      "volume_ratio": 1.7,
+      "rsi14": 69.6,
+      "pct_above_resistance": 6.97,
+      "score": 0.3614
+    },
+    {
+      "ticker": "LLY",
+      "name": "Lilly (Eli)",
+      "indices": "S&P 500",
+      "entry_price": 1255.4,
+      "shares": 7.9656,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-19",
+      "volume_ratio": 1.58,
+      "rsi14": 59.7,
+      "pct_above_resistance": 1.75,
+      "score": 0.3061
+    },
+    {
+      "ticker": "TRGP",
+      "name": "Targa Resources",
+      "indices": "S&P 500",
+      "entry_price": 299.1,
+      "shares": 33.4336,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-18",
+      "volume_ratio": 2.07,
+      "rsi14": 66.6,
+      "pct_above_resistance": 5.22,
+      "score": 0.2861
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb",
+      "indices": "S&P 500",
+      "entry_price": 187.3,
+      "shares": 53.3903,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-10",
+      "volume_ratio": 2.5,
+      "rsi14": 71.8,
+      "pct_above_resistance": 5.18,
+      "score": 0.2411
+    },
+    {
+      "ticker": "ARMK",
+      "name": "Aramark",
+      "indices": "S&P MidCap 400",
+      "entry_price": 59.77,
+      "shares": 167.308,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-11",
+      "volume_ratio": 2.14,
+      "rsi14": 58.3,
+      "pct_above_resistance": 2.99,
+      "score": 0.2267
+    },
+    {
+      "ticker": "P",
+      "name": "Everpure",
+      "indices": "S&P MidCap 400",
+      "entry_price": 108.55,
+      "shares": 92.1234,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-11",
+      "volume_ratio": 1.83,
+      "rsi14": 66.7,
+      "pct_above_resistance": 9.98,
+      "score": 0.1971
+    },
+    {
+      "ticker": "MPC",
+      "name": "Marathon Petroleum",
+      "indices": "S&P 500",
+      "entry_price": 360.72,
+      "shares": 27.7223,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-10",
+      "volume_ratio": 1.76,
+      "rsi14": 72.2,
+      "pct_above_resistance": 13.12,
+      "score": 0.1828
+    }
+  ],
+  "spy_entry": 765.719970703125,
+  "total_notional": 80000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-08-23",
+      "positions": {
+        "FCX": {
+          "current_price": 76.66,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ILMN": {
+          "current_price": 219.4,
+          "pnl_pct": -0.0,
+          "value": 10000.01
+        },
+        "LLY": {
+          "current_price": 1255.4,
+          "pnl_pct": 0.0,
+          "value": 10000.01
+        },
+        "TRGP": {
+          "current_price": 299.1,
+          "pnl_pct": 0.0,
+          "value": 9999.99
+        },
+        "ABNB": {
+          "current_price": 187.3,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ARMK": {
+          "current_price": 59.77,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "P": {
+          "current_price": 108.55,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "MPC": {
+          "current_price": 360.72,
+          "pnl_pct": 0.0,
+          "value": 9999.99
+        }
+      },
+      "portfolio_value": 80000.0,
+      "spy_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

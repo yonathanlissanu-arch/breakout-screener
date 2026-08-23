@@ -1,0 +1,68 @@
+<title>Breakout Portfolio</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --border: #334155;
+    --text: #f1f5f9; --muted: #94a3b8; --accent: #38bdf8;
+  }
+  body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif;
+          margin: 0; padding: 24px; }
+  h1 { color: var(--accent); font-size: 1.5rem; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 16px; margin-bottom: 28px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+           padding: 18px; }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase;
+                 letter-spacing: .05em; margin-bottom: 6px; }
+  .stat-value { font-size: 1.6rem; font-weight: 700; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+           padding: 20px; margin-bottom: 24px; }
+  h2 { font-size: 1rem; color: var(--accent); margin: 0 0 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  th { text-align: left; padding: 8px 10px; color: var(--muted); font-weight: 500;
+        border-bottom: 1px solid var(--border); }
+  td { padding: 9px 10px; border-bottom: 1px solid #1e293b; }
+  tr:last-child td { border-bottom: none; }
+  .green { color: #22c55e; } .red { color: #ef4444; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px;
+            font-size: 0.75rem; background: #0c4a6e; color: var(--accent); }
+</style>
+
+<h1>Breakout Portfolio Tracker</h1>
+<p class="sub">Weekly top-10 breakout picks · Hold 52 weeks · Benchmark: SPY · Generated 2026-08-23 04:14 UTC</p>
+
+<div class="grid">
+  <div class="stat">
+    <div class="stat-label">Active Cohorts</div>
+    <div class="stat-value">1</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Graduated Cohorts</div>
+    <div class="stat-value">0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Avg Alpha (graduated)</div>
+    <div class="stat-value green">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Win Rate vs SPY</div>
+    <div class="stat-value">—</div>
+  </div>
+</div>
+
+<div class="card"><h2>This Week's Picks — entry 2026-08-24</h2><table><tr><th>Ticker</th><th>Name</th><th>Index</th><th>Entry</th><th>Current</th><th>Return</th><th>Vol Ratio</th><th>RSI</th></tr><tr><td><strong>FCX</strong></td><td style='color:#9ca3af'>Freeport-McMoRan</td><td>S&P 500</td><td>$76.66</td><td>$76.66</td><td style='color:#22c55e'>+0.0%</td><td>1.98×</td><td>69.3</td></tr><tr><td><strong>ILMN</strong></td><td style='color:#9ca3af'>Illumina, Inc.</td><td>S&P MidCap 400</td><td>$219.40</td><td>$219.40</td><td style='color:#22c55e'>+-0.0%</td><td>1.7×</td><td>69.6</td></tr><tr><td><strong>LLY</strong></td><td style='color:#9ca3af'>Lilly (Eli)</td><td>S&P 500</td><td>$1255.40</td><td>$1255.40</td><td style='color:#22c55e'>+0.0%</td><td>1.58×</td><td>59.7</td></tr><tr><td><strong>TRGP</strong></td><td style='color:#9ca3af'>Targa Resources</td><td>S&P 500</td><td>$299.10</td><td>$299.10</td><td style='color:#22c55e'>+0.0%</td><td>2.07×</td><td>66.6</td></tr><tr><td><strong>ABNB</strong></td><td style='color:#9ca3af'>Airbnb</td><td>S&P 500</td><td>$187.30</td><td>$187.30</td><td style='color:#22c55e'>+0.0%</td><td>2.5×</td><td>71.8</td></tr><tr><td><strong>ARMK</strong></td><td style='color:#9ca3af'>Aramark</td><td>S&P MidCap 400</td><td>$59.77</td><td>$59.77</td><td style='color:#22c55e'>+0.0%</td><td>2.14×</td><td>58.3</td></tr><tr><td><strong>P</strong></td><td style='color:#9ca3af'>Everpure</td><td>S&P MidCap 400</td><td>$108.55</td><td>$108.55</td><td style='color:#22c55e'>+0.0%</td><td>1.83×</td><td>66.7</td></tr><tr><td><strong>MPC</strong></td><td style='color:#9ca3af'>Marathon Petroleum</td><td>S&P 500</td><td>$360.72</td><td>$360.72</td><td style='color:#22c55e'>+0.0%</td><td>1.76×</td><td>72.2</td></tr></table></div>
+
+<div class="card">
+  <h2>Active Cohorts</h2>
+  <table><tr><th>Cohort</th><th>Tickers</th><th>Portfolio</th><th>SPY</th><th>Alpha</th><th>Week</th></tr><tr><td>2026-08-24</td><td style='font-size:0.8em;color:#9ca3af'>FCX, ILMN, LLY, TRGP, ABNB, ARMK, P, MPC</td><td>+0.0%</td><td>+0.0%</td><td style='color:#22c55e;font-weight:600'>+0.0%</td><td>-1/52</td></tr></table>
+</div>
+
+<div class="card">
+  <h2>Graduated Cohorts (52 weeks complete)</h2>
+  <p style="color:var(--muted)">No cohorts have graduated yet. First graduation in ~52 weeks.</p>
+</div>
+
+<p style="color:var(--muted);font-size:0.75rem;margin-top:20px">
+  Paper trading only — not financial advice. Entry price = Friday close at scan time.
+  Equal-weight $10,000 per position. SPY is total-return benchmark.
+</p>

@@ -1,0 +1,52 @@
+name: Weekly Breakout Scan
+
+on:
+  schedule:
+    # Every Sunday at 22:00 UTC (~6 PM ET) — results ready for Monday open
+    - cron: '0 22 * * 0'
+  workflow_dispatch:   # allow manual trigger from GitHub UI
+    inputs:
+      no_euronext:
+        description: 'Skip European indices (faster)'
+        required: false
+        default: 'false'
+      top_n:
+        description: 'Number of top picks'
+        required: false
+        default: '10'
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit results back
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so git log works
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weekly scan + update portfolio
+        env:
+          NO_EURONEXT: ${{ github.event.inputs.no_euronext || 'false' }}
+          TOP_N:       ${{ github.event.inputs.top_n || '10' }}
+        run: python weekly_run.py
+
+      - name: Commit and push results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/ portfolio/
+          # Only commit if there are staged changes
+          git diff --cached --quiet || git commit -m "chore: weekly scan $(date -u +%Y-%m-%d)"
+          git push origin HEAD
