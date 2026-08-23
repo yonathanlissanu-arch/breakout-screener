@@ -59,6 +59,30 @@ def smas_are_rising(closes: pd.Series, smas_now: dict[str, float],
     return True
 
 
+def smas_are_bearish_stacked(smas: dict[str, float]) -> bool:
+    """200 > 100 > 50 > 20 (bearish order)."""
+    try:
+        return (
+            smas["sma200"] > smas["sma100"] > smas["sma50"] > smas["sma20"]
+            and not any(np.isnan(v) for v in smas.values())
+        )
+    except KeyError:
+        return False
+
+
+def smas_are_falling(closes: pd.Series, smas_now: dict[str, float],
+                     lookback: int = CFG.ma_rising_lookback) -> bool:
+    """Each SMA is lower than its value N days ago."""
+    for p in CFG.sma_periods:
+        key = f"sma{p}"
+        if len(closes) < p + lookback:
+            return False
+        past_val = closes.iloc[: -lookback].rolling(p).mean().iloc[-1]
+        if np.isnan(past_val) or smas_now[key] >= past_val:
+            return False
+    return True
+
+
 # --------------------------------------------------------------------------- #
 # RSI (Wilder's smoothing)
 # --------------------------------------------------------------------------- #
@@ -169,6 +193,85 @@ def detect_breakout(
 
 
 # --------------------------------------------------------------------------- #
+# Breakdown detection (bearish mirror of detect_breakout)
+# --------------------------------------------------------------------------- #
+
+def detect_breakdown(
+    df: pd.DataFrame,
+    exclusion_days: int = CFG.resistance_exclusion_days,
+    lookback_days: int = CFG.resistance_lookback_days,
+    max_days_since: int = CFG.max_days_since_breakout,
+    vol_ma_period: int = CFG.volume_ma_period,
+    volume_surge_threshold: float = CFG.volume_surge_threshold,
+) -> Optional[dict]:
+    """
+    Detect a multi-year support breakdown (bearish mirror of detect_breakout).
+
+    Algorithm
+    ---------
+    1. support = min(close) over the window ending exclusion_days ago.
+    2. A breakdown is the first bar where close < support, within
+       the most recent (exclusion_days + max_days_since) trading days.
+    3. The most recent close must still be below support (not reversed).
+    4. Volume on the breakdown bar must be >= surge_threshold × 50-day avg.
+    """
+    if len(df) < MIN_BARS:
+        return None
+
+    closes = df["Close"]
+    volumes = df["Volume"]
+    n = len(closes)
+
+    support_start = max(0, n - lookback_days)
+    support_end = n - exclusion_days
+    if support_end <= support_start:
+        return None
+
+    support_level = float(closes.iloc[support_start:support_end].min())
+
+    current_close = float(closes.iloc[-1])
+    if current_close >= support_level:
+        return None
+
+    scan_start = max(support_end - 1, n - exclusion_days - max_days_since)
+    breakdown_idx: Optional[int] = None
+
+    for i in range(scan_start, n):
+        if closes.iloc[i] < support_level:
+            prev_close = float(closes.iloc[i - 1]) if i > 0 else support_level
+            if prev_close >= support_level:
+                breakdown_idx = i
+            break
+
+    if breakdown_idx is None:
+        return None
+
+    days_since_breakdown = n - 1 - breakdown_idx
+    if days_since_breakdown > max_days_since:
+        return None
+
+    vol_window_start = max(0, breakdown_idx - vol_ma_period)
+    avg_vol_50 = float(volumes.iloc[vol_window_start:breakdown_idx].mean())
+    if avg_vol_50 == 0:
+        return None
+    breakdown_volume = float(volumes.iloc[breakdown_idx])
+    volume_ratio = breakdown_volume / avg_vol_50
+
+    if volume_ratio < volume_surge_threshold:
+        return None
+
+    return {
+        "support_level": support_level,
+        "breakout_date": df.index[breakdown_idx],   # reuse field name for portfolio compat
+        "days_since_breakout": days_since_breakdown,
+        "pct_below_support": (support_level - current_close) / support_level * 100,
+        "volume_ratio": volume_ratio,
+        "breakout_volume": breakdown_volume,
+        "avg_vol_50": avg_vol_50,
+    }
+
+
+# --------------------------------------------------------------------------- #
 # All-in-one analysis for one ticker
 # --------------------------------------------------------------------------- #
 
@@ -223,4 +326,54 @@ def analyse_ticker(ticker: str, df: pd.DataFrame) -> Optional[dict]:
 
     except Exception:
         logger.debug("Analysis failed for %s", ticker, exc_info=True)
+        return None
+
+
+def analyse_ticker_short(ticker: str, df: pd.DataFrame) -> Optional[dict]:
+    """
+    Bearish mirror of analyse_ticker — identifies breakdown candidates for paper shorting.
+    Requires bearish MA stack (200>100>50>20, all falling), price below all SMAs,
+    fresh support breakdown with volume, RSI 25-50.
+    """
+    try:
+        closes = df["Close"].dropna()
+        if len(closes) < MIN_BARS:
+            return None
+
+        current_price = float(closes.iloc[-1])
+
+        smas = compute_smas(closes)
+        if not smas_are_bearish_stacked(smas):
+            return None
+
+        if not all(current_price < v and not np.isnan(v) for v in smas.values()):
+            return None
+
+        if not smas_are_falling(closes, smas):
+            return None
+
+        bd = detect_breakdown(df)
+        if bd is None:
+            return None
+
+        rsi = compute_rsi(closes)
+        if rsi is None or not (CFG.rsi_short_min <= rsi <= CFG.rsi_short_max):
+            return None
+
+        pct_below_200 = (smas["sma200"] - current_price) / smas["sma200"] * 100
+
+        return {
+            "ticker": ticker,
+            "price": round(current_price, 2),
+            "sma20": round(smas["sma20"], 2),
+            "sma50": round(smas["sma50"], 2),
+            "sma100": round(smas["sma100"], 2),
+            "sma200": round(smas["sma200"], 2),
+            "pct_below_200sma": round(pct_below_200, 1),
+            "rsi14": round(rsi, 1),
+            **{k: (round(v, 2) if isinstance(v, float) else v) for k, v in bd.items()},
+        }
+
+    except Exception:
+        logger.debug("Short analysis failed for %s", ticker, exc_info=True)
         return None

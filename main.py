@@ -70,12 +70,14 @@ def _parse_args() -> argparse.Namespace:
 
     # Filter overrides
     f = p.add_argument_group("Filter overrides")
+    f.add_argument("--direction", choices=["long", "short"], default="long",
+                   help="Screen for breakouts (long) or breakdowns (short) (default: long)")
     f.add_argument("--max-days", type=int, default=CFG.max_days_since_breakout,
                    help=f"Max trading days since breakout (default {CFG.max_days_since_breakout})")
-    f.add_argument("--rsi-min",  type=float, default=CFG.rsi_min,
-                   help=f"RSI lower bound (default {CFG.rsi_min})")
-    f.add_argument("--rsi-max",  type=float, default=CFG.rsi_max,
-                   help=f"RSI upper bound (default {CFG.rsi_max})")
+    f.add_argument("--rsi-min",  type=float, default=None,
+                   help="RSI lower bound (default 50 long / 25 short)")
+    f.add_argument("--rsi-max",  type=float, default=None,
+                   help="RSI upper bound (default 75 long / 50 short)")
     f.add_argument("--vol-thresh", type=float, default=CFG.volume_surge_threshold,
                    help=f"Volume surge minimum (default {CFG.volume_surge_threshold})")
     f.add_argument("--top",     type=int,   default=CFG.top_n,
@@ -99,10 +101,16 @@ def main() -> None:
     # Apply CLI overrides to config
     CFG.history_years = args.years
     CFG.max_days_since_breakout = args.max_days
-    CFG.rsi_min = args.rsi_min
-    CFG.rsi_max = args.rsi_max
     CFG.volume_surge_threshold = args.vol_thresh
     CFG.top_n = args.top
+
+    # RSI defaults differ by direction
+    if args.direction == "short":
+        CFG.rsi_short_min = args.rsi_min if args.rsi_min is not None else CFG.rsi_short_min
+        CFG.rsi_short_max = args.rsi_max if args.rsi_max is not None else CFG.rsi_short_max
+    else:
+        CFG.rsi_min = args.rsi_min if args.rsi_min is not None else CFG.rsi_min
+        CFG.rsi_max = args.rsi_max if args.rsi_max is not None else CFG.rsi_max
 
     if args.refresh:
         CFG.cache_max_age_hours = 0
@@ -153,7 +161,11 @@ def main() -> None:
         price_data = fetch_price_data(tickers, history_years=CFG.history_years)
 
     # ── Screen and rank ───────────────────────────────────────────────────────
-    run_screen(price_data, universe, top_n=CFG.top_n)
+    if args.direction == "short":
+        from screener import run_screen_breakdown
+        run_screen_breakdown(price_data, universe, top_n=CFG.top_n)
+    else:
+        run_screen(price_data, universe, top_n=CFG.top_n)
 
 
 if __name__ == "__main__":

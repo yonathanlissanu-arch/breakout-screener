@@ -36,8 +36,10 @@ class ScreenerConfig:
 
     # ── RSI ───────────────────────────────────────────────────────────────────
     rsi_period: int = 14
-    rsi_min: float = 50.0               # confirmed breakout zone
-    rsi_max: float = 75.0               # above this = extended / risky
+    rsi_min: float = 50.0               # confirmed breakout zone (long)
+    rsi_max: float = 75.0               # above this = extended / risky (long)
+    rsi_short_min: float = 25.0         # breakdown zone (short)
+    rsi_short_max: float = 50.0         # above this = recovering, not a short (short)
 
     # ── Output ────────────────────────────────────────────────────────────────
     top_n: int = 20
