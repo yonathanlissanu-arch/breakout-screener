@@ -21,7 +21,7 @@ import pandas as pd
 from tabulate import tabulate
 
 from config import CFG
-from indicators import analyse_ticker
+from indicators import analyse_ticker, analyse_ticker_short
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +125,92 @@ def run_screen(
     print(f"\nFull results → {csv_path}")
     print(
         "\nScore weights: 45% recency · 30% volume surge · 25% nearness to 200-day SMA\n"
+    )
+
+    return df_results
+
+
+# --------------------------------------------------------------------------- #
+# Short / breakdown composite score (inverse of long)
+# --------------------------------------------------------------------------- #
+
+def _composite_score_short(row: pd.Series) -> float:
+    recency = 1.0 / (row["days_since_breakdown"] + 1)
+    volume = min(row["volume_ratio"] / 1.5, 3.0) / 3.0
+    # Further below 200-day SMA = more bearish momentum (better short)
+    extension_norm = min(row["pct_below_200sma"] / 40.0, 1.0)
+    return 0.45 * recency + 0.30 * volume + 0.25 * extension_norm
+
+
+def run_screen_short(
+    price_data: Dict[str, pd.DataFrame],
+    universe: pd.DataFrame,
+    top_n: int = CFG.top_n,
+    results_dir: str = CFG.results_dir,
+) -> pd.DataFrame:
+    """
+    Screen all tickers for breakdown / short candidates, rank, persist to CSV.
+
+    Returns
+    -------
+    Full results DataFrame (all candidates that passed every filter).
+    """
+    os.makedirs(results_dir, exist_ok=True)
+
+    results: List[dict] = []
+    tickers = list(price_data.keys())
+    total = len(tickers)
+
+    logger.info("Analysing %d tickers for breakdowns …", total)
+    from tqdm import tqdm
+
+    for ticker in tqdm(tickers, desc="Breakdown screen", unit="ticker"):
+        df = price_data[ticker]
+        row = analyse_ticker_short(ticker, df)
+        if row:
+            results.append(row)
+
+    if not results:
+        print("\nNo breakdown candidates found with the current filter settings.")
+        return pd.DataFrame()
+
+    df_results = pd.DataFrame(results)
+
+    meta = universe[["ticker", "name", "indices", "region"]].copy()
+    df_results = df_results.merge(meta, on="ticker", how="left")
+    df_results["indices"] = df_results["indices"].fillna("Unknown")
+    df_results["region"] = df_results["region"].fillna("Unknown")
+
+    df_results["score"] = df_results.apply(_composite_score_short, axis=1)
+    df_results = df_results.sort_values("score", ascending=False).reset_index(drop=True)
+    df_results.insert(0, "rank", df_results.index + 1)
+
+    ts = datetime.now().strftime("%Y%m%d_%H%M")
+    csv_path = os.path.join(results_dir, f"breakdown_scan_{ts}.csv")
+    df_results.to_csv(csv_path, index=False)
+    logger.info("Full breakdown results (%d rows) saved → %s", len(df_results), csv_path)
+
+    print_cols = [
+        "rank", "ticker", "indices", "region",
+        "price", "breakdown_date", "days_since_breakdown",
+        "pct_below_support", "volume_ratio", "rsi14",
+        "pct_below_200sma", "score",
+    ]
+    top = df_results.head(top_n)[print_cols].copy()
+    top["breakdown_date"] = top["breakdown_date"].astype(str).str[:10]
+    top["pct_below_support"] = top["pct_below_support"].map("{:.1f}%".format)
+    top["volume_ratio"] = top["volume_ratio"].map("{:.1f}×".format)
+    top["score"] = top["score"].map("{:.3f}".format)
+
+    print(f"\n{'═'*110}")
+    print(f"  BREAKDOWN SCREENER — Top {top_n} short candidates   "
+          f"({len(df_results)} total passed all filters)   "
+          f"[{datetime.now().strftime('%Y-%m-%d')}]")
+    print(f"{'═'*110}")
+    print(tabulate(top, headers="keys", tablefmt="rounded_outline", showindex=False))
+    print(f"\nFull results → {csv_path}")
+    print(
+        "\nScore weights: 45% recency · 30% volume surge · 25% distance below 200-day SMA\n"
     )
 
     return df_results

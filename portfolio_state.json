@@ -1,0 +1,110 @@
+{
+  "current_week": 1,
+  "start_date": "2026-08-24",
+  "spy_entry_price": 545.0,
+  "open_long": [
+    {
+      "ticker": "FCX",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 76.66,
+      "shares": 163.05765718758153,
+      "score": 0.6176125356125357,
+      "name": "Freeport-McMoRan",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "ILMN",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 219.4,
+      "shares": 56.97356426618049,
+      "score": 0.361353591160221,
+      "name": "Illumina, Inc.",
+      "indices": "S&P MidCap 400"
+    },
+    {
+      "ticker": "LLY",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 1255.4,
+      "shares": 9.95698582125219,
+      "score": 0.3061463414634147,
+      "name": "Lilly (Eli)",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "TRGP",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 299.1,
+      "shares": 41.79204279505182,
+      "score": 0.2861125356125356,
+      "name": "Targa Resources",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "ABNB",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 187.3,
+      "shares": 66.73785371062466,
+      "score": 0.241078431372549,
+      "name": "Airbnb",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "ARMK",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 59.77,
+      "shares": 209.13501756734146,
+      "score": 0.2267266121707538,
+      "name": "Aramark",
+      "indices": "S&P MidCap 400"
+    },
+    {
+      "ticker": "P",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 108.55,
+      "shares": 115.15430677107324,
+      "score": 0.1971004016064257,
+      "name": "Everpure",
+      "indices": "S&P MidCap 400"
+    },
+    {
+      "ticker": "MPC",
+      "side": "long",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 360.72,
+      "shares": 34.652916389443334,
+      "score": 0.1828251366120218,
+      "name": "Marathon Petroleum",
+      "indices": "S&P 500"
+    }
+  ],
+  "open_short": [
+    {
+      "ticker": "TTD",
+      "side": "short",
+      "week": 1,
+      "entry_date": "2026-08-24",
+      "entry_price": 13.18,
+      "shares": 7587.253414264037,
+      "score": 0.4656666666666667,
+      "name": "Trade Desk (The)",
+      "indices": "S&P 500"
+    }
+  ],
+  "closed_trades": [],
+  "weekly_results": []
+}
