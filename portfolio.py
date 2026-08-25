@@ -34,6 +34,7 @@ NOTIONAL_PER_STOCK = 10_000.0   # $10,000 per position
 TOP_N          = 10
 HOLD_WEEKS     = 52
 SPY_TICKER     = "SPY"
+VTI_TICKER     = "VTI"
 
 
 # --------------------------------------------------------------------------- #
@@ -82,6 +83,7 @@ def _build_cohort(
     csv_path: str,
     direction: str,
     spy_price: float | None,
+    vti_price: float | None = None,
     entry_col: str = "pct_above_resistance",
 ) -> dict | None:
     df = pd.read_csv(csv_path)
@@ -120,6 +122,7 @@ def _build_cohort(
         "source_csv":     csv_path,
         "positions":      positions,
         "spy_entry":      spy_price,
+        "vti_entry":      vti_price,
         "total_notional": NOTIONAL_PER_STOCK * len(positions),
         "hold_weeks":     HOLD_WEEKS,
         "status":         "active",
@@ -127,13 +130,16 @@ def _build_cohort(
     }
 
 
-def _fetch_spy_price() -> float | None:
-    spy_data = fetch_price_data_yahoo(
-        [SPY_TICKER], history_years=1,
+def _fetch_benchmark_prices() -> tuple[float | None, float | None]:
+    """Return (spy_price, vti_price) current close prices."""
+    data = fetch_price_data_yahoo(
+        [SPY_TICKER, VTI_TICKER], history_years=1,
         cache_dir=str(PORTFOLIO_DIR / "cache"),
         cache_max_age_hours=1,
     )
-    return float(spy_data[SPY_TICKER]["Close"].iloc[-1]) if SPY_TICKER in spy_data else None
+    spy = float(data[SPY_TICKER]["Close"].iloc[-1]) if SPY_TICKER in data else None
+    vti = float(data[VTI_TICKER]["Close"].iloc[-1]) if VTI_TICKER in data else None
+    return spy, vti
 
 
 # --------------------------------------------------------------------------- #
@@ -154,8 +160,8 @@ def cmd_add(csv_path: str | None = None) -> None:
         print(f"Long cohort {entry_week} already exists — skipping. Delete {path} to re-add.")
         return
 
-    spy_price = _fetch_spy_price()
-    cohort = _build_cohort(csv_path, "long", spy_price)
+    spy_price, vti_price = _fetch_benchmark_prices()
+    cohort = _build_cohort(csv_path, "long", spy_price, vti_price)
     if cohort is None:
         print("No candidates in the scan CSV.")
         return
@@ -182,8 +188,8 @@ def cmd_add_short(csv_path: str | None = None) -> None:
         print(f"Short cohort {entry_week} already exists — skipping. Delete {path} to re-add.")
         return
 
-    spy_price = _fetch_spy_price()
-    cohort = _build_cohort(csv_path, "short", spy_price, entry_col="pct_below_support")
+    spy_price, vti_price = _fetch_benchmark_prices()
+    cohort = _build_cohort(csv_path, "short", spy_price, vti_price, entry_col="pct_below_support")
     if cohort is None:
         print("No candidates in the breakdown scan CSV.")
         return
@@ -195,9 +201,11 @@ def cmd_add_short(csv_path: str | None = None) -> None:
 def _print_cohort_summary(cohort: dict, path: Path) -> None:
     direction = cohort.get("direction", "long")
     spy = cohort.get("spy_entry")
+    vti = cohort.get("vti_entry")
     print(f"\n{direction.upper()} Cohort {cohort['cohort_id']} created → {path}")
     print(f"  {len(cohort['positions'])} positions, ${cohort['total_notional']:,.0f} notional")
     print(f"  SPY entry: ${spy:.2f}" if spy else "  SPY entry: N/A")
+    print(f"  VTI entry: ${vti:.2f}" if vti else "  VTI entry: N/A")
     for p in cohort["positions"]:
         print(f"  {p['ticker']:6s}  {p['name'][:30]:30s}  entry ${p['entry_price']:.2f}")
 
@@ -218,7 +226,7 @@ def cmd_update() -> None:
         print("No active cohorts to update.")
         return
 
-    all_tickers = list({t["ticker"] for c in active for t in c["positions"]}) + [SPY_TICKER]
+    all_tickers = list({t["ticker"] for c in active for t in c["positions"]}) + [SPY_TICKER, VTI_TICKER]
     price_data = fetch_price_data_yahoo(
         all_tickers, history_years=1,
         cache_dir=str(PORTFOLIO_DIR / "cache"),
@@ -253,6 +261,10 @@ def cmd_update() -> None:
             spy_cur = float(price_data[SPY_TICKER]["Close"].iloc[-1])
             spy_ret = (spy_cur - cohort["spy_entry"]) / cohort["spy_entry"] * 100
             snapshot["spy_value"] = round(spy_ret, 2)
+        if VTI_TICKER in price_data and cohort.get("vti_entry"):
+            vti_cur = float(price_data[VTI_TICKER]["Close"].iloc[-1])
+            vti_ret = (vti_cur - cohort["vti_entry"]) / cohort["vti_entry"] * 100
+            snapshot["vti_value"] = round(vti_ret, 2)
 
         snapshot["portfolio_value"] = round(snapshot["portfolio_value"], 2)
         portfolio_ret = (snapshot["portfolio_value"] - cohort["total_notional"]) / cohort["total_notional"] * 100
@@ -397,6 +409,7 @@ def cmd_report() -> str:
         lsnap = (lc["snapshots"][-1] if lc and lc["snapshots"] else {})
         ssnap = (sc["snapshots"][-1] if sc and sc["snapshots"] else {})
         spy_ret = lsnap.get("spy_value") or ssnap.get("spy_value")
+        vti_ret = lsnap.get("vti_value") or ssnap.get("vti_value")
         l_ret   = lsnap.get("portfolio_return_pct")
         s_ret   = ssnap.get("portfolio_return_pct")
         comparison_rows += (
@@ -405,10 +418,11 @@ def cmd_report() -> str:
             f"<td style='text-align:right'>{_rs(l_ret) if lc else '<span style=color:#4d718a>—</span>'}</td>"
             f"<td style='text-align:right'>{_rs(s_ret) if sc else '<span style=color:#4d718a>—</span>'}</td>"
             f"<td style='text-align:right'>{_rs(spy_ret, color_sign=False)}</td>"
+            f"<td style='text-align:right'>{_rs(vti_ret, color_sign=False)}</td>"
             f"</tr>"
         )
     if not comparison_rows:
-        comparison_rows = "<tr><td colspan='4' style='color:#4d718a;text-align:center'>No data yet — runs weekly.</td></tr>"
+        comparison_rows = "<tr><td colspan='5' style='color:#4d718a;text-align:center'>No data yet — runs weekly.</td></tr>"
 
     # Stat calculations
     def _avg_alpha_winrate(cohort_list):
@@ -564,7 +578,8 @@ def cmd_report() -> str:
       <tr><th>Entry Week</th>
           <th style="text-align:right">Long Portfolio</th>
           <th style="text-align:right">Short Portfolio</th>
-          <th style="text-align:right">SPY</th></tr>
+          <th style="text-align:right">SPY</th>
+          <th style="text-align:right">VTI</th></tr>
       {comparison_rows}
     </table></div>
   </div>
@@ -582,9 +597,9 @@ def cmd_report() -> str:
   </div>
 
   <div class="foot">
-    Paper trading only — not financial advice. Entry = Friday close at scan time (Monday open proxy).
+    Paper trading only — not financial advice. Entry = Monday open at cohort start.
     $10,000 per position, equal-weight. Short P&amp;L = (entry − current) / entry.
-    SPY total-return benchmark. Screener runs every Sunday 22:00 UTC.
+    SPY ($764.78) and VTI ($377.92) total-return benchmarks (Cohort 1 entry). Screener runs every Sunday 22:00 UTC.
   </div>
 </div>"""
 
