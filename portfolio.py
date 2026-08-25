@@ -69,6 +69,9 @@ class WeeklyResult:
     spy_pnl: float          # SPY $ gain on equivalent $100K
     spy_open: float
     spy_close: float
+    vti_pnl: float = 0.0    # VTI $ gain on equivalent $100K
+    vti_open: float = 0.0
+    vti_close: float = 0.0
     long_tickers: List[str] = field(default_factory=list)
     short_tickers: List[str] = field(default_factory=list)
 
@@ -79,7 +82,8 @@ class PortfolioState:
     start_date: str = ""
     open_long: List[Position] = field(default_factory=list)
     open_short: List[Position] = field(default_factory=list)
-    spy_entry_price: float = 0.0         # SPY price when current week was opened
+    spy_entry_price: float = 0.0         # SPY Monday open when week was opened
+    vti_entry_price: float = 0.0         # VTI Monday open when week was opened
     closed_trades: List[ClosedTrade] = field(default_factory=list)
     weekly_results: List[WeeklyResult] = field(default_factory=list)
 
@@ -124,6 +128,7 @@ class Portfolio:
             current_week=data.get("current_week", 0),
             start_date=data.get("start_date", ""),
             spy_entry_price=data.get("spy_entry_price", 0.0),
+            vti_entry_price=data.get("vti_entry_price", 0.0),
             open_long=[_pos_from_dict(p) for p in data.get("open_long", [])],
             open_short=[_pos_from_dict(p) for p in data.get("open_short", [])],
             closed_trades=[_closed_from_dict(t) for t in data.get("closed_trades", [])],
@@ -136,6 +141,7 @@ class Portfolio:
             "current_week": self.state.current_week,
             "start_date": self.state.start_date,
             "spy_entry_price": self.state.spy_entry_price,
+            "vti_entry_price": self.state.vti_entry_price,
             "open_long": [_to_dict(p) for p in self.state.open_long],
             "open_short": [_to_dict(p) for p in self.state.open_short],
             "closed_trades": [_to_dict(t) for t in self.state.closed_trades],
@@ -154,6 +160,7 @@ class Portfolio:
         long_df: pd.DataFrame,
         short_df: pd.DataFrame,
         spy_price: float,
+        vti_price: float = 0.0,
         top_n: int = 10,
     ):
         """Allocate $100K each side equally across top_n candidates."""
@@ -161,6 +168,7 @@ class Portfolio:
         if not self.state.start_date:
             self.state.start_date = open_date
         self.state.spy_entry_price = spy_price
+        self.state.vti_entry_price = vti_price
 
         def _build_positions(df: pd.DataFrame, side: str) -> List[Position]:
             if df.empty:
@@ -198,6 +206,7 @@ class Portfolio:
         close_date: str,
         price_lookup: Dict[str, float],
         spy_close_price: float,
+        vti_close_price: float = 0.0,
     ) -> WeeklyResult:
         """
         Mark all open positions as closed at the given prices.
@@ -237,11 +246,16 @@ class Portfolio:
                 shares=pos.shares, pnl=round(pnl, 2), pnl_pct=round(pnl_pct, 2),
             ))
 
-        # SPY benchmark: $100K in SPY long
+        # Benchmark P&L: $100K long each benchmark
         spy_pnl = 0.0
         if self.state.spy_entry_price > 0:
             spy_shares = CAPITAL_PER_SIDE / self.state.spy_entry_price
             spy_pnl = (spy_close_price - self.state.spy_entry_price) * spy_shares
+
+        vti_pnl = 0.0
+        if self.state.vti_entry_price > 0 and vti_close_price > 0:
+            vti_shares = CAPITAL_PER_SIDE / self.state.vti_entry_price
+            vti_pnl = (vti_close_price - self.state.vti_entry_price) * vti_shares
 
         week_num = self.state.current_week
         result = WeeklyResult(
@@ -254,6 +268,9 @@ class Portfolio:
             spy_pnl=round(spy_pnl, 2),
             spy_open=self.state.spy_entry_price,
             spy_close=spy_close_price,
+            vti_pnl=round(vti_pnl, 2),
+            vti_open=self.state.vti_entry_price,
+            vti_close=vti_close_price,
             long_tickers=long_tickers,
             short_tickers=short_tickers,
         )
@@ -279,6 +296,7 @@ class Portfolio:
         total_short = sum(r.short_pnl for r in self.state.weekly_results)
         total_combined = sum(r.combined_pnl for r in self.state.weekly_results)
         total_spy = sum(r.spy_pnl for r in self.state.weekly_results)
+        total_vti = sum(r.vti_pnl for r in self.state.weekly_results)
         weeks = len(self.state.weekly_results)
         return {
             "weeks_completed": weeks,
@@ -286,11 +304,14 @@ class Portfolio:
             "total_short_pnl": round(total_short, 2),
             "total_combined_pnl": round(total_combined, 2),
             "total_spy_pnl": round(total_spy, 2),
-            "alpha": round(total_combined - total_spy, 2),
+            "total_vti_pnl": round(total_vti, 2),
+            "alpha_vs_spy": round(total_combined - total_spy, 2),
+            "alpha_vs_vti": round(total_combined - total_vti, 2),
             "long_return_pct": round(total_long / CAPITAL_PER_SIDE * 100, 2),
             "short_return_pct": round(total_short / CAPITAL_PER_SIDE * 100, 2),
             "combined_return_pct": round(total_combined / (CAPITAL_PER_SIDE * 2) * 100, 2),
             "spy_return_pct": round(total_spy / CAPITAL_PER_SIDE * 100, 2),
+            "vti_return_pct": round(total_vti / CAPITAL_PER_SIDE * 100, 2),
         }
 
     def weekly_table(self) -> pd.DataFrame:
@@ -306,6 +327,8 @@ class Portfolio:
                 "short_pnl": r.short_pnl,
                 "combined_pnl": r.combined_pnl,
                 "spy_pnl": r.spy_pnl,
-                "alpha": round(r.combined_pnl - r.spy_pnl, 2),
+                "vti_pnl": r.vti_pnl,
+                "alpha_spy": round(r.combined_pnl - r.spy_pnl, 2),
+                "alpha_vti": round(r.combined_pnl - r.vti_pnl, 2),
             })
         return pd.DataFrame(rows)

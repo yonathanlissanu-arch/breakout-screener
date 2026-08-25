@@ -1,7 +1,8 @@
 {
   "current_week": 1,
   "start_date": "2026-08-24",
-  "spy_entry_price": 545.0,
+  "spy_entry_price": 764.78,
+  "vti_entry_price": 377.92,
   "open_long": [
     {
       "ticker": "FCX",

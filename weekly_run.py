@@ -51,17 +51,16 @@ def _get_latest_prices(price_data: dict) -> dict[str, float]:
     return result
 
 
-def _get_spy_price(price_data: dict) -> float:
-    spy_df = price_data.get("SPY")
-    if spy_df is not None and not spy_df.empty:
-        return float(spy_df["Close"].dropna().iloc[-1])
-    # Fallback: fetch SPY separately
-    logger.warning("SPY not in price cache — fetching standalone")
-    spy_data = fetch_price_data_yahoo(["SPY"], history_years=1)
-    df = spy_data.get("SPY")
+def _get_benchmark_price(price_data: dict, ticker: str) -> float:
+    df = price_data.get(ticker)
     if df is not None and not df.empty:
         return float(df["Close"].dropna().iloc[-1])
-    logger.error("Could not obtain SPY price")
+    logger.warning("%s not in price cache — fetching standalone", ticker)
+    data = fetch_price_data_yahoo([ticker], history_years=1)
+    df2 = data.get(ticker)
+    if df2 is not None and not df2.empty:
+        return float(df2["Close"].dropna().iloc[-1])
+    logger.error("Could not obtain %s price", ticker)
     return 0.0
 
 
@@ -89,9 +88,10 @@ def weekly_run(
     )
 
     tickers = universe["ticker"].tolist()
-    # Always include SPY for benchmark
-    if "SPY" not in tickers:
-        tickers.append("SPY")
+    # Always include benchmarks
+    for bm in ("SPY", "VTI"):
+        if bm not in tickers:
+            tickers.append(bm)
 
     # ── 2. Fetch / refresh price data ────────────────────────────────────────
     logger.info("Fetching price data for %d tickers …", len(tickers))
@@ -100,7 +100,8 @@ def weekly_run(
     # ── 3. Close last week's positions ───────────────────────────────────────
     portfolio = Portfolio()
     latest_prices = _get_latest_prices(price_data)
-    spy_price = _get_spy_price(price_data)
+    spy_price = _get_benchmark_price(price_data, "SPY")
+    vti_price = _get_benchmark_price(price_data, "VTI")
 
     if portfolio.state.open_long or portfolio.state.open_short:
         logger.info("Closing week %d positions …", portfolio.state.current_week)
@@ -109,6 +110,7 @@ def weekly_run(
                 close_date=today,
                 price_lookup=latest_prices,
                 spy_close_price=spy_price,
+                vti_close_price=vti_price,
             )
             print(
                 f"\nWeek {result.week} closed:  "
@@ -116,7 +118,8 @@ def weekly_run(
                 f"Short P&L ${result.short_pnl:+,.0f}  |  "
                 f"Combined ${result.combined_pnl:+,.0f}  |  "
                 f"SPY ${result.spy_pnl:+,.0f}  |  "
-                f"Alpha ${result.combined_pnl - result.spy_pnl:+,.0f}"
+                f"VTI ${result.vti_pnl:+,.0f}  |  "
+                f"Alpha vs SPY ${result.combined_pnl - result.spy_pnl:+,.0f}"
             )
 
     # ── 4. Run scans ─────────────────────────────────────────────────────────
@@ -139,6 +142,7 @@ def weekly_run(
         long_df=long_results,
         short_df=short_results,
         spy_price=spy_price,
+        vti_price=vti_price,
         top_n=top_n,
     )
 
@@ -158,7 +162,10 @@ def weekly_run(
               f"({summary['combined_return_pct']:+.1f}%)")
         print(f"  SPY (benchmark):  ${summary['total_spy_pnl']:>+10,.0f}  "
               f"({summary['spy_return_pct']:+.1f}%)")
-        print(f"  Alpha          :  ${summary['alpha']:>+10,.0f}")
+        print(f"  VTI (benchmark):  ${summary['total_vti_pnl']:>+10,.0f}  "
+              f"({summary['vti_return_pct']:+.1f}%)")
+        print(f"  Alpha vs SPY   :  ${summary['alpha_vs_spy']:>+10,.0f}")
+        print(f"  Alpha vs VTI   :  ${summary['alpha_vs_vti']:>+10,.0f}")
         print(f"{'═'*70}\n")
 
         # Weekly table
