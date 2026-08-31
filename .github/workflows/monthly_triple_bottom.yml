@@ -1,0 +1,57 @@
+name: Monthly Triple-Bottom Scan
+
+on:
+  schedule:
+    # 1st of every month at 06:00 UTC — markets open shortly after for US/EU
+    - cron: '0 6 1 * *'
+  workflow_dispatch:         # manual trigger from GitHub UI
+    inputs:
+      top_n:
+        description: 'Number of top results to display'
+        required: false
+        default: '20'
+      include_setups:
+        description: 'Include setup patterns (not yet broken out): 1 or 0'
+        required: false
+        default: '1'
+      history_years:
+        description: 'Years of OHLCV history to download'
+        required: false
+        default: '5'
+
+jobs:
+  triple-bottom-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write     # needed to commit results back to the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monthly triple-bottom scan
+        env:
+          TOP_N:          ${{ github.event.inputs.top_n          || '20' }}
+          INCLUDE_SETUPS: ${{ github.event.inputs.include_setups || '1' }}
+          HISTORY_YEARS:  ${{ github.event.inputs.history_years  || '5' }}
+        run: python monthly_run.py
+
+      - name: Commit and push results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/
+          git diff --cached --quiet || \
+            git commit -m "chore: monthly triple-bottom scan $(date -u +%Y-%m-%d)"
+          git push origin HEAD

@@ -275,6 +275,189 @@ def fetch_euronext() -> pd.DataFrame:
 
 
 # --------------------------------------------------------------------------- #
+# STOXX Europe 600  (broad European index, 17 countries)
+# --------------------------------------------------------------------------- #
+
+# Additional indices beyond the Euronext set needed for full STOXX 600 coverage.
+# The existing _EU_INDICES covers France, Netherlands, Belgium, Portugal, Norway,
+# Italy, Germany, Spain, and Nordic markets.  STOXX 600 also includes UK,
+# Switzerland and Austria — we add those here.
+_STOXX600_EXTRA: List[Tuple[str, str, str, str]] = [
+    ("https://en.wikipedia.org/wiki/FTSE_100_Index",        ".L",  "FTSE 100",  "EPIC"),
+    ("https://en.wikipedia.org/wiki/Swiss_Market_Index",    ".SW", "SMI",        "Ticker"),
+    ("https://en.wikipedia.org/wiki/Austrian_Traded_Index", ".VI", "ATX",        "Ticker"),
+]
+
+
+def fetch_stoxx600() -> pd.DataFrame:
+    """
+    Return a broad STOXX Europe 600 universe.
+
+    Strategy:
+    1. Try the iShares STOXX Europe 600 UCITS ETF holdings CSV (EXSA).
+    2. Fall back to the full _EU_INDICES list (existing) PLUS the three
+       additional country indices above (UK, Switzerland, Austria).
+
+    The iShares CSV gives the complete 600 names with proper Yahoo Finance
+    tickers; the Wikipedia fallback gives the blue-chips from each country
+    (typically the top 30-100 per market).
+    """
+    # ── Attempt 1: iShares EXSA CSV ──────────────────────────────────────────
+    _exsa_url = (
+        "https://www.ishares.com/uk/individual/en/products/251904/"
+        "ISHARES_STOXX_EUROPE_600_UCITS_ETF/1490183377431.ajax"
+        "?fileType=csv&fileName=EXSA_holdings&dataType=fund"
+    )
+    try:
+        resp = _get(_exsa_url, allow_redirects=True)
+        if "<html" not in resp.text[:400].lower():
+            lines = resp.text.splitlines()
+            data_start = next(
+                (i for i, l in enumerate(lines)
+                 if l.strip().startswith(("Name,", "Ticker,", '"Name"', '"Ticker"'))),
+                2,
+            )
+            csv_body = "\n".join(lines[data_start:])
+            import io
+            df_raw = pd.read_csv(io.StringIO(csv_body))
+            # Filter to equities only
+            if "Asset Class" in df_raw.columns:
+                df_raw = df_raw[df_raw["Asset Class"] == "Equity"]
+            tick_col = next(
+                (c for c in df_raw.columns if c.strip().lower() in ("ticker", "symbol")),
+                None,
+            )
+            name_col = next(
+                (c for c in df_raw.columns if "name" in c.strip().lower()), None
+            )
+            if tick_col and len(df_raw) > 50:
+                df_raw = df_raw.rename(columns={tick_col: "ticker"})
+                df_raw["name"] = df_raw[name_col] if name_col else ""
+                df_raw["ticker"] = (
+                    df_raw["ticker"].astype(str).str.strip()
+                    .str.replace(".", "-", regex=False)
+                )
+                df_raw = df_raw[df_raw["ticker"].str.match(r"^[A-Z][A-Z0-9\-\.]+$")]
+                df_raw["index"] = "STOXX 600"
+                result = df_raw[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if len(result) > 100:
+                    logger.info("  STOXX 600 (iShares EXSA): %d tickers", len(result))
+                    return result
+    except Exception as exc:
+        logger.debug("iShares EXSA fetch failed: %s", exc)
+
+    # ── Attempt 2: Wikipedia — Euronext indices + UK + CH + AT ───────────────
+    logger.info("  STOXX 600: falling back to Wikipedia constituent indices")
+    frames: List[pd.DataFrame] = []
+
+    all_indices = _EU_INDICES + _STOXX600_EXTRA
+    for url, suffix, label, hint in all_indices:
+        df = fetch_eu_index(url, suffix, label, hint)
+        if not df.empty:
+            df["index"] = "STOXX 600"   # re-label for unified grouping
+            frames.append(df)
+            logger.info("    %s: %d tickers", label, len(df))
+        time.sleep(0.4)
+
+    if not frames:
+        return pd.DataFrame(columns=["ticker", "name", "index"])
+
+    combined = pd.concat(frames, ignore_index=True)
+    combined = combined.drop_duplicates("ticker")
+    logger.info("  STOXX 600 (Wikipedia fallback): %d unique tickers", len(combined))
+    return combined
+
+
+# --------------------------------------------------------------------------- #
+# Wilshire US Small-Cap 2000
+# --------------------------------------------------------------------------- #
+
+def fetch_wilshire2000() -> pd.DataFrame:
+    """
+    Return the Wilshire US Small-Cap 2000 universe.
+
+    The Wilshire US Small-Cap 2000 index and the Russell 2000 have ~85 %
+    overlap.  We use the same iShares IWM holdings CSV as the primary source
+    (most reliable free endpoint) and fall back to the Wikipedia Russell 2000
+    page.  Results are labelled 'Wilshire 2000'.
+    """
+    iwm_url = (
+        "https://www.ishares.com/us/products/239710/"
+        "ishares-russell-2000-etf/1467271812596.ajax"
+        "?fileType=csv&fileName=IWM_holdings&dataType=fund"
+    )
+    try:
+        resp = _get(iwm_url, allow_redirects=True)
+        if "<html" not in resp.text[:200].lower():
+            lines = resp.text.splitlines()
+            data_start = next(
+                (i for i, l in enumerate(lines)
+                 if l.startswith(("Name,", "Ticker,", '"Name"'))),
+                2,
+            )
+            csv_body = "\n".join(lines[data_start:])
+            import io
+            df = pd.read_csv(io.StringIO(csv_body))
+            if "Asset Class" in df.columns:
+                df = df[df["Asset Class"] == "Equity"]
+            tick_col = next(
+                (c for c in df.columns if c.lower() in ("ticker", "symbol")), None
+            )
+            name_col = next((c for c in df.columns if "name" in c.lower()), None)
+            if tick_col:
+                df = df.rename(columns={tick_col: "ticker"})
+                df["name"] = df[name_col] if name_col else ""
+                df["ticker"] = (
+                    df["ticker"].astype(str).str.strip()
+                    .str.replace(".", "-", regex=False)
+                )
+                df = df[df["ticker"].str.match(r"^[A-Z0-9\-]+$")]
+                df["index"] = "Wilshire 2000"
+                result = df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if len(result) > 100:
+                    logger.info("  Wilshire 2000 (IWM proxy): %d tickers", len(result))
+                    return result
+    except Exception as exc:
+        logger.debug("Wilshire 2000 IWM fetch failed: %s", exc)
+
+    # Fall back to Wikipedia (partial list)
+    try:
+        tables = _wiki_tables("https://en.wikipedia.org/wiki/Russell_2000_Index")
+        for t in tables:
+            cols_lower = [c.lower() for c in t.columns]
+            if any("tick" in c or "symbol" in c for c in cols_lower):
+                tick_col = next(
+                    c for c in t.columns
+                    if "tick" in c.lower() or "symbol" in c.lower()
+                )
+                name_col = next(
+                    (c for c in t.columns
+                     if "name" in c.lower() or "compan" in c.lower()),
+                    None,
+                )
+                df = t.rename(columns={tick_col: "ticker"})
+                df["name"] = df[name_col] if name_col else ""
+                df["ticker"] = (
+                    df["ticker"].astype(str).str.strip()
+                    .str.replace(".", "-", regex=False)
+                )
+                df = df[df["ticker"].str.match(r"^[A-Z0-9\-]+$")]
+                df["index"] = "Wilshire 2000"
+                result = df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if not result.empty:
+                    logger.warning(
+                        "Wilshire 2000: only %d tickers from Wikipedia (partial).",
+                        len(result),
+                    )
+                    return result
+    except Exception as exc:
+        logger.debug("Wilshire 2000 Wikipedia fallback failed: %s", exc)
+
+    logger.warning("Wilshire 2000: could not fetch constituent list. Skipping.")
+    return pd.DataFrame(columns=["ticker", "name", "index"])
+
+
+# --------------------------------------------------------------------------- #
 # Combined universe
 # --------------------------------------------------------------------------- #
 
@@ -283,11 +466,20 @@ def build_universe(
     midcap400: bool = True,
     russell2000: bool = True,
     euronext: bool = True,
+    stoxx600: bool = False,
+    wilshire2000: bool = False,
 ) -> pd.DataFrame:
     """
-    Return deduplicated DataFrame: ticker | name | index | region.
-    If a ticker appears in multiple indices, the first occurrence wins
-    for 'index' but all memberships are captured in 'index_list'.
+    Return deduplicated DataFrame: ticker | name | indices | region.
+
+    Parameters
+    ----------
+    sp500, midcap400, russell2000, euronext : original universe toggles
+    stoxx600     : include the STOXX Europe 600 broad universe
+    wilshire2000 : include the Wilshire US Small-Cap 2000 universe
+
+    If a ticker appears in multiple indices all memberships are captured
+    in the 'indices' column (slash-separated).
     """
     frames = []
     if sp500:
@@ -300,8 +492,14 @@ def build_universe(
         logger.info("Fetching Russell 2000 …")
         frames.append(fetch_russell2000())
     if euronext:
-        logger.info("Fetching European indices …")
+        logger.info("Fetching European (Euronext subset) indices …")
         frames.append(fetch_euronext())
+    if stoxx600:
+        logger.info("Fetching STOXX Europe 600 …")
+        frames.append(fetch_stoxx600())
+    if wilshire2000:
+        logger.info("Fetching Wilshire 2000 …")
+        frames.append(fetch_wilshire2000())
 
     if not frames:
         raise ValueError("No universe selected.")
@@ -318,11 +516,12 @@ def build_universe(
     )
     first_occ = combined.drop_duplicates("ticker")[["ticker", "name"]]
     universe = first_occ.merge(membership, on="ticker")
+    _EU_KEYWORDS = (
+        "CAC", "AEX", "DAX", "MIB", "IBEX", "BEL", "PSI",
+        "OMX", "OBX", "Euronext", "STOXX", "FTSE 100", "SMI", "ATX",
+    )
     universe["region"] = universe["indices"].apply(
-        lambda s: "Europe" if any(
-            x in s for x in ("CAC", "AEX", "DAX", "MIB", "IBEX", "BEL", "PSI",
-                             "OMX", "OBX", "Euronext")
-        ) else "US"
+        lambda s: "Europe" if any(x in s for x in _EU_KEYWORDS) else "US"
     )
 
     logger.info(
