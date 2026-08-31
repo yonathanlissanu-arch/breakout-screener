@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/ portfolio/
+          git add portfolio/
           # Only commit if there are staged changes
           git diff --cached --quiet || git commit -m "chore: weekly scan $(date -u +%Y-%m-%d)"
           git push origin HEAD
