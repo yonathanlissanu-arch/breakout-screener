@@ -1,0 +1,207 @@
+{
+  "cohort_id": "2026-09-07",
+  "direction": "long",
+  "scan_date": "2026-08-31",
+  "entry_week": "2026-09-07",
+  "source_csv": "results/breakout_scan_20260831_1533.csv",
+  "positions": [
+    {
+      "ticker": "OKTA",
+      "name": "Okta, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 166.46,
+      "shares": 60.0745,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-27",
+      "volume_ratio": 5.35,
+      "rsi14": 64.8,
+      "extension_pct": 7.43,
+      "score": 0.4676
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "indices": "S&P 500",
+      "entry_price": 227.13,
+      "shares": 44.0276,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-27",
+      "volume_ratio": 2.54,
+      "rsi14": 61.6,
+      "extension_pct": 0.71,
+      "score": 0.3382
+    },
+    {
+      "ticker": "NDSN",
+      "name": "Nordson Corporation",
+      "indices": "S&P 500",
+      "entry_price": 323.25,
+      "shares": 30.9358,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-20",
+      "volume_ratio": 3.23,
+      "rsi14": 58.6,
+      "extension_pct": 3.82,
+      "score": 0.3287
+    },
+    {
+      "ticker": "MRK",
+      "name": "Merck & Co.",
+      "indices": "S&P 500",
+      "entry_price": 147.88,
+      "shares": 67.6224,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-19",
+      "volume_ratio": 3.25,
+      "rsi14": 61.7,
+      "extension_pct": 8.76,
+      "score": 0.3055
+    },
+    {
+      "ticker": "SJM",
+      "name": "J.M. Smucker Company (The)",
+      "indices": "S&P 500",
+      "entry_price": 132.99,
+      "shares": 75.1936,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-26",
+      "volume_ratio": 2.06,
+      "rsi14": 73.4,
+      "extension_pct": 2.38,
+      "score": 0.2885
+    },
+    {
+      "ticker": "HAE",
+      "name": "Haemonetics",
+      "indices": "S&P MidCap 400",
+      "entry_price": 102.3,
+      "shares": 97.7517,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-18",
+      "volume_ratio": 2.78,
+      "rsi14": 65.0,
+      "extension_pct": 5.06,
+      "score": 0.257
+    },
+    {
+      "ticker": "FCX",
+      "name": "Freeport-McMoRan",
+      "indices": "S&P 500",
+      "entry_price": 75.64,
+      "shares": 132.2052,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-21",
+      "volume_ratio": 1.98,
+      "rsi14": 61.0,
+      "extension_pct": 5.72,
+      "score": 0.2367
+    },
+    {
+      "ticker": "TRGP",
+      "name": "Targa Resources",
+      "indices": "S&P 500",
+      "entry_price": 288.4,
+      "shares": 34.6741,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-18",
+      "volume_ratio": 2.07,
+      "rsi14": 55.5,
+      "extension_pct": 1.46,
+      "score": 0.227
+    },
+    {
+      "ticker": "JYSK.CO",
+      "name": "Jyske Bank",
+      "indices": "OMX Copenhagen 25",
+      "entry_price": 1096.0,
+      "shares": 9.1241,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-20",
+      "volume_ratio": 1.76,
+      "rsi14": 74.3,
+      "extension_pct": 3.79,
+      "score": 0.2218
+    },
+    {
+      "ticker": "ILMN",
+      "name": "Illumina, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 213.67,
+      "shares": 46.8011,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-20",
+      "volume_ratio": 1.7,
+      "rsi14": 57.9,
+      "extension_pct": 4.18,
+      "score": 0.1959
+    }
+  ],
+  "spy_entry": 765.625,
+  "vti_entry": 377.44000244140625,
+  "total_notional": 100000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-08-31",
+      "positions": {
+        "OKTA": {
+          "current_price": 166.97,
+          "pnl_pct": 0.31,
+          "value": 10030.64
+        },
+        "CRWD": {
+          "current_price": 226.23,
+          "pnl_pct": -0.4,
+          "value": 9960.37
+        },
+        "NDSN": {
+          "current_price": 323.75,
+          "pnl_pct": 0.15,
+          "value": 10015.47
+        },
+        "MRK": {
+          "current_price": 148.03,
+          "pnl_pct": 0.1,
+          "value": 10010.31
+        },
+        "SJM": {
+          "current_price": 132.95,
+          "pnl_pct": -0.03,
+          "value": 9996.62
+        },
+        "HAE": {
+          "current_price": 102.52,
+          "pnl_pct": 0.22,
+          "value": 10021.51
+        },
+        "FCX": {
+          "current_price": 75.68,
+          "pnl_pct": 0.06,
+          "value": 10005.95
+        },
+        "TRGP": {
+          "current_price": 288.38,
+          "pnl_pct": -0.01,
+          "value": 9999.31
+        },
+        "JYSK.CO": {
+          "current_price": 1096.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ILMN": {
+          "current_price": 214.06,
+          "pnl_pct": 0.18,
+          "value": 10018.25
+        }
+      },
+      "portfolio_value": 100058.42,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.06,
+      "alpha": 0.06
+    }
+  ],
+  "weeks_elapsed": -1
+}

@@ -1,0 +1,45 @@
+{
+  "cohort_id": "2026-09-07",
+  "direction": "short",
+  "scan_date": "2026-08-31",
+  "entry_week": "2026-09-07",
+  "source_csv": "results/breakdown_scan_20260831_1533.csv",
+  "positions": [
+    {
+      "ticker": "APTV",
+      "name": "Aptiv",
+      "indices": "S&P 500",
+      "entry_price": 45.48,
+      "shares": 219.8769,
+      "notional": 10000.0,
+      "breakout_date": "2026-08-26",
+      "volume_ratio": 1.5,
+      "rsi14": 32.6,
+      "extension_pct": 1.77,
+      "score": 0.2461
+    }
+  ],
+  "spy_entry": 765.625,
+  "vti_entry": 377.44000244140625,
+  "total_notional": 10000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-08-31",
+      "positions": {
+        "APTV": {
+          "current_price": 45.56,
+          "pnl_pct": -0.19,
+          "value": 9981.31
+        }
+      },
+      "portfolio_value": 9981.31,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": -0.19,
+      "alpha": -0.19
+    }
+  ],
+  "weeks_elapsed": -1
+}
