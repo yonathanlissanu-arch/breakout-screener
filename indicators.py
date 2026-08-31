@@ -329,6 +329,264 @@ def analyse_ticker(ticker: str, df: pd.DataFrame) -> Optional[dict]:
         return None
 
 
+# --------------------------------------------------------------------------- #
+# Multi-year Triple Bottom detection
+# --------------------------------------------------------------------------- #
+
+def _find_pivot_lows(values: np.ndarray, order: int = 10) -> list[int]:
+    """
+    Return indices of local lows.  A pivot low at position i satisfies:
+      values[i] <= min of the `order` bars immediately before AND after it.
+    Nearby pivots within `order` bars of each other are merged — only the
+    lowest survives.
+    """
+    n = len(values)
+    raw: list[int] = []
+    for i in range(order, n - order):
+        left_min  = values[max(0, i - order):i].min()
+        right_min = values[i + 1:i + order + 1].min()
+        if values[i] <= left_min and values[i] <= right_min:
+            raw.append(i)
+
+    if len(raw) <= 1:
+        return raw
+
+    # Merge pivots that are closer than `order` bars
+    merged: list[int] = [raw[0]]
+    for idx in raw[1:]:
+        if idx - merged[-1] < order:
+            if values[idx] < values[merged[-1]]:
+                merged[-1] = idx
+        else:
+            merged.append(idx)
+    return merged
+
+
+def detect_triple_bottom(
+    df: pd.DataFrame,
+    lookback_years: int = None,
+    tolerance_pct: float = None,
+    min_separation: int = None,
+    min_pattern_span: int = None,
+    max_pattern_span: int = None,
+    pivot_order: int = None,
+    neckline_break_days: int = None,
+    vol_ma_period: int = None,
+    vol_surge_threshold: float = None,
+) -> Optional[dict]:
+    """
+    Detect a multi-year triple-bottom pattern in OHLCV data.
+
+    The pattern consists of three pivot lows at approximately the same
+    price level, separated by intermediate peaks (the neckline is the
+    highest peak between the outer two bottoms).  Returns the best
+    (most recent breakout) pattern found, or None.
+
+    Returned dict keys
+    ------------------
+    pattern_type      : 'triple_bottom_breakout' | 'triple_bottom_setup'
+    bottom{1,2,3}_date, bottom{1,2,3}_price
+    avg_bottom        : mean of the three low prices
+    bottom_variation_pct : max deviation from avg_bottom (tighter = better quality)
+    neckline          : highest peak between first and last bottom
+    pattern_span_days : trading days from bottom1 to bottom3
+    breakout_date     : date price first closed > neckline  (None if setup)
+    days_since_breakout : int                               (None if setup)
+    pct_above_neckline  : %                                 (None if setup)
+    pct_to_neckline     : % distance below neckline         (None if breakout)
+    volume_ratio      : breakout-day volume / prior 50-day avg
+    """
+    from config import CFG
+
+    lby    = lookback_years      or CFG.tb_lookback_years
+    tol    = tolerance_pct       or CFG.tb_tolerance_pct
+    minsep = min_separation      or CFG.tb_min_separation
+    minspan= min_pattern_span    or CFG.tb_min_pattern_span
+    maxspan= max_pattern_span    or CFG.tb_max_pattern_span
+    porder = pivot_order         or CFG.tb_pivot_order
+    nbdays = neckline_break_days or CFG.tb_neckline_break_days
+    vol_p  = vol_ma_period       or CFG.volume_ma_period
+    vol_thr= vol_surge_threshold or CFG.tb_vol_surge
+
+    bars_needed = lby * 252
+    if len(df) < max(MIN_BARS, bars_needed // 2):
+        return None
+
+    # Restrict to the lookback window (most recent `bars_needed` bars)
+    df_win = df.iloc[-bars_needed:] if len(df) > bars_needed else df
+    lows_arr   = df_win["Low"].values.astype(float)
+    highs_arr  = df_win["High"].values.astype(float)
+    closes_arr = df_win["Close"].values.astype(float)
+    vols_arr   = df_win["Volume"].values.astype(float)
+    n = len(lows_arr)
+
+    pivots = _find_pivot_lows(lows_arr, order=porder)
+    if len(pivots) < 3:
+        return None
+
+    best: Optional[dict] = None
+
+    # Search from the most recent third bottom backwards so we find the
+    # freshest valid pattern first and can break early.
+    for ki in range(len(pivots) - 1, 1, -1):
+        idx3 = pivots[ki]
+        b3   = lows_arr[idx3]
+
+        for ji in range(ki - 1, 0, -1):
+            idx2  = pivots[ji]
+            sep23 = idx3 - idx2
+            if sep23 < minsep:
+                continue
+            if sep23 > maxspan:
+                break
+
+            b2 = lows_arr[idx2]
+            # Quick tolerance pre-check on bottom2 vs bottom3
+            pair_avg = (b2 + b3) / 2.0
+            if abs(b2 - b3) / pair_avg * 100 > tol * 2:
+                continue
+
+            for ii in range(ji - 1, -1, -1):
+                idx1  = pivots[ii]
+                sep12 = idx2 - idx1
+                if sep12 < minsep:
+                    continue
+
+                total_span = idx3 - idx1
+                if total_span < minspan:
+                    continue
+                if total_span > maxspan:
+                    break
+
+                b1      = lows_arr[idx1]
+                avg_bot = (b1 + b2 + b3) / 3.0
+                max_dev = max(abs(b1 - avg_bot), abs(b2 - avg_bot), abs(b3 - avg_bot))
+                var_pct = max_dev / avg_bot * 100
+                if var_pct > tol:
+                    continue
+
+                # Neckline = highest high between idx1 and idx3
+                neckline = float(highs_arr[idx1:idx3 + 1].max())
+
+                # Intermediate peaks must rise meaningfully above the bottoms
+                if (neckline - avg_bot) / avg_bot * 100 < 3.0:
+                    continue
+
+                # Check for neckline breakout in bars after third bottom
+                post_closes = closes_arr[idx3:]
+                breakout_rel: Optional[int] = None
+                for pi, c in enumerate(post_closes):
+                    if c > neckline:
+                        breakout_rel = pi
+                        break
+
+                current_close = closes_arr[-1]
+
+                if breakout_rel is not None:
+                    breakout_abs = idx3 + breakout_rel
+                    days_since   = n - 1 - breakout_abs
+                    if days_since > nbdays:
+                        continue
+                    # Price must still be above neckline
+                    if current_close <= neckline:
+                        continue
+
+                    vol_start   = max(0, breakout_abs - vol_p)
+                    avg_vol     = float(vols_arr[vol_start:breakout_abs].mean()) if breakout_abs > vol_start else 1.0
+                    bvol        = float(vols_arr[breakout_abs])
+                    vol_ratio   = bvol / avg_vol if avg_vol > 0 else 0.0
+
+                    candidate = {
+                        "pattern_type":        "triple_bottom_breakout",
+                        "bottom1_date":        df_win.index[idx1],
+                        "bottom2_date":        df_win.index[idx2],
+                        "bottom3_date":        df_win.index[idx3],
+                        "bottom1_price":       round(b1, 2),
+                        "bottom2_price":       round(b2, 2),
+                        "bottom3_price":       round(b3, 2),
+                        "avg_bottom":          round(avg_bot, 2),
+                        "bottom_variation_pct": round(var_pct, 2),
+                        "neckline":            round(neckline, 2),
+                        "pattern_span_days":   total_span,
+                        "breakout_date":       df_win.index[breakout_abs],
+                        "days_since_breakout": days_since,
+                        "pct_above_neckline":  round((current_close - neckline) / neckline * 100, 2),
+                        "pct_to_neckline":     None,
+                        "volume_ratio":        round(vol_ratio, 2),
+                    }
+                    # Keep the most recent breakout
+                    if best is None or days_since < best.get("days_since_breakout", 9999):
+                        best = candidate
+
+                else:
+                    # No breakout yet — capture as a setup if third bottom is recent
+                    days_since_b3 = n - 1 - idx3
+                    if days_since_b3 <= nbdays and current_close < neckline:
+                        pct_to_nl = (neckline - current_close) / current_close * 100
+                        candidate = {
+                            "pattern_type":         "triple_bottom_setup",
+                            "bottom1_date":         df_win.index[idx1],
+                            "bottom2_date":         df_win.index[idx2],
+                            "bottom3_date":         df_win.index[idx3],
+                            "bottom1_price":        round(b1, 2),
+                            "bottom2_price":        round(b2, 2),
+                            "bottom3_price":        round(b3, 2),
+                            "avg_bottom":           round(avg_bot, 2),
+                            "bottom_variation_pct": round(var_pct, 2),
+                            "neckline":             round(neckline, 2),
+                            "pattern_span_days":    total_span,
+                            "breakout_date":        None,
+                            "days_since_breakout":  None,
+                            "pct_above_neckline":   None,
+                            "pct_to_neckline":      round(pct_to_nl, 2),
+                            "volume_ratio":         0.0,
+                        }
+                        # Prefer breakout patterns; only keep setup if no breakout found yet
+                        if best is None or best["pattern_type"] == "triple_bottom_setup":
+                            if best is None or pct_to_nl < best.get("pct_to_neckline", 9999):
+                                best = candidate
+
+    return best
+
+
+def analyse_ticker_triple_bottom(ticker: str, df: pd.DataFrame) -> Optional[dict]:
+    """
+    Run the triple-bottom analysis pipeline on one ticker's OHLCV DataFrame.
+    Returns a result dict on success, None if no qualifying pattern found.
+    """
+    try:
+        closes = df["Close"].dropna()
+        if len(closes) < MIN_BARS:
+            return None
+
+        pattern = detect_triple_bottom(df)
+        if pattern is None:
+            return None
+
+        current_price = float(closes.iloc[-1])
+        smas = compute_smas(closes)
+        rsi  = compute_rsi(closes)
+        sma200 = smas.get("sma200", float("nan"))
+        pct_above_200 = (
+            (current_price - sma200) / sma200 * 100
+            if not np.isnan(sma200) else float("nan")
+        )
+
+        return {
+            "ticker":             ticker,
+            "price":              round(current_price, 2),
+            "sma50":              round(smas.get("sma50", float("nan")), 2),
+            "sma200":             round(sma200, 2),
+            "pct_above_200sma":   round(pct_above_200, 1) if not np.isnan(pct_above_200) else None,
+            "rsi14":              round(rsi, 1) if rsi is not None else None,
+            **pattern,
+        }
+
+    except Exception:
+        logger.debug("Triple-bottom analysis failed for %s", ticker, exc_info=True)
+        return None
+
+
 def analyse_ticker_short(ticker: str, df: pd.DataFrame) -> Optional[dict]:
     """
     Bearish mirror of analyse_ticker — identifies breakdown candidates for paper shorting.
