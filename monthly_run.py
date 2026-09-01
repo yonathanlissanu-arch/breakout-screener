@@ -170,6 +170,17 @@ def main() -> None:
         Path(summary_path).write_text(summary_md, encoding="utf-8")
         logger.info("Summary written → %s", summary_path)
 
+    # ── 5. Paper portfolio ────────────────────────────────────────────────────
+    if results_df is not None and not results_df.empty:
+        logger.info("Step 5: Updating paper portfolio …")
+        from portfolio_tb import add_monthly_cohort, update_all_cohorts, generate_report
+        add_monthly_cohort(results_df)
+        update_all_cohorts()
+        report_path = generate_report()
+        logger.info("Portfolio report → %s", report_path)
+    else:
+        logger.info("Step 5: No results — skipping portfolio update.")
+
 
 if __name__ == "__main__":
     main()
