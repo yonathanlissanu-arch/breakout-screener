@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 MIN_PCT_ABOVE_200SMA  = 20.0
 MIN_VOLUME_RATIO      = 3.5
 MIN_PCT_ABOVE_NECKLINE = 5.0
-DEFAULT_TOP_N = 5
+DEFAULT_TOP_N = 7
 
 
 # --------------------------------------------------------------------------- #

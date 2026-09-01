@@ -91,7 +91,7 @@ BACKTEST_CONFIGS = [
 ]
 
 FORWARD_WINDOWS = {"1m": 21, "100d": 100, "3m": 63, "6m": 126}
-TOP_N           = 5
+TOP_N           = 7
 SPY_TICKER      = "SPY"
 RESULTS_DIR     = Path("results")
 HISTORY_YEARS   = 12   # from ~2026 back to ~2014; covers 5-year prior history for 2019

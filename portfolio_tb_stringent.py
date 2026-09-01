@@ -30,7 +30,7 @@ COHORTS_FILE    = PORTFOLIO_DIR / "tb_stringent_cohorts.json"
 REPORT_FILE     = PORTFOLIO_DIR / "tb_stringent_report.html"
 BENCHMARKS      = ["SPY", "VTI"]
 DEFAULT_CAPITAL = 100_000
-DEFAULT_TOP_N   = 5          # stringent = fewer, higher-conviction picks
+DEFAULT_TOP_N   = 7          # stringent = fewer, higher-conviction picks
 
 
 # --------------------------------------------------------------------------- #

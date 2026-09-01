@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       top_n:
-        description: 'Top picks per cohort (default 5 — high conviction only)'
+        description: 'Top picks per cohort (default 7 — high conviction only)'
         required: false
-        default: '5'
+        default: '7'
       history_years:
         description: 'Years of OHLCV history to download'
         required: false
@@ -38,7 +38,7 @@ jobs:
 
       - name: Run stringent triple-bottom scan
         env:
-          TOP_N:          ${{ github.event.inputs.top_n          || '5' }}
+          TOP_N:          ${{ github.event.inputs.top_n          || '7' }}
           HISTORY_YEARS:  ${{ github.event.inputs.history_years  || '5' }}
         run: python monthly_run_stringent.py
 
