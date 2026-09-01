@@ -58,24 +58,28 @@ TOP_N           = 10
 HISTORY_YEARS   = 7      # covers 5y lookback at Jan 2025 + forward through 2025
 SPY_TICKER      = "SPY"
 RESULTS_DIR     = Path("results")
+# Separate cache so 7-year history doesn't collide with the 1-year portfolio cache
+BACKTEST_CACHE  = "data/backtest_cache"
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 
 def _price_at(df: pd.DataFrame, target: date, direction: str = "on_or_before") -> Optional[float]:
     """Return the Close price on or before / on or after a target date."""
-    ts = pd.Timestamp(target)
     if direction == "on_or_before":
+        # Use end-of-day so intraday timestamps (e.g. 13:30 UTC) on target date are included
+        ts = pd.Timestamp(target) + pd.Timedelta(hours=23, minutes=59)
         sub = df[df.index <= ts]
         return float(sub["Close"].iloc[-1]) if not sub.empty else None
     else:  # on_or_after
+        ts = pd.Timestamp(target)
         sub = df[df.index >= ts]
         return float(sub["Close"].iloc[0]) if not sub.empty else None
 
 
 def _price_after_n_days(df: pd.DataFrame, as_of: date, n_trading_days: int) -> Optional[float]:
     """Return Close price n trading days after as_of (using the full df)."""
-    ts = pd.Timestamp(as_of)
+    ts = pd.Timestamp(as_of) + pd.Timedelta(hours=23, minutes=59)
     future = df[df.index > ts]["Close"].dropna()
     if future.empty:
         return None
@@ -113,8 +117,10 @@ def scan_at_date(
         unit="ticker",
         leave=False,
     ):
-        # Slice to only data visible on as_of — this is the key anti-look-ahead step
-        df_slice = df_full[df_full.index <= ts].copy()
+        # Slice to only data visible on as_of — compare against end-of-day so
+        # the as_of date's bar (timestamped at market open, e.g. 13:30 UTC) is included
+        ts_eod = ts + pd.Timedelta(hours=23, minutes=59)
+        df_slice = df_full[df_full.index <= ts_eod].copy()
         if len(df_slice) < 120:   # need at least 6 months of data
             continue
 
@@ -270,7 +276,11 @@ def main() -> None:
     logger.info("Step 2: Downloading %d years of daily prices …", HISTORY_YEARS)
     from fetcher_yahoo import fetch_price_data_yahoo
     all_tickers = universe["ticker"].tolist() + [SPY_TICKER]
-    price_data_full = fetch_price_data_yahoo(all_tickers, history_years=HISTORY_YEARS)
+    price_data_full = fetch_price_data_yahoo(
+        all_tickers,
+        history_years=HISTORY_YEARS,
+        cache_dir=BACKTEST_CACHE,
+    )
 
     spy_df = price_data_full.pop(SPY_TICKER, None)
     if spy_df is None or spy_df.empty:
