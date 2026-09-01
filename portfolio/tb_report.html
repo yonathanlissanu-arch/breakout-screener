@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Triple-Bottom Portfolio</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0f172a; --surface: #1e293b; --surface2: #334155;
+  --text: #f1f5f9; --muted: #94a3b8; --border: #334155;
+  --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --amber: #f59e0b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; padding: 1.5rem; }
+h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: .25rem; }
+.subtitle { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
+h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; }
+.cohort-date { font-size: .85rem; font-weight: 400; color: var(--muted); }
+section { background: var(--surface); border-radius: .75rem; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+.kpi-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.kpi { background: var(--surface2); border-radius: .5rem; padding: .75rem 1.25rem; min-width: 110px; }
+.kpi-label { display: block; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .2rem; }
+.kpi-value { font-size: 1.25rem; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; overflow-x: auto; display: block; }
+th { text-align: left; padding: .5rem .75rem; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--border); font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+td { padding: .5rem .75rem; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,.03); }
+.chart-wrap { background: var(--surface); border-radius: .75rem; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+canvas { max-height: 300px; }
+@media (prefers-color-scheme: light) {
+  :root { --bg:#f8fafc; --surface:#fff; --surface2:#f1f5f9; --text:#0f172a; --muted:#64748b; --border:#e2e8f0; }
+}
+</style>
+</head>
+<body>
+<h1>Triple-Bottom Paper Portfolio</h1>
+<p class="subtitle">$100k/cohort · Top 10 breakout candidates · Benchmarked vs SPY &amp; VTI · Updated 2026-09-01 14:08 UTC</p>
+
+
+<div class="chart-wrap">
+  <h2>Monthly Cohort Returns</h2>
+  <canvas id="chart"></canvas>
+</div>
+<script>
+const ctx = document.getElementById("chart").getContext("2d");
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["2026-09"],
+    datasets: [
+      { label: "Portfolio", data: [0.0], backgroundColor: "rgba(59,130,246,.7)", borderRadius: 4 },
+      { label: "SPY",       data: [0.0],  backgroundColor: "rgba(245,158,11,.7)", borderRadius: 4 },
+      { label: "VTI",       data: [0.0],  backgroundColor: "rgba(148,163,184,.5)", borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { color: "#94a3b8" } } },
+    scales: {
+      x: { ticks: { color: "#94a3b8" }, grid: { color: "rgba(255,255,255,.05)" } },
+      y: { ticks: { color: "#94a3b8", callback: v => v + "%" }, grid: { color: "rgba(255,255,255,.05)" } }
+    }
+  }
+});
+</script>
+
+
+<section>
+  <h2>All Cohorts — Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Entry Date</th><th>Capital</th><th>Stocks</th>
+        <th>Portfolio</th><th>SPY</th><th>VTI</th>
+        <th>α vs SPY</th><th>α vs VTI</th><th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>2026-09-01</td>
+          <td>$100,000</td>
+          <td>10</td>
+          <td style="color:#94a3b8;font-weight:600">0.00%</td>
+          <td style="color:#94a3b8">0.00%</td>
+          <td style="color:#94a3b8">0.00%</td>
+          <td style="color:#94a3b8;font-weight:600">0.00%</td>
+          <td style="color:#94a3b8;font-weight:600">0.00%</td>
+          <td>2026-09-01</td>
+        </tr></tbody>
+  </table>
+</section>
+
+
+        <section class="cohort-card">
+          <h2>Cohort 2026-09 <span class="cohort-date">(2026-09-01)</span></h2>
+          <div class="kpi-row">
+            <div class="kpi">
+              <span class="kpi-label">Portfolio</span>
+              <span class="kpi-value" style="color:#94a3b8">0.00%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">vs SPY</span>
+              <span class="kpi-value" style="color:#94a3b8">0.00%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">vs VTI</span>
+              <span class="kpi-value" style="color:#94a3b8">0.00%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">SPY</span>
+              <span class="kpi-value" style="color:#94a3b8">0.00%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">VTI</span>
+              <span class="kpi-value" style="color:#94a3b8">0.00%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">Current Value</span>
+              <span class="kpi-value">$100,000</span>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Ticker</th><th>Region</th><th>Entry</th><th>Current</th>
+                <th>Value</th><th>P&L</th><th>Neckline</th><th>Pattern Span</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><strong>SLB</strong></td>
+              <td>US</td>
+              <td>$59.04</td>
+              <td>$59.04</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$58.82</td>
+              <td>1y 11m</td>
+            </tr>
+            <tr>
+              <td><strong>ANF</strong></td>
+              <td>US</td>
+              <td>$141.79</td>
+              <td>$141.79</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$133.11</td>
+              <td>1y 0m</td>
+            </tr>
+            <tr>
+              <td><strong>ROKU</strong></td>
+              <td>US</td>
+              <td>$157.24</td>
+              <td>$157.24</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$139.58</td>
+              <td>3y 8m</td>
+            </tr>
+            <tr>
+              <td><strong>ABNB</strong></td>
+              <td>US</td>
+              <td>$182.28</td>
+              <td>$182.28</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$179.09</td>
+              <td>4y 4m</td>
+            </tr>
+            <tr>
+              <td><strong>HAE</strong></td>
+              <td>US</td>
+              <td>$102.75</td>
+              <td>$102.75</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$97.97</td>
+              <td>3y 6m</td>
+            </tr>
+            <tr>
+              <td><strong>SJM</strong></td>
+              <td>US</td>
+              <td>$132.06</td>
+              <td>$132.06</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$127.59</td>
+              <td>2y 4m</td>
+            </tr>
+            <tr>
+              <td><strong>ABBV</strong></td>
+              <td>US</td>
+              <td>$260.18</td>
+              <td>$260.18</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$244.81</td>
+              <td>1y 6m</td>
+            </tr>
+            <tr>
+              <td><strong>LAD</strong></td>
+              <td>US</td>
+              <td>$368.44</td>
+              <td>$368.44</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$360.56</td>
+              <td>1y 2m</td>
+            </tr>
+            <tr>
+              <td><strong>GRMN</strong></td>
+              <td>US</td>
+              <td>$283.26</td>
+              <td>$283.26</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$273.32</td>
+              <td>1y 5m</td>
+            </tr>
+            <tr>
+              <td><strong>RVTY</strong></td>
+              <td>US</td>
+              <td>$127.22</td>
+              <td>$127.22</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$128.29</td>
+              <td>1y 6m</td>
+            </tr></tbody>
+          </table>
+        </section>
+</body>
+</html>

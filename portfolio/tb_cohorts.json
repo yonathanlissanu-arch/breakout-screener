@@ -1,0 +1,179 @@
+{
+  "cohorts": [
+    {
+      "id": "2026-09",
+      "date": "2026-09-01",
+      "capital": 100000,
+      "holdings": [
+        {
+          "ticker": "SLB",
+          "name": "Schlumberger",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 59.04,
+          "shares": 169.376691,
+          "entry_value": 10000.0,
+          "current_price": 59.04,
+          "current_value": 10000.0,
+          "pnl_pct": 0.0,
+          "pattern_span_days": 488,
+          "neckline": 58.82,
+          "bottom_variation_pct": 3.04
+        },
+        {
+          "ticker": "ANF",
+          "name": "Abercrombie & Fitch",
+          "region": "US",
+          "indices": "S&P MidCap 400",
+          "entry_price": 141.79,
+          "shares": 70.526839,
+          "entry_value": 10000.0,
+          "current_price": 141.79,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 265,
+          "neckline": 133.11,
+          "bottom_variation_pct": 3.49
+        },
+        {
+          "ticker": "ROKU",
+          "name": "Roku, Inc.",
+          "region": "US",
+          "indices": "S&P MidCap 400",
+          "entry_price": 157.24,
+          "shares": 63.597047,
+          "entry_value": 10000.0,
+          "current_price": 157.24,
+          "current_value": 10000.0,
+          "pnl_pct": 0.0,
+          "pattern_span_days": 927,
+          "neckline": 139.58,
+          "bottom_variation_pct": 4.58
+        },
+        {
+          "ticker": "ABNB",
+          "name": "Airbnb",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 182.28,
+          "shares": 54.860654,
+          "entry_value": 10000.0,
+          "current_price": 182.28,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 1097,
+          "neckline": 179.09,
+          "bottom_variation_pct": 2.97
+        },
+        {
+          "ticker": "HAE",
+          "name": "Haemonetics",
+          "region": "US",
+          "indices": "S&P MidCap 400",
+          "entry_price": 102.755,
+          "shares": 97.318868,
+          "entry_value": 10000.0,
+          "current_price": 102.755,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 890,
+          "neckline": 97.97,
+          "bottom_variation_pct": 4.88
+        },
+        {
+          "ticker": "SJM",
+          "name": "J.M. Smucker Company (The)",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 132.06,
+          "shares": 75.723158,
+          "entry_value": 10000.0,
+          "current_price": 132.06,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 588,
+          "neckline": 127.59,
+          "bottom_variation_pct": 4.37
+        },
+        {
+          "ticker": "ABBV",
+          "name": "AbbVie",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 260.18,
+          "shares": 38.434931,
+          "entry_value": 10000.0,
+          "current_price": 260.18,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 397,
+          "neckline": 244.81,
+          "bottom_variation_pct": 4.82
+        },
+        {
+          "ticker": "LAD",
+          "name": "Lithia Motors",
+          "region": "US",
+          "indices": "S&P MidCap 400",
+          "entry_price": 368.44,
+          "shares": 27.141461,
+          "entry_value": 10000.0,
+          "current_price": 368.44,
+          "current_value": 10000.0,
+          "pnl_pct": 0.0,
+          "pattern_span_days": 309,
+          "neckline": 360.56,
+          "bottom_variation_pct": 4.37
+        },
+        {
+          "ticker": "GRMN",
+          "name": "Garmin",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 283.26,
+          "shares": 35.303254,
+          "entry_value": 10000.0,
+          "current_price": 283.26,
+          "current_value": 10000.0,
+          "pnl_pct": 0.0,
+          "pattern_span_days": 372,
+          "neckline": 273.32,
+          "bottom_variation_pct": 4.77
+        },
+        {
+          "ticker": "RVTY",
+          "name": "Revvity",
+          "region": "US",
+          "indices": "S&P 500",
+          "entry_price": 127.215,
+          "shares": 78.607085,
+          "entry_value": 10000.0,
+          "current_price": 127.215,
+          "current_value": 10000.0,
+          "pnl_pct": -0.0,
+          "pattern_span_days": 394,
+          "neckline": 128.29,
+          "bottom_variation_pct": 3.0
+        }
+      ],
+      "benchmarks": {
+        "SPY": {
+          "entry_price": 762.67,
+          "current_price": 762.67,
+          "return_pct": -0.0
+        },
+        "VTI": {
+          "entry_price": 375.885,
+          "current_price": 375.885,
+          "return_pct": 0.0
+        }
+      },
+      "portfolio_return": 0.0,
+      "spy_return": 0.0,
+      "vti_return": 0.0,
+      "alpha_vs_spy": 0.0,
+      "alpha_vs_vti": 0.0,
+      "last_updated": "2026-09-01"
+    }
+  ]
+}
