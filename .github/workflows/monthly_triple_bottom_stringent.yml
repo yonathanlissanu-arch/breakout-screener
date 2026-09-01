@@ -1,0 +1,52 @@
+name: Monthly Stringent Triple-Bottom Scan
+
+on:
+  schedule:
+    # 1st of every month at 07:00 UTC (1 hour after the base scan, avoids parallel runs)
+    - cron: '0 7 1 * *'
+  workflow_dispatch:
+    inputs:
+      top_n:
+        description: 'Top picks per cohort (default 5 — high conviction only)'
+        required: false
+        default: '5'
+      history_years:
+        description: 'Years of OHLCV history to download'
+        required: false
+        default: '5'
+
+jobs:
+  stringent-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run stringent triple-bottom scan
+        env:
+          TOP_N:          ${{ github.event.inputs.top_n          || '5' }}
+          HISTORY_YEARS:  ${{ github.event.inputs.history_years  || '5' }}
+        run: python monthly_run_stringent.py
+
+      - name: Commit and push results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/ portfolio/
+          git diff --cached --quiet || \
+            git commit -m "chore: stringent triple-bottom scan $(date -u +%Y-%m-%d)"
+          git push origin HEAD
