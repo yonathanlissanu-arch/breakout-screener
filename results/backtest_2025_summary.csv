@@ -1,0 +1,5 @@
+cohort_date,n_stocks,portfolio_return_1m,spy_return_1m,alpha_1m,pct_winners_1m,portfolio_return_3m,spy_return_3m,alpha_3m,pct_winners_3m,portfolio_return_6m,spy_return_6m,alpha_6m,pct_winners_6m,portfolio_return_yearend,spy_return_yearend,alpha_yearend,pct_winners_yearend
+2025-01-02,10,8.55,,,80.0,-0.12,,,50.0,15.46,,,80.0,39.94,,,80.0
+2025-04-01,10,1.92,,,50.0,3.9,,,80.0,10.36,,,80.0,6.55,,,70.0
+2025-07-01,10,4.59,,,60.0,8.67,,,60.0,-2.63,,,50.0,-3.36,,,50.0
+2025-10-01,10,1.47,3.18,-1.71,80.0,5.19,3.43,1.76,50.0,9.71,-1.08,10.79,70.0,5.19,3.43,1.76,50.0
