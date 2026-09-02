@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 analyze_long_holds.py — Test longer holding periods (12/18/24/36/48/60 months)
-for the stringent triple-bottom screener cohorts (2019 and 2024).
+for the stringent triple-bottom screener cohorts across all backtested years.
 
-Uses the already-cached price data and existing detail CSVs — no re-scan needed.
+Supports both the original 2019/2024 backtest and the extended 2013/2016/2023
+backtest. Loads existing detail CSVs — no re-scan needed.
 
 Hold windows
   12m = 252 trading days
@@ -13,8 +14,12 @@ Hold windows
   48m = 1008 trading days
   60m = 1260 trading days
 
-Caveat: 2024 cohorts have limited future data (today ≈ Sep 2026).
-  12m available  · 18m mostly available  · 24m+ mostly unavailable
+Data availability (today ≈ Sep 2026):
+  2013: all windows through 60m fully available
+  2016: all windows through 60m fully available
+  2019: all windows through 60m fully available
+  2023: 12m–24m available; 36m+ not yet reached
+  2024: 12m–18m available; 24m partial; 36m+ not available
 """
 
 from __future__ import annotations
@@ -29,7 +34,6 @@ import pandas as pd
 from tabulate import tabulate
 
 RESULTS_DIR   = Path("results")
-CACHE_DIR     = "data/backtest_stringent_cache"
 SPY_TICKER    = "SPY"
 
 LONG_WINDOWS = {
@@ -41,13 +45,20 @@ LONG_WINDOWS = {
     "60m": 1260,
 }
 
-YEARS = [2019, 2024]
+# Map each year to its cache dir and detail CSV prefix
+YEAR_CONFIGS = [
+    {"year": 2013, "cache": "data/backtest_extended_cache",  "prefix": "backtest_extended"},
+    {"year": 2016, "cache": "data/backtest_extended_cache",  "prefix": "backtest_extended"},
+    {"year": 2019, "cache": "data/backtest_stringent_cache", "prefix": "backtest_stringent"},
+    {"year": 2023, "cache": "data/backtest_extended_cache",  "prefix": "backtest_extended"},
+    {"year": 2024, "cache": "data/backtest_stringent_cache", "prefix": "backtest_stringent"},
+]
 
 
 # ── price helpers ────────────────────────────────────────────────────────────
 
-def load_parquet(ticker: str) -> Optional[pd.DataFrame]:
-    path = os.path.join(CACHE_DIR, f"{ticker}.parquet")
+def load_parquet(ticker: str, cache_dir: str = "data/backtest_stringent_cache") -> Optional[pd.DataFrame]:
+    path = os.path.join(cache_dir, f"{ticker}.parquet")
     if not os.path.exists(path):
         return None
     df = pd.read_parquet(path)
@@ -84,18 +95,28 @@ def pct_ret(entry: Optional[float], exit_: Optional[float]) -> Optional[float]:
 # ── main ────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    spy_df = load_parquet(SPY_TICKER)
-    if spy_df is None:
-        print("ERROR: SPY not found in cache. Run backtest_stringent.py first.")
-        return
-
     all_summaries = []
 
-    for year in YEARS:
-        detail_path = RESULTS_DIR / f"backtest_stringent_{year}_detail.csv"
+    for cfg in YEAR_CONFIGS:
+        year   = cfg["year"]
+        cache  = cfg["cache"]
+        prefix = cfg["prefix"]
+
+        detail_path = RESULTS_DIR / f"{prefix}_{year}_detail.csv"
         if not detail_path.exists():
-            print(f"Missing {detail_path} — run backtest_stringent.py first.")
+            print(f"Skipping {year}: {detail_path} not found (run the backtest first).")
             continue
+
+        spy_df = load_parquet(SPY_TICKER, cache_dir=cache)
+        if spy_df is None:
+            # Fall back to either cache
+            for alt in ["data/backtest_stringent_cache", "data/backtest_extended_cache"]:
+                spy_df = load_parquet(SPY_TICKER, cache_dir=alt)
+                if spy_df is not None:
+                    break
+        if spy_df is None:
+            print(f"ERROR: SPY not in any cache — run a backtest first.")
+            return
 
         detail = pd.read_csv(detail_path)
         print(f"\nLoaded {year} detail: {len(detail)} rows across {detail['cohort_date'].nunique()} cohorts")
@@ -106,7 +127,14 @@ def main() -> None:
             cohort_date = date.fromisoformat(rec["cohort_date"])
             entry_price = rec["entry_price"]
 
-            stock_df = load_parquet(ticker)
+            stock_df = load_parquet(ticker, cache_dir=cache)
+            if stock_df is None:
+                # try the other cache (some tickers cached in both)
+                for alt in ["data/backtest_stringent_cache", "data/backtest_extended_cache"]:
+                    if alt != cache:
+                        stock_df = load_parquet(ticker, cache_dir=alt)
+                        if stock_df is not None:
+                            break
 
             row: dict = {
                 "year":        year,
@@ -133,7 +161,7 @@ def main() -> None:
             rows.append(row)
 
         df_long = pd.DataFrame(rows)
-        out_path = RESULTS_DIR / f"backtest_stringent_{year}_longhold.csv"
+        out_path = RESULTS_DIR / f"longhold_{year}.csv"
         df_long.to_csv(out_path, index=False)
         print(f"  Saved → {out_path}")
 
@@ -162,8 +190,9 @@ def main() -> None:
     # ── Cross-year aggregate ────────────────────────────────────────────────
     if all_summaries:
         all_df = pd.concat(all_summaries, ignore_index=True)
+        years_loaded = sorted(all_df["year"].unique().tolist())
         print(f"\n{'═'*110}")
-        print("  AGGREGATE ALPHA vs SPY BY HOLD PERIOD (all cohorts, equal-weight average)")
+        print(f"  AGGREGATE ALPHA vs SPY BY HOLD PERIOD — years: {years_loaded}")
         print(f"{'═'*110}")
         print(f"  {'Hold':>5}  {'Port avg':>10}  {'SPY avg':>10}  {'Alpha avg':>10}  "
               f"{'Avg winners%':>14}  {'Coverage':>10}")
@@ -175,7 +204,7 @@ def main() -> None:
             all_spy      = []
             all_coverage = []
 
-            for year in YEARS:
+            for year in years_loaded:
                 year_df = all_df[all_df["year"] == year]
                 col_alpha = f"alpha_{label}"
                 col_port  = f"port_{label}"
@@ -234,24 +263,16 @@ def _print_cohort_table(sum_df: pd.DataFrame, year: int) -> None:
 def _print_stock_level_alpha(all_summaries) -> None:
     """Print average per-stock alpha across all individual positions."""
     print(f"\n{'═'*80}")
-    print("  PER-STOCK ALPHA (median & mean across all individual positions)")
+    print("  PER-STOCK ALPHA (median & mean across all individual positions, all years)")
     print(f"{'═'*80}")
     print(f"  {'Hold':>5}  {'Mean alpha':>12}  {'Median alpha':>14}  {'N stocks':>10}  {'% positive':>12}")
     print(f"  {'-'*5}  {'-'*12}  {'-'*14}  {'-'*10}  {'-'*12}")
 
-    for year in YEARS:
-        detail_path = RESULTS_DIR / f"backtest_stringent_{year}_longhold.csv"
-        if not detail_path.exists():
-            continue
-        df = pd.read_csv(detail_path)
-
-        if year == YEARS[0]:
-            dfs = [df]
-        else:
-            try:
-                dfs.append(df)
-            except NameError:
-                dfs = [df]
+    dfs = []
+    for cfg in YEAR_CONFIGS:
+        p = RESULTS_DIR / f"longhold_{cfg['year']}.csv"
+        if p.exists():
+            dfs.append(pd.read_csv(p))
 
     if not dfs:
         return
@@ -274,50 +295,56 @@ def _print_stock_level_alpha(all_summaries) -> None:
 
 
 def _print_comparison_table() -> None:
-    """Side-by-side short vs long hold alpha for context."""
+    """Side-by-side: aggregate short-hold vs long-hold alpha across all years with full data."""
     print(f"\n{'═'*90}")
-    print("  SHORT-HOLD (from original backtest) vs LONG-HOLD ALPHA — 2019 cohorts only")
-    print("  (2019 gives the most complete long-hold data — all windows through 60m available)")
+    print("  SHORT-HOLD vs LONG-HOLD ALPHA — aggregate across all years with complete data")
     print(f"{'═'*90}")
 
-    short_path = RESULTS_DIR / "backtest_stringent_2019_summary.csv"
-    long_path  = RESULTS_DIR / "backtest_stringent_2019_longhold.csv"
+    # Use all years that have both a short-hold summary and a long-hold CSV
+    short_alphas: dict = {w: [] for w in ["1m", "100d", "3m", "6m", "yearend"]}
+    long_alphas: dict  = {w: [] for w in LONG_WINDOWS}
 
-    if not short_path.exists() or not long_path.exists():
-        print("  (summary CSVs not found)")
-        return
-
-    short_df = pd.read_csv(short_path)
-    long_df  = pd.read_csv(long_path)
-
-    short_windows = ["1m", "100d", "3m", "6m", "yearend"]
-    long_windows  = list(LONG_WINDOWS.keys())
+    for cfg in YEAR_CONFIGS:
+        year   = cfg["year"]
+        prefix = cfg["prefix"]
+        short_path = RESULTS_DIR / f"{prefix}_{year}_summary.csv"
+        long_path  = RESULTS_DIR / f"longhold_{year}.csv"
+        if short_path.exists():
+            s = pd.read_csv(short_path)
+            for w in ["1m", "100d", "3m", "6m", "yearend"]:
+                col = f"alpha_{w}"
+                if col in s.columns:
+                    short_alphas[w].extend(s[col].dropna().tolist())
+        if long_path.exists():
+            l = pd.read_csv(long_path)
+            for w in LONG_WINDOWS:
+                col = f"alpha_{w}"
+                if col in l.columns:
+                    long_alphas[w].extend(l[col].dropna().tolist())
 
     rows = []
+    short_df = pd.DataFrame()  # placeholder
+    long_df  = pd.DataFrame()  # placeholder
 
-    for w in short_windows:
-        col = f"alpha_{w}"
-        if col in short_df.columns:
-            vals = short_df[col].dropna()
-            rows.append({
-                "hold":         w,
-                "mean_alpha":   round(vals.mean(), 2) if not vals.empty else None,
-                "median_alpha": round(vals.median(), 2) if not vals.empty else None,
-                "n_cohorts":    len(vals),
-                "source":       "short-hold",
-            })
+    for w in ["1m", "100d", "3m", "6m", "yearend"]:
+        vals = short_alphas[w]
+        rows.append({
+            "hold":         w,
+            "mean_alpha":   round(np.mean(vals), 2) if vals else None,
+            "median_alpha": round(np.median(vals), 2) if vals else None,
+            "n":            len(vals),
+            "source":       "short-hold",
+        })
 
-    for w in long_windows:
-        col = f"alpha_{w}"
-        if col in long_df.columns:
-            vals = long_df[col].dropna()
-            rows.append({
-                "hold":         w,
-                "mean_alpha":   round(vals.mean(), 2) if not vals.empty else None,
-                "median_alpha": round(vals.median(), 2) if not vals.empty else None,
-                "n_cohorts":    len(vals),
-                "source":       "long-hold",
-            })
+    for w in LONG_WINDOWS:
+        vals = long_alphas[w]
+        rows.append({
+            "hold":         w,
+            "mean_alpha":   round(np.mean(vals), 2) if vals else None,
+            "median_alpha": round(np.median(vals), 2) if vals else None,
+            "n":            len(vals),
+            "source":       "long-hold",
+        })
 
     tbl = pd.DataFrame(rows)
     for col in ["mean_alpha", "median_alpha"]:
