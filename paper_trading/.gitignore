@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# State and log files ARE tracked in git here (unlike standalone use).
+# The cloud scheduled trigger commits them after each run so they persist
+# between ephemeral container sessions.
