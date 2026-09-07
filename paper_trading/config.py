@@ -36,6 +36,7 @@ LOG_DIR = ROOT / "logs"
 POSITION_FILE = STATE_DIR / "open_position.json"
 LEDGER_FILE = STATE_DIR / "trade_ledger.csv"
 EQUITY_FILE = STATE_DIR / "equity_curve.csv"
+BENCHMARK_FILE = STATE_DIR / "benchmark.json"   # SPY buy-and-hold anchor (set on first run)
 LOG_FILE = LOG_DIR / "paper_trader.log"
 
 STATE_DIR.mkdir(exist_ok=True)

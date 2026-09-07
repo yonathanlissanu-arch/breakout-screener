@@ -2,19 +2,24 @@
 LongRunner-2D paper trader -- daily job.
 
 Intended to run ONCE per day, after the US market close (see README for
-scheduling this via Claude Code Desktop scheduled tasks). Each run:
+scheduling this via Claude Code cloud scheduled tasks). Each run:
 
   1. Fetches recent 5-min SPY bars.
   2. If a paper position is open and today is (or is past) its planned exit
      date, closes it at today's close and logs the trade.
   3. If no position is open (after step 2), scans TODAY for a LongRunner-2D
      long signal and opens a paper position if one fired.
-  4. Marks the account to market and appends today's equity to the curve.
+  4. Marks the account to market, records today's equity, the SPY buy-and-hold
+     benchmark equity, and the cumulative alpha vs that benchmark.
 
 Single-position constraint: a new signal is ignored while a position is
 open. This matches the constraint validated in the audited backtest
-(taking every overlapping signal without it was found to implicitly assume
-undisclosed leverage).
+(taking every overlapping signal without it implicitly assumed leverage).
+
+Benchmark: on the first run, the SPY close is recorded as the anchor.
+Every subsequent run computes what a passive $100k SPY buy-and-hold would
+be worth today, and logs the alpha (strategy equity minus benchmark equity,
+expressed as a percentage of starting capital).
 
 This is a PAPER TRADING research tool. It does not place real orders and
 is not connected to a broker. It is not financial advice.
@@ -60,6 +65,16 @@ def get_equity():
     return C.STARTING_EQUITY
 
 
+def load_benchmark():
+    if C.BENCHMARK_FILE.exists():
+        return json.loads(C.BENCHMARK_FILE.read_text())
+    return None
+
+
+def save_benchmark(b):
+    C.BENCHMARK_FILE.write_text(json.dumps(b, indent=2, default=str))
+
+
 def append_csv_row(path, row: dict):
     df_row = pd.DataFrame([row])
     if path.exists():
@@ -79,12 +94,23 @@ def run():
         return
 
     trading_dates = sorted(bars["date"].unique())
-    today = trading_dates[-1]  # last completed trading day in the fetched data
+    today = trading_dates[-1]
     log.info(f"Latest trading day in data: {today} ({len(trading_dates)} days fetched)")
 
     feat = compute_features(bars)
     position = load_position()
     equity = get_equity()
+
+    # ---- Benchmark: record SPY anchor on first run ----
+    benchmark = load_benchmark()
+    today_spy_close = float(bars[bars["date"] == today].iloc[-1]["close"])
+    if benchmark is None:
+        benchmark = {"start_date": str(today), "spy_start_price": today_spy_close}
+        save_benchmark(benchmark)
+        log.info(f"Benchmark anchor set: SPY @ {today_spy_close:.2f} on {today} "
+                 f"(${C.STARTING_EQUITY:,.2f} buy-and-hold reference)")
+
+    spy_benchmark_equity = C.STARTING_EQUITY * (today_spy_close / benchmark["spy_start_price"])
 
     # ---- Step 1: check for exit ----
     if position is not None:
@@ -94,7 +120,7 @@ def run():
             sessions_elapsed = len(trading_dates) - 1 - idx_entry
             target_idx = idx_entry + C.HOLD_SESSIONS_AHEAD
             if today == trading_dates[min(target_idx, len(trading_dates) - 1)] and sessions_elapsed >= C.HOLD_SESSIONS_AHEAD:
-                exit_price = float(bars[bars["date"] == today].iloc[-1]["close"])
+                exit_price = today_spy_close
                 entry_price = position["entry_price"]
                 gross = exit_price / entry_price - 1.0
                 net = gross - C.ROUND_TRIP_COST
@@ -121,10 +147,7 @@ def run():
             log.warning(f"Open position's entry_date {entry_date} not found in fetched window "
                         f"(state file may be stale or lookback too short) -- holding, will retry next run.")
 
-    # ---- Step 2: check for new entry (only reached if flat -- this IS the
-    # single-position constraint: a signal is only ever acted on when
-    # `position is None`, so an overlapping signal while a trade is open is
-    # simply never checked, let alone taken) ----
+    # ---- Step 2: check for new entry ----
     if position is None:
         sig = find_signal_for_date(feat, today)
         if sig is not None:
@@ -143,17 +166,31 @@ def run():
         else:
             log.info(f"No LongRunner-2D signal on {today}. Flat.")
 
-    # ---- Step 3: mark to market and record equity ----
+    # ---- Step 3: mark to market and record equity + benchmark ----
     if position is not None:
-        last_close = float(bars[bars["date"] == today].iloc[-1]["close"])
-        unrealized = position["notional"] * (last_close / position["entry_price"] - 1.0)
+        unrealized = position["notional"] * (today_spy_close / position["entry_price"] - 1.0)
         mtm_equity = equity + unrealized
     else:
         mtm_equity = equity
 
-    append_csv_row(C.EQUITY_FILE, {"date": str(today), "equity": mtm_equity, "position_open": position is not None})
-    log.info(f"End of run {today}: equity (mark-to-market) = ${mtm_equity:,.2f} | "
-             f"position_open={position is not None}")
+    alpha_pct = (mtm_equity - spy_benchmark_equity) / C.STARTING_EQUITY * 100
+    alpha_sign = "+" if alpha_pct >= 0 else ""
+
+    append_csv_row(C.EQUITY_FILE, {
+        "date": str(today),
+        "equity": mtm_equity,
+        "spy_equity": spy_benchmark_equity,
+        "alpha_pct": alpha_pct,
+        "position_open": position is not None,
+    })
+
+    log.info(
+        f"End of run {today}: "
+        f"strategy=${mtm_equity:,.2f} | "
+        f"SPY buy-hold=${spy_benchmark_equity:,.2f} | "
+        f"alpha={alpha_sign}{alpha_pct:.2f}% | "
+        f"position_open={position is not None}"
+    )
     log.info("=" * 60)
 
 
