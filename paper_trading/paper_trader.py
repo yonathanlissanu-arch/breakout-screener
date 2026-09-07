@@ -83,6 +83,14 @@ def append_csv_row(path, row: dict):
         df_row.to_csv(path, mode="w", header=True, index=False)
 
 
+def already_ran_today(trading_day) -> bool:
+    """Return True if equity_curve.csv already has a row for this trading day."""
+    if not C.EQUITY_FILE.exists():
+        return False
+    eq = pd.read_csv(C.EQUITY_FILE)
+    return str(trading_day) in eq["date"].astype(str).values
+
+
 def run():
     log.info("=" * 60)
     log.info("LongRunner-2D daily paper trading run starting")
@@ -96,6 +104,11 @@ def run():
     trading_dates = sorted(bars["date"].unique())
     today = trading_dates[-1]
     log.info(f"Latest trading day in data: {today} ({len(trading_dates)} days fetched)")
+
+    if already_ran_today(today):
+        log.info(f"Already processed {today} in a previous run -- skipping (weekend/holiday re-run guard).")
+        log.info("=" * 60)
+        return
 
     feat = compute_features(bars)
     position = load_position()
