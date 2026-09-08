@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Commodities — Bull Market Phases</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bg:#081322;--surface:#0f1e32;--surface2:#142538;--border:#1c3150;
+        --accent:#f59e0b;--text:#d4e5f7;--muted:#4d718a;
+        --gain:#22c55e;--mid:#3b82f6;--late:#f59e0b;--bear:#ef4444;--rec:#94a3b8;}
+  @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){
+    --bg:#f1f5fb;--surface:#fff;--surface2:#f8faff;--border:#cad5e8;
+    --accent:#d97706;--text:#0c1c2e;--muted:#527091;
+    --gain:#16a34a;--mid:#2563eb;--late:#d97706;--bear:#dc2626;--rec:#64748b;}}
+  :root[data-theme="dark"]{--bg:#081322;--surface:#0f1e32;--surface2:#142538;--border:#1c3150;
+    --accent:#f59e0b;--text:#d4e5f7;--muted:#4d718a;
+    --gain:#22c55e;--mid:#3b82f6;--late:#f59e0b;--bear:#ef4444;--rec:#94a3b8;}
+  :root[data-theme="light"]{--bg:#f1f5fb;--surface:#fff;--surface2:#f8faff;--border:#cad5e8;
+    --accent:#d97706;--text:#0c1c2e;--muted:#527091;
+    --gain:#16a34a;--mid:#2563eb;--late:#d97706;--bear:#dc2626;--rec:#64748b;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Figtree',system-ui,sans-serif;
+       font-size:14px;line-height:1.5;padding:24px}
+  .wrap{max-width:1200px;margin:0 auto}
+  .header{padding:28px 0 22px;border-bottom:1px solid var(--border);margin-bottom:24px}
+  .eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+           font-weight:600;margin-bottom:8px}
+  h1{font-size:clamp(22px,4vw,32px);font-weight:700;line-height:1.1}
+  h1 span{color:var(--accent)}
+  .sub{font-size:12px;color:var(--muted);margin-top:6px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px;align-items:center}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  .phase-legend{font-size:11px;border:1px solid var(--border);background:var(--surface);
+                padding:12px 18px;border-radius:4px;margin-bottom:22px}
+  .phase-legend h3{font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+                   color:var(--muted);margin-bottom:8px}
+  .phase-legend p{margin-bottom:4px;font-size:12px}
+  .phases-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+  @media(max-width:700px){.phases-grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);padding:20px;margin-bottom:20px}
+  h2{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+     font-weight:600;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;padding:8px 12px;font-size:10px;letter-spacing:.06em;
+     text-transform:uppercase;color:var(--muted);font-weight:600;
+     border-bottom:1px solid var(--border);white-space:nowrap}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle;
+     font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;
+         font-weight:600;letter-spacing:.04em}
+  .tick{font-family:'JetBrains Mono',monospace;font-weight:500}
+  .pos{color:var(--gain)} .neg{color:var(--bear)} .neu{color:var(--muted)}
+  .bar-wrap{width:80px;height:7px;background:var(--border);border-radius:3px;display:inline-block;vertical-align:middle}
+  .bar-fill{height:100%;border-radius:3px;transition:width .3s}
+  .foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);
+        font-size:11px;color:var(--muted);line-height:1.7}
+  .overflow-x{overflow-x:auto}
+  @media(max-width:600px){td,th{padding:8px 6px;font-size:12px}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="eyebrow">Commodity Macro Screener</div>
+    <h1>Commodities <span>Bull Market Phases</span></h1>
+    <div class="sub">Structural bull market phase analysis · 2026-09-08 03:52 UTC</div>
+  </div>
+
+  
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+            gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px">
+  <div style="background:var(--surface);padding:16px 18px">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Screened</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500">27</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px">commodity ETFs</div>
+  </div>
+  <div style="background:var(--surface);padding:16px 18px">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Early Bull</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--gain)">5</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px">beginning of bull</div>
+  </div>
+  <div style="background:var(--surface);padding:16px 18px">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Mid Bull</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--mid)">8</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px">middle of bull</div>
+  </div>
+  <div style="background:var(--surface);padding:16px 18px">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Late Bull</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--late)">0</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px">extended / risky</div>
+  </div>
+  <div style="background:var(--surface);padding:16px 18px">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Bear / Recovery</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--bear)">14</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:4px">avoid / wait</div>
+  </div>
+</div>
+  
+<div class="card" style="margin-bottom:24px">
+  <h2>Bull Market Phase Guide</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;font-size:12px">
+    <div><strong style="color:#22c55e">Early Bull</strong> — 200-day MA recently turned up after
+    a prolonged decline or flat base. Price just crossed above 200-day MA (typically &lt;1 year ago).
+    Not yet extended. Best risk/reward entry zone.</div>
+    <div><strong style="color:#84cc16">Early-Mid Bull</strong> — Transitional: bull trend confirmed
+    but 200-day MA slope still modest. Days above 200-day MA 6–18 months. Good entry.</div>
+    <div><strong style="color:#3b82f6">Mid Bull</strong> — 200-day MA rising steadily for 1–3 years.
+    Price 15–50% above 200-day MA. RSI healthy 55–70. Trend is established; pullbacks are
+    buying opportunities.</div>
+    <div><strong style="color:#f59e0b">Late Bull</strong> — Price &gt;50% above 200-day MA or RSI
+    &gt;80. Parabolic or near-parabolic. Higher risk of mean-reversion. Reduce or wait for
+    pullback.</div>
+    <div><strong style="color:#94a3b8">Recovery</strong> — Price near or below 200-day MA; trend
+    not yet confirmed. Watch for 200-day MA to flatten and turn up.</div>
+    <div><strong style="color:#ef4444">Bear</strong> — 200-day MA declining, price below key
+    support. Avoid.</div>
+  </div>
+</div>
+  
+<div class="card">
+  <h2 style="color:var(--gain)">Early Bull <span style="color:var(--muted);font-weight:400">(1)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">NIB</span></td><td>Cocoa</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#22c55e22;color:#22c55e;border:1px solid #22c55e55">Early Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:58%;background:#3b82f6"></span></span></td><td class="tick">$36.29</td><td><span class="pos">+19.5%</span></td><td><span class="pos">+6.3%</span></td><td><span class="pos">+0.6%</span></td><td>160d</td><td class="pos">71</td><td style="font-size:11px;color:var(--muted)">200MA flat/down over 2y (0.6%) · Only 160d above 200MA</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="color:#84cc16">Early-Mid Bull <span style="color:var(--muted);font-weight:400">(4)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">LIT</span></td><td>Lithium & Battery Tech</td><td style="color:var(--muted);font-size:12px">Battery Metals</td><td><span class="badge" style="background:#84cc1622;color:#84cc16;border:1px solid #84cc1655">Early-Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:63%;background:#3b82f6"></span></span></td><td class="tick">$74.18</td><td><span class="pos">+0.4%</span></td><td><span class="pos">+83.3%</span></td><td><span class="pos">+73.1%</span></td><td>23d</td><td class="neu">48</td><td style="font-size:11px;color:var(--muted)">Only 23d above 200MA</td></tr>
+<tr><td><span class="tick">PICK</span></td><td>Metals & Mining</td><td style="color:var(--muted);font-size:12px">Industrial Metals</td><td><span class="badge" style="background:#84cc1622;color:#84cc16;border:1px solid #84cc1655">Early-Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:63%;background:#3b82f6"></span></span></td><td class="tick">$65.06</td><td><span class="pos">+11.4%</span></td><td><span class="pos">+62.8%</span></td><td><span class="pos">+52.5%</span></td><td>301d</td><td class="neu">57</td><td style="font-size:11px;color:var(--muted)">200MA +62.8%/yr</td></tr>
+<tr><td><span class="tick">COPX</span></td><td>Copper Miners</td><td style="color:var(--muted);font-size:12px">Industrial Metals</td><td><span class="badge" style="background:#84cc1622;color:#84cc16;border:1px solid #84cc1655">Early-Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:63%;background:#3b82f6"></span></span></td><td class="tick">$90.66</td><td><span class="pos">+12.9%</span></td><td><span class="pos">+99.8%</span></td><td><span class="pos">+104.6%</span></td><td>27d</td><td class="neu">54</td><td style="font-size:11px;color:var(--muted)">Only 27d above 200MA</td></tr>
+<tr><td><span class="tick">SOYB</span></td><td>Soybeans</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#84cc1622;color:#84cc16;border:1px solid #84cc1655">Early-Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:63%;background:#3b82f6"></span></span></td><td class="tick">$27.65</td><td><span class="pos">+14.3%</span></td><td><span class="pos">+11.7%</span></td><td><span class="neg">-3.0%</span></td><td>149d</td><td class="pos">73</td><td style="font-size:11px;color:var(--muted)">200MA flat/down over 2y (-3.0%) · Only 149d above 200MA</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="color:var(--mid)">Mid Bull <span style="color:var(--muted);font-weight:400">(8)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">CPER</span></td><td>Copper</td><td style="color:var(--muted);font-size:12px">Industrial Metals</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:77%;background:#f59e0b"></span></span></td><td class="tick">$39.95</td><td><span class="pos">+8.8%</span></td><td><span class="pos">+26.5%</span></td><td><span class="pos">+42.2%</span></td><td>239d</td><td class="neu">53</td><td style="font-size:11px;color:var(--muted)">200MA +26.5%/yr</td></tr>
+<tr><td><span class="tick">SLX</span></td><td>Steel</td><td style="color:var(--muted);font-size:12px">Industrial Metals</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:80%;background:#f59e0b"></span></span></td><td class="tick">$110.99</td><td><span class="pos">+13.5%</span></td><td><span class="pos">+55.0%</span></td><td><span class="pos">+48.5%</span></td><td>318d</td><td class="pos">63</td><td style="font-size:11px;color:var(--muted)">200MA +55.0%/yr</td></tr>
+<tr><td><span class="tick">DBC</span></td><td>Broad Commodities</td><td style="color:var(--muted);font-size:12px">Broad</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:80%;background:#f59e0b"></span></span></td><td class="tick">$31.90</td><td><span class="pos">+17.5%</span></td><td><span class="pos">+28.9%</span></td><td><span class="pos">+30.2%</span></td><td>263d</td><td class="pos">68</td><td style="font-size:11px;color:var(--muted)">200MA +28.9%/yr</td></tr>
+<tr><td><span class="tick">PDBC</span></td><td>Optimum Yield Commodities</td><td style="color:var(--muted);font-size:12px">Broad</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:80%;background:#f59e0b"></span></span></td><td class="tick">$19.01</td><td><span class="pos">+17.6%</span></td><td><span class="pos">+28.0%</span></td><td><span class="pos">+28.1%</span></td><td>219d</td><td class="pos">68</td><td style="font-size:11px;color:var(--muted)">200MA +28.0%/yr</td></tr>
+<tr><td><span class="tick">XLE</span></td><td>Energy Sector</td><td style="color:var(--muted);font-size:12px">Energy</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:81%;background:#f59e0b"></span></span></td><td class="tick">$64.06</td><td><span class="pos">+17.8%</span></td><td><span class="pos">+29.7%</span></td><td><span class="pos">+31.7%</span></td><td>222d</td><td class="pos">63</td><td style="font-size:11px;color:var(--muted)">200MA +29.7%/yr</td></tr>
+<tr><td><span class="tick">GSG</span></td><td>Commodities GSCI</td><td style="color:var(--muted);font-size:12px">Broad</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:80%;background:#f59e0b"></span></span></td><td class="tick">$34.83</td><td><span class="pos">+19.9%</span></td><td><span class="pos">+31.8%</span></td><td><span class="pos">+35.7%</span></td><td>318d</td><td class="pos">68</td><td style="font-size:11px;color:var(--muted)">200MA +31.8%/yr</td></tr>
+<tr><td><span class="tick">BNO</span></td><td>Brent Crude Oil</td><td style="color:var(--muted);font-size:12px">Energy</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:77%;background:#f59e0b"></span></span></td><td class="tick">$56.11</td><td><span class="pos">+30.6%</span></td><td><span class="pos">+45.3%</span></td><td><span class="pos">+42.1%</span></td><td>166d</td><td class="pos">66</td><td style="font-size:11px;color:var(--muted)">Only 166d above 200MA</td></tr>
+<tr><td><span class="tick">USO</span></td><td>WTI Crude Oil</td><td style="color:var(--muted);font-size:12px">Energy</td><td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">Mid Bull</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:77%;background:#f59e0b"></span></span></td><td class="tick">$141.96</td><td><span class="pos">+32.1%</span></td><td><span class="pos">+46.3%</span></td><td><span class="pos">+44.4%</span></td><td>159d</td><td class="pos">66</td><td style="font-size:11px;color:var(--muted)">Only 159d above 200MA</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+
+<div class="card">
+  <h2 style="color:var(--rec)">Recovery <span style="color:var(--muted);font-weight:400">(3)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">URA</span></td><td>Uranium ETF</td><td style="color:var(--muted);font-size:12px">Uranium</td><td><span class="badge" style="background:#94a3b822;color:#94a3b8;border:1px solid #94a3b855">Recovery</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:38%;background:#ef4444"></span></span></td><td class="tick">$46.06</td><td><span class="neg">-4.4%</span></td><td><span class="pos">+64.0%</span></td><td><span class="pos">+80.4%</span></td><td>0d</td><td class="neu">55</td><td style="font-size:11px;color:var(--muted)">Price just below 200MA; trend unconfirmed</td></tr>
+<tr><td><span class="tick">CCJ</span></td><td>Cameco</td><td style="color:var(--muted);font-size:12px">Uranium</td><td><span class="badge" style="background:#94a3b822;color:#94a3b8;border:1px solid #94a3b855">Recovery</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:38%;background:#ef4444"></span></span></td><td class="tick">$100.74</td><td><span class="neg">-4.4%</span></td><td><span class="pos">+85.1%</span></td><td><span class="pos">+128.8%</span></td><td>0d</td><td class="neu">54</td><td style="font-size:11px;color:var(--muted)">Price just below 200MA; trend unconfirmed</td></tr>
+<tr><td><span class="tick">GLD</span></td><td>Gold</td><td style="color:var(--muted);font-size:12px">Precious Metals</td><td><span class="badge" style="background:#94a3b822;color:#94a3b8;border:1px solid #94a3b855">Recovery</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:38%;background:#ef4444"></span></span></td><td class="tick">$406.77</td><td><span class="neg">-2.1%</span></td><td><span class="pos">+46.6%</span></td><td><span class="pos">+101.5%</span></td><td>0d</td><td class="neu">52</td><td style="font-size:11px;color:var(--muted)">Price just below 200MA; trend unconfirmed</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="color:var(--bear)">Bear / Bouncing <span style="color:var(--muted);font-weight:400">(5)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">BAL</span></td><td>Cotton</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#f8717122;color:#f87171;border:1px solid #f8717155">Bear / Bouncing</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:32%;background:#ef4444"></span></span></td><td class="tick">$61.00</td><td><span class="pos">+3.2%</span></td><td><span class="neg">-16.5%</span></td><td><span class="pos">+28.5%</span></td><td>35d</td><td class="neu">54</td><td style="font-size:11px;color:var(--muted)">200MA declining -16.5% YoY despite price bounce</td></tr>
+<tr><td><span class="tick">JO</span></td><td>Coffee</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#f8717122;color:#f87171;border:1px solid #f8717155">Bear / Bouncing</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:32%;background:#ef4444"></span></span></td><td class="tick">$54.00</td><td><span class="pos">+4.9%</span></td><td><span class="neg">-16.2%</span></td><td><span class="pos">+35.2%</span></td><td>35d</td><td class="neu">50</td><td style="font-size:11px;color:var(--muted)">200MA declining -16.2% YoY despite price bounce</td></tr>
+<tr><td><span class="tick">CORN</span></td><td>Corn</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#f8717122;color:#f87171;border:1px solid #f8717155">Bear / Bouncing</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:32%;background:#ef4444"></span></span></td><td class="tick">$20.07</td><td><span class="pos">+11.8%</span></td><td><span class="neg">-2.8%</span></td><td><span class="neg">-9.6%</span></td><td>18d</td><td class="pos">71</td><td style="font-size:11px;color:var(--muted)">200MA declining -2.8% YoY despite price bounce</td></tr>
+<tr><td><span class="tick">CANE</span></td><td>Sugar</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#f8717122;color:#f87171;border:1px solid #f8717155">Bear / Bouncing</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:32%;background:#ef4444"></span></span></td><td class="tick">$11.42</td><td><span class="pos">+16.4%</span></td><td><span class="neg">-15.4%</span></td><td><span class="neg">-21.9%</span></td><td>25d</td><td class="pos">64</td><td style="font-size:11px;color:var(--muted)">200MA declining -15.4% YoY despite price bounce</td></tr>
+<tr><td><span class="tick">WEAT</span></td><td>Wheat</td><td style="color:var(--muted);font-size:12px">Agriculture</td><td><span class="badge" style="background:#f8717122;color:#f87171;border:1px solid #f8717155">Bear / Bouncing</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:32%;background:#ef4444"></span></span></td><td class="tick">$26.49</td><td><span class="pos">+16.7%</span></td><td><span class="neg">-2.8%</span></td><td><span class="neg">-17.9%</span></td><td>138d</td><td class="neu">56</td><td style="font-size:11px;color:var(--muted)">200MA declining -2.8% YoY despite price bounce</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2 style="color:var(--bear)">Bear <span style="color:var(--muted);font-weight:400">(6)</span></h2>
+  <div class="overflow-x">
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th><th>Name</th><th>Sector</th><th>Phase</th>
+        <th>Maturity</th><th>Price</th><th>vs 200MA</th>
+        <th>200MA slope 1y</th><th>200MA slope 2y</th>
+        <th>Days above 200MA</th><th>RSI 14</th><th>Note</th>
+      </tr>
+    </thead>
+    <tbody><tr><td><span class="tick">REMX</span></td><td>Rare Earth Metals</td><td style="color:var(--muted);font-size:12px">Industrial Metals</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:24%;background:#ef4444"></span></span></td><td class="tick">$75.66</td><td><span class="neg">-12.1%</span></td><td><span class="pos">+102.7%</span></td><td><span class="pos">+80.1%</span></td><td>0d</td><td class="neu">46</td><td style="font-size:11px;color:var(--muted)">Price 12% below 200MA</td></tr>
+<tr><td><span class="tick">UNG</span></td><td>Natural Gas</td><td style="color:var(--muted);font-size:12px">Energy</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:26%;background:#ef4444"></span></span></td><td class="tick">$10.56</td><td><span class="neg">-10.0%</span></td><td><span class="neg">-29.9%</span></td><td><span class="neg">-33.1%</span></td><td>0d</td><td class="neu">56</td><td style="font-size:11px;color:var(--muted)">Price 10% below 200MA</td></tr>
+<tr><td><span class="tick">SLV</span></td><td>Silver</td><td style="color:var(--muted);font-size:12px">Precious Metals</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:26%;background:#ef4444"></span></span></td><td class="tick">$59.82</td><td><span class="neg">-8.4%</span></td><td><span class="pos">+113.4%</span></td><td><span class="pos">+170.2%</span></td><td>0d</td><td class="neu">53</td><td style="font-size:11px;color:var(--muted)">Price 8% below 200MA</td></tr>
+<tr><td><span class="tick">PALL</span></td><td>Palladium</td><td style="color:var(--muted);font-size:12px">Precious Metals</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:27%;background:#ef4444"></span></span></td><td class="tick">$25.31</td><td><span class="neg">-6.9%</span></td><td><span class="pos">+46.2%</span></td><td><span class="pos">+50.3%</span></td><td>0d</td><td class="neu">56</td><td style="font-size:11px;color:var(--muted)">Price 7% below 200MA</td></tr>
+<tr><td><span class="tick">PPLT</span></td><td>Platinum</td><td style="color:var(--muted);font-size:12px">Precious Metals</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:27%;background:#ef4444"></span></span></td><td class="tick">$16.50</td><td><span class="neg">-6.1%</span></td><td><span class="pos">+77.0%</span></td><td><span class="pos">+101.9%</span></td><td>0d</td><td class="neu">56</td><td style="font-size:11px;color:var(--muted)">Price 6% below 200MA</td></tr>
+<tr><td><span class="tick">URNM</span></td><td>Uranium Miners</td><td style="color:var(--muted);font-size:12px">Uranium</td><td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Bear</span></td><td><span class="bar-wrap"><span class="bar-fill" style="width:28%;background:#ef4444"></span></span></td><td class="tick">$57.07</td><td><span class="neg">-5.9%</span></td><td><span class="pos">+52.2%</span></td><td><span class="pos">+29.7%</span></td><td>0d</td><td class="neu">54</td><td style="font-size:11px;color:var(--muted)">Price 6% below 200MA</td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+  <div class="foot">
+    <p>Data: Yahoo Finance via direct API. 5-year daily OHLCV history required.</p>
+    <p>Phase is determined by 200-day MA slope (6M, 1Y, 2Y), days price has been above 200-day MA,
+    % extension above 200-day MA, and RSI(14). This is technical analysis only — not financial advice.</p>
+    <p>Maturity bar: green=early, blue=mid, amber=late. Generated by breakout-screener.</p>
+  </div>
+</div>
+</body>
+</html>
