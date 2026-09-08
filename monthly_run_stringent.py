@@ -16,7 +16,7 @@ Positions: top 5 qualifying picks at $20k each ($100k total)
 
 Environment variables (all optional)
 -------------------------------------
-TOP_N=5           Top picks to take (default 5)
+TOP_N=7           Top picks to take (default 7)
 HISTORY_YEARS=5   Years of OHLCV history (default 5)
 """
 
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> None:
-    top_n         = int(os.getenv("TOP_N", "5"))
+    top_n         = int(os.getenv("TOP_N", "7"))
     history_years = int(os.getenv("HISTORY_YEARS", "5"))
     date_str      = datetime.now().strftime("%Y-%m-%d")
 
