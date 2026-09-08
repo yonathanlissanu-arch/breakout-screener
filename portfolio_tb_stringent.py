@@ -325,7 +325,7 @@ canvas{{max-height:300px;}}
 @media(prefers-color-scheme:light){{:root{{--bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;}}}}
 </style></head><body>
 <h1>Triple-Bottom Stringent Portfolio</h1>
-<p class="subtitle">$100k/cohort · Top 5 high-conviction picks · 200SMA≥20% · Vol≥3.5× · Neckline>5% · vs SPY &amp; VTI · {now_str}</p>
+<p class="subtitle">$100k/cohort · Top 7 high-conviction picks · 200SMA≥20% · Vol≥3.5× · Neckline>5% · vs SPY &amp; VTI · {now_str}</p>
 
 <div class="chart-wrap">
   <h2>Monthly Cohort Returns</h2>
