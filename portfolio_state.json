@@ -1,44 +1,111 @@
 {
-  "current_week": 2,
+  "current_week": 3,
   "start_date": "2026-08-24",
-  "spy_entry_price": 767.05,
-  "vti_entry_price": 378.15,
+  "spy_entry_price": 765.3099975585938,
+  "vti_entry_price": 376.80010986328125,
   "open_long": [
     {
-      "ticker": "FCX",
+      "ticker": "ROIV",
       "side": "long",
-      "week": 2,
-      "entry_date": "2026-08-31",
-      "entry_price": 75.74,
-      "shares": 440.1021036880557,
-      "score": 0.24680891719745224,
-      "name": "Freeport-McMoRan",
-      "indices": "S&P 500"
-    },
-    {
-      "ticker": "TRGP",
-      "side": "long",
-      "week": 2,
-      "entry_date": "2026-08-31",
-      "entry_price": 293.65,
-      "shares": 113.51382030762247,
-      "score": 0.22832258064516125,
-      "name": "Targa Resources",
-      "indices": "S&P 500"
-    },
-    {
-      "ticker": "ILMN",
-      "side": "long",
-      "week": 2,
-      "entry_date": "2026-08-31",
-      "entry_price": 213.63,
-      "shares": 156.03301658630969,
-      "score": 0.2037150810219704,
-      "name": "Illumina, Inc.",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 40.68,
+      "shares": 614.5526057030481,
+      "score": 0.4031856309263311,
+      "name": "Roivant Sciences",
       "indices": "S&P MidCap 400"
+    },
+    {
+      "ticker": "DELL",
+      "side": "long",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 562.41,
+      "shares": 44.45155669351541,
+      "score": 0.27538205980066444,
+      "name": "Dell Technologies",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "CNH",
+      "side": "long",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 13.84,
+      "shares": 1806.35838150289,
+      "score": 0.26231343283582087,
+      "name": "CNH Industrial",
+      "indices": "S&P MidCap 400"
+    },
+    {
+      "ticker": "DE",
+      "side": "long",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 682.57,
+      "shares": 36.62628008848909,
+      "score": 0.23685728744939272,
+      "name": "Deere & Company",
+      "indices": "S&P 500"
     }
   ],
-  "open_short": [],
+  "open_short": [
+    {
+      "ticker": "LULU",
+      "side": "short",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 97.78,
+      "shares": 204.5408058907752,
+      "score": 0.6112500000000001,
+      "name": "Lululemon Athletica",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "NKE",
+      "side": "short",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 36.87,
+      "shares": 542.4464334147003,
+      "score": 0.4210833333333333,
+      "name": "Nike, Inc.",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "BLDR",
+      "side": "short",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 60.65,
+      "shares": 329.76092333058534,
+      "score": 0.37287499999999996,
+      "name": "Builders FirstSource",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "LEN",
+      "side": "short",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 80.02,
+      "shares": 249.93751562109475,
+      "score": 0.35262499999999997,
+      "name": "Lennar",
+      "indices": "S&P 500"
+    },
+    {
+      "ticker": "STZ",
+      "side": "short",
+      "week": 3,
+      "entry_date": "2026-09-11",
+      "entry_price": 122.99,
+      "shares": 162.61484673550697,
+      "score": 0.34725,
+      "name": "Constellation Brands",
+      "indices": "S&P 500"
+    }
+  ],
   "closed_trades": [
     {
       "ticker": "FCX",
@@ -147,6 +214,42 @@
       "shares": 7587.253414264037,
       "pnl": -4097.12,
       "pnl_pct": -4.1
+    },
+    {
+      "ticker": "FCX",
+      "side": "long",
+      "week": 2,
+      "entry_date": "2026-08-31",
+      "exit_date": "2026-09-07",
+      "entry_price": 75.74,
+      "exit_price": 71.54000091552734,
+      "shares": 440.1021036880557,
+      "pnl": -1848.43,
+      "pnl_pct": -5.55
+    },
+    {
+      "ticker": "TRGP",
+      "side": "long",
+      "week": 2,
+      "entry_date": "2026-08-31",
+      "exit_date": "2026-09-07",
+      "entry_price": 293.65,
+      "exit_price": 291.42498779296875,
+      "shares": 113.51382030762247,
+      "pnl": -252.57,
+      "pnl_pct": -0.76
+    },
+    {
+      "ticker": "ILMN",
+      "side": "long",
+      "week": 2,
+      "entry_date": "2026-08-31",
+      "exit_date": "2026-09-07",
+      "entry_price": 213.63,
+      "exit_price": 207.7100067138672,
+      "shares": 156.03301658630969,
+      "pnl": -923.71,
+      "pnl_pct": -2.77
     }
   ],
   "weekly_results": [
@@ -176,6 +279,26 @@
       "short_tickers": [
         "TTD"
       ]
+    },
+    {
+      "week": 2,
+      "start_date": "2026-08-31",
+      "end_date": "2026-09-07",
+      "long_pnl": -3024.71,
+      "short_pnl": 0.0,
+      "combined_pnl": -3024.71,
+      "spy_pnl": -226.84,
+      "spy_open": 767.05,
+      "spy_close": 765.3099975585938,
+      "vti_pnl": -356.97,
+      "vti_open": 378.15,
+      "vti_close": 376.80010986328125,
+      "long_tickers": [
+        "FCX",
+        "TRGP",
+        "ILMN"
+      ],
+      "short_tickers": []
     }
   ]
 }
