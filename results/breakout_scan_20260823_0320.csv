@@ -1,0 +1,2 @@
+rank,ticker,price,sma20,sma50,sma100,sma200,pct_above_200sma,rsi14,resistance_level,breakout_date,days_since_breakout,pct_above_resistance,volume_ratio,breakout_volume,avg_vol_50,name,indices,region,score
+1,MPC,360.72,328.92,296.77,269.61,231.19,56.0,72.2,318.89,2026-08-10 13:30:00,9,13.12,1.76,4058700.0,2310106.0,,Custom,US,0.18282513661202185
