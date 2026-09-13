@@ -1,0 +1,117 @@
+{
+  "cohort_id": "2026-09-14",
+  "direction": "short",
+  "scan_date": "2026-09-13",
+  "entry_week": "2026-09-14",
+  "source_csv": "results/breakdown_scan_20260913_2221.csv",
+  "positions": [
+    {
+      "ticker": "LULU",
+      "name": "Lululemon Athletica",
+      "indices": "S&P 500",
+      "entry_price": 98.97,
+      "shares": 101.0407,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-04",
+      "volume_ratio": 11.24,
+      "rsi14": 33.9,
+      "extension_pct": 6.13,
+      "score": 0.4215
+    },
+    {
+      "ticker": "STZ",
+      "name": "Constellation Brands",
+      "indices": "S&P 500",
+      "entry_price": 122.45,
+      "shares": 81.666,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 2.19,
+      "rsi14": 34.2,
+      "extension_pct": 2.04,
+      "score": 0.3226
+    },
+    {
+      "ticker": "LEN",
+      "name": "Lennar",
+      "indices": "S&P 500",
+      "entry_price": 79.6,
+      "shares": 125.6281,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 1.98,
+      "rsi14": 39.4,
+      "extension_pct": 2.7,
+      "score": 0.2996
+    },
+    {
+      "ticker": "NKE",
+      "name": "Nike, Inc.",
+      "indices": "S&P 500",
+      "entry_price": 36.8,
+      "shares": 271.7391,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-09",
+      "volume_ratio": 1.61,
+      "rsi14": 35.1,
+      "extension_pct": 3.25,
+      "score": 0.2973
+    },
+    {
+      "ticker": "BLDR",
+      "name": "Builders FirstSource",
+      "indices": "S&P 500",
+      "entry_price": 60.37,
+      "shares": 165.6452,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-01",
+      "volume_ratio": 1.74,
+      "rsi14": 35.6,
+      "extension_pct": 8.54,
+      "score": 0.2056
+    }
+  ],
+  "spy_entry": 764.2899780273438,
+  "vti_entry": 376.30999755859375,
+  "total_notional": 50000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-13",
+      "positions": {
+        "LULU": {
+          "current_price": 98.97,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "STZ": {
+          "current_price": 122.45,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "LEN": {
+          "current_price": 79.6,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "NKE": {
+          "current_price": 36.8,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "BLDR": {
+          "current_price": 60.37,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 50000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

@@ -1,0 +1,99 @@
+{
+  "cohort_id": "2026-09-14",
+  "direction": "long",
+  "scan_date": "2026-09-13",
+  "entry_week": "2026-09-14",
+  "source_csv": "results/breakout_scan_20260913_2221.csv",
+  "positions": [
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise",
+      "indices": "S&P 500",
+      "entry_price": 62.09,
+      "shares": 161.0565,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-11",
+      "volume_ratio": 1.99,
+      "rsi14": 64.1,
+      "extension_pct": 3.79,
+      "score": 0.5968
+    },
+    {
+      "ticker": "ROIV",
+      "name": "Roivant Sciences",
+      "indices": "S&P MidCap 400",
+      "entry_price": 40.82,
+      "shares": 244.978,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 3.95,
+      "rsi14": 67.6,
+      "extension_pct": 8.62,
+      "score": 0.4029
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies",
+      "indices": "S&P 500",
+      "entry_price": 567.29,
+      "shares": 17.6277,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-03",
+      "volume_ratio": 2.85,
+      "rsi14": 66.6,
+      "extension_pct": 14.72,
+      "score": 0.2752
+    },
+    {
+      "ticker": "DE",
+      "name": "Deere & Company",
+      "indices": "S&P 500",
+      "entry_price": 675.74,
+      "shares": 14.7986,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-01",
+      "volume_ratio": 1.95,
+      "rsi14": 60.8,
+      "extension_pct": 2.56,
+      "score": 0.2394
+    }
+  ],
+  "spy_entry": 764.2899780273438,
+  "vti_entry": 376.30999755859375,
+  "total_notional": 40000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-13",
+      "positions": {
+        "HPE": {
+          "current_price": 62.09,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ROIV": {
+          "current_price": 40.82,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "DELL": {
+          "current_price": 567.29,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "DE": {
+          "current_price": 675.74,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 40000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
