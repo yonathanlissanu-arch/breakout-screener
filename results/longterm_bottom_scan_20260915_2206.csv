@@ -1,0 +1,2 @@
+rank,ticker,price,sma50,sma200,pct_above_200sma,rsi14,pattern_type,bottom1_date,bottom2_date,bottom3_date,bottom1_price,bottom2_price,bottom3_price,avg_bottom,bottom_variation_pct,neckline,pattern_span_days,breakout_date,days_since_breakout,pct_above_neckline,pct_to_neckline,volume_ratio,pct_above_avg_bottom,days_since_b3,name,indices,region,score
+1,PFE,27.55,26.3,25.57,7.8,50.9,triple_bottom_setup,2024-06-17 13:30:00,2025-12-23 14:30:00,2026-06-25 13:30:00,26.87,24.83,23.62,25.11,7.02,31.54,506,,,,14.48,0.0,9.7,82,,Custom,US,0.47066997354497353
