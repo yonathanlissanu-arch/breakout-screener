@@ -369,6 +369,47 @@ def fetch_stoxx600() -> pd.DataFrame:
 
 
 # --------------------------------------------------------------------------- #
+# NASDAQ 100
+# --------------------------------------------------------------------------- #
+
+def fetch_nasdaq100() -> pd.DataFrame:
+    """Fetch NASDAQ-100 constituents from Wikipedia."""
+    url = "https://en.wikipedia.org/wiki/Nasdaq-100"
+    try:
+        tables = _wiki_tables(url)
+        for t in tables:
+            cols = [c.lower() for c in t.columns]
+            if any("tick" in c or "symbol" in c for c in cols):
+                tick_col = next(
+                    c for c in t.columns
+                    if "tick" in c.lower() or "symbol" in c.lower()
+                )
+                name_col = next(
+                    (c for c in t.columns
+                     if "compan" in c.lower() or "secur" in c.lower() or "name" in c.lower()),
+                    None,
+                )
+                df = t.rename(columns={tick_col: "ticker"})
+                if name_col:
+                    df = df.rename(columns={name_col: "name"})
+                else:
+                    df["name"] = ""
+                df["ticker"] = (
+                    df["ticker"].astype(str).str.strip()
+                    .str.replace(".", "-", regex=False)
+                )
+                df = df[df["ticker"].str.match(r"^[A-Z][A-Z0-9\-]+$")]
+                df["index"] = "NASDAQ 100"
+                result = df[["ticker", "name", "index"]].dropna(subset=["ticker"])
+                if not result.empty:
+                    logger.info("  NASDAQ 100: %d tickers", len(result))
+                    return result
+    except Exception as exc:
+        logger.warning("Could not fetch NASDAQ 100 (%s)", exc)
+    return pd.DataFrame(columns=["ticker", "name", "index"])
+
+
+# --------------------------------------------------------------------------- #
 # Wilshire US Small-Cap 2000
 # --------------------------------------------------------------------------- #
 
@@ -468,6 +509,7 @@ def build_universe(
     euronext: bool = True,
     stoxx600: bool = False,
     wilshire2000: bool = False,
+    nasdaq100: bool = False,
 ) -> pd.DataFrame:
     """
     Return deduplicated DataFrame: ticker | name | indices | region.
@@ -477,6 +519,7 @@ def build_universe(
     sp500, midcap400, russell2000, euronext : original universe toggles
     stoxx600     : include the STOXX Europe 600 broad universe
     wilshire2000 : include the Wilshire US Small-Cap 2000 universe
+    nasdaq100    : include the NASDAQ-100 universe
 
     If a ticker appears in multiple indices all memberships are captured
     in the 'indices' column (slash-separated).
@@ -500,6 +543,9 @@ def build_universe(
     if wilshire2000:
         logger.info("Fetching Wilshire 2000 …")
         frames.append(fetch_wilshire2000())
+    if nasdaq100:
+        logger.info("Fetching NASDAQ 100 …")
+        frames.append(fetch_nasdaq100())
 
     if not frames:
         raise ValueError("No universe selected.")
