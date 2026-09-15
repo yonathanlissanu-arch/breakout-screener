@@ -378,15 +378,16 @@ def fetch_nasdaq100() -> pd.DataFrame:
     try:
         tables = _wiki_tables(url)
         for t in tables:
-            cols = [c.lower() for c in t.columns]
+            cols = [str(c).lower() for c in t.columns]
             if any("tick" in c or "symbol" in c for c in cols):
                 tick_col = next(
                     c for c in t.columns
-                    if "tick" in c.lower() or "symbol" in c.lower()
+                    if "tick" in str(c).lower() or "symbol" in str(c).lower()
                 )
                 name_col = next(
                     (c for c in t.columns
-                     if "compan" in c.lower() or "secur" in c.lower() or "name" in c.lower()),
+                     if "compan" in str(c).lower() or "secur" in str(c).lower()
+                     or "name" in str(c).lower()),
                     None,
                 )
                 df = t.rename(columns={tick_col: "ticker"})
