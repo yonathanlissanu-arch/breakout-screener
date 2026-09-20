@@ -1,0 +1,117 @@
+{
+  "cohort_id": "2026-09-21",
+  "direction": "short",
+  "scan_date": "2026-09-20",
+  "entry_week": "2026-09-21",
+  "source_csv": "results/breakdown_scan_20260920_2223.csv",
+  "positions": [
+    {
+      "ticker": "LULU",
+      "name": "Lululemon Athletica",
+      "indices": "S&P 500",
+      "entry_price": 98.06,
+      "shares": 101.9784,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-04",
+      "volume_ratio": 11.24,
+      "rsi14": 36.4,
+      "extension_pct": 6.99,
+      "score": 0.3767
+    },
+    {
+      "ticker": "DECK",
+      "name": "Deckers Brands",
+      "indices": "S&P 500",
+      "entry_price": 78.43,
+      "shares": 127.5022,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 1.57,
+      "rsi14": 33.2,
+      "extension_pct": 1.4,
+      "score": 0.2613
+    },
+    {
+      "ticker": "STZ",
+      "name": "Constellation Brands",
+      "indices": "S&P 500",
+      "entry_price": 118.97,
+      "shares": 84.0548,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 2.19,
+      "rsi14": 31.5,
+      "extension_pct": 4.82,
+      "score": 0.2533
+    },
+    {
+      "ticker": "LEN",
+      "name": "Lennar",
+      "indices": "S&P 500",
+      "entry_price": 76.43,
+      "shares": 130.8387,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 1.98,
+      "rsi14": 35.2,
+      "extension_pct": 6.58,
+      "score": 0.232
+    },
+    {
+      "ticker": "NKE",
+      "name": "Nike, Inc.",
+      "indices": "S&P 500",
+      "entry_price": 35.51,
+      "shares": 281.6108,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-09",
+      "volume_ratio": 1.61,
+      "rsi14": 32.8,
+      "extension_pct": 6.64,
+      "score": 0.2015
+    }
+  ],
+  "spy_entry": 761.6900024414062,
+  "vti_entry": 375.42999267578125,
+  "total_notional": 50000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-20",
+      "positions": {
+        "LULU": {
+          "current_price": 98.06,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "DECK": {
+          "current_price": 78.43,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "STZ": {
+          "current_price": 118.97,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "LEN": {
+          "current_price": 76.43,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "NKE": {
+          "current_price": 35.51,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 50000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

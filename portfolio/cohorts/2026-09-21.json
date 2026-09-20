@@ -1,0 +1,171 @@
+{
+  "cohort_id": "2026-09-21",
+  "direction": "long",
+  "scan_date": "2026-09-20",
+  "entry_week": "2026-09-21",
+  "source_csv": "results/breakout_scan_20260920_2223.csv",
+  "positions": [
+    {
+      "ticker": "HALO",
+      "name": "Halozyme",
+      "indices": "S&P MidCap 400",
+      "entry_price": 112.45,
+      "shares": 88.9284,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-18",
+      "volume_ratio": 5.39,
+      "rsi14": 69.9,
+      "extension_pct": 1.53,
+      "score": 0.7735
+    },
+    {
+      "ticker": "ROIV",
+      "name": "Roivant Sciences",
+      "indices": "S&P MidCap 400",
+      "entry_price": 39.77,
+      "shares": 251.4458,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-08",
+      "volume_ratio": 3.95,
+      "rsi14": 60.2,
+      "extension_pct": 5.83,
+      "score": 0.3444
+    },
+    {
+      "ticker": "RVTY",
+      "name": "Revvity",
+      "indices": "S&P 500",
+      "entry_price": 143.45,
+      "shares": 69.7107,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 2.46,
+      "rsi14": 69.2,
+      "extension_pct": 9.55,
+      "score": 0.3054
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "indices": "S&P 500",
+      "entry_price": 237.65,
+      "shares": 42.0787,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 2.8,
+      "rsi14": 60.4,
+      "extension_pct": 2.88,
+      "score": 0.2954
+    },
+    {
+      "ticker": "ILMN",
+      "name": "Illumina, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 239.62,
+      "shares": 41.7327,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-16",
+      "volume_ratio": 1.78,
+      "rsi14": 65.7,
+      "extension_pct": 5.24,
+      "score": 0.29
+    },
+    {
+      "ticker": "OKTA",
+      "name": "Okta, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 182.37,
+      "shares": 54.8336,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 2.04,
+      "rsi14": 61.5,
+      "extension_pct": 5.39,
+      "score": 0.2423
+    },
+    {
+      "ticker": "CRBG",
+      "name": "Corebridge Financial",
+      "indices": "S&P MidCap 400",
+      "entry_price": 34.81,
+      "shares": 287.2738,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 1.51,
+      "rsi14": 64.7,
+      "extension_pct": 0.89,
+      "score": 0.2386
+    },
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise",
+      "indices": "S&P 500",
+      "entry_price": 60.76,
+      "shares": 164.582,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-11",
+      "volume_ratio": 1.99,
+      "rsi14": 59.5,
+      "extension_pct": 1.83,
+      "score": 0.2233
+    }
+  ],
+  "spy_entry": 761.6900024414062,
+  "vti_entry": 375.42999267578125,
+  "total_notional": 80000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-20",
+      "positions": {
+        "HALO": {
+          "current_price": 112.45,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "ROIV": {
+          "current_price": 39.77,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "RVTY": {
+          "current_price": 143.45,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "CRWD": {
+          "current_price": 237.65,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "ILMN": {
+          "current_price": 239.62,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "OKTA": {
+          "current_price": 182.37,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "CRBG": {
+          "current_price": 34.81,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "HPE": {
+          "current_price": 60.76,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 80000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
