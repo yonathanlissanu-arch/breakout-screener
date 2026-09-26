@@ -15,6 +15,23 @@ def post(path, body):
 def get(path):
     return json.load(urllib.request.urlopen(f"{API}/{path}"))
 
+def ccle_annotations(sample_ids):
+    """Readable cell-line name, DepMap ID and SMARCA4 protein changes for CCLE sample IDs (e.g. NCIH650_LUNG)."""
+    cd = post("studies/ccle_broad_2019/clinical-data/fetch?clinicalDataType=SAMPLE",
+              {"attributeIds": ["NAME", "DEPMAPID"], "ids": list(sample_ids)})
+    ann = (pd.DataFrame(cd).pivot(index="sampleId", columns="clinicalAttributeId", values="value")
+           .rename(columns={"NAME": "cell_line", "DEPMAPID": "depmap_id"}))
+    m = pd.read_csv("ccle_broad_2019_smarca4_mutations.csv")
+    ann["smarca4_mutations"] = m.groupby("sample")["aa"].agg(lambda x: "; ".join(x.dropna()))
+    return ann
+
+def add_ccle_annotations(df):
+    ann = ccle_annotations(df["sample"])
+    df = df.join(ann, on="sample")
+    df["smarca4_mutations"] = df["smarca4_mutations"].fillna("")
+    first = ["cell_line", "depmap_id", "sample"]
+    return df[first + [c for c in df.columns if c not in first]].sort_values("cell_line")
+
 def fetch(study, expr_profile, extra_filter=None):
     sequenced = {s for s in get(f"sample-lists/{study}_sequenced")["sampleIds"]}
     expr = post(f"molecular-profiles/{expr_profile}/molecular-data/fetch?projection=SUMMARY",
@@ -43,7 +60,7 @@ if __name__ == "__main__":
     clin = pd.DataFrame(cd).pivot_table(index="sampleId", columns="clinicalAttributeId", values="value", aggfunc="first")
     luad_lines = set(clin.index[clin["ONCOTREE_CODE"] == "LUAD"])
     ccle = fetch("ccle_broad_2019", "ccle_broad_2019_rna_seq_mrna")
-    ccle = ccle[ccle["sample"].isin(luad_lines)]
+    ccle = add_ccle_annotations(ccle[ccle["sample"].isin(luad_lines)])
     ccle.to_csv("ccle_luad.csv", index=False)
     for n, d in [("TCGA", tcga), ("CCLE", ccle)]:
         print(n, len(d)); print(d["smarca4"].value_counts()); print(d["smarca2"].describe())

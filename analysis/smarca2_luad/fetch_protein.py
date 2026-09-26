@@ -6,7 +6,7 @@ Cell lines: CCLE proteomics (Nusinow et al., Cell 2020) via cBioPortal, OncoTree
 """
 import warnings
 import pandas as pd
-from fetch import get, post, SMARCA2, SMARCA4, TRUNC
+from fetch import get, post, add_ccle_annotations, SMARCA2, SMARCA4, TRUNC
 warnings.filterwarnings("ignore")
 
 NONCODING = {"Silent", "Intron", "3'UTR", "5'UTR", "3'Flank", "5'Flank", "IGR", "RNA", "lincRNA"}
@@ -47,7 +47,7 @@ def fetch_ccle():
     df = df[df["sample"].isin(luad_lines & sequenced)].dropna(subset=["smarca2_protein"])
     m = pd.read_csv(f"{study}_smarca4_mutations.csv")  # written by fetch.py
     df["smarca4"] = [classify(m.loc[m["sample"] == s, "type"]) for s in df["sample"]]
-    return df
+    return add_ccle_annotations(df)
 
 if __name__ == "__main__":
     for name, d, out in [("CPTAC", fetch_cptac(), "cptac_luad_protein.csv"), ("CCLE", fetch_ccle(), "ccle_luad_protein.csv")]:
