@@ -1,0 +1,14 @@
+Patient_ID,Mutation,Location
+C3L-00001,Missense_Mutation,p.I1465V
+C3L-00412,Missense_Mutation,p.R417L
+C3L-01632,Missense_Mutation,p.G1160E
+C3L-01862,Frame_Shift_Ins,p.Q71fs
+C3L-02345,Nonsense_Mutation,p.E1573*
+C3L-02549,In_Frame_Del,p.HRMK884del
+C3L-02549,Missense_Mutation,p.G394R
+C3N-00560,Missense_Mutation,p.H1048Y
+C3N-01071,Nonsense_Mutation,p.E1565*
+C3N-01074,Missense_Mutation,p.I964F
+C3N-01823,Splice_Site,
+C3N-02089,Silent,p.R513R
+C3N-02158,Missense_Mutation,p.R1135Q
