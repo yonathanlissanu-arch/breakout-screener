@@ -1,0 +1,207 @@
+{
+  "cohort_id": "2026-09-28",
+  "direction": "long",
+  "scan_date": "2026-09-27",
+  "entry_week": "2026-09-28",
+  "source_csv": "results/breakout_scan_20260927_2222.csv",
+  "positions": [
+    {
+      "ticker": "OBEL.BR",
+      "name": "Mobistar",
+      "indices": "BEL 20",
+      "entry_price": 22.3,
+      "shares": 448.4305,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-23",
+      "volume_ratio": 4.2,
+      "rsi14": 61.8,
+      "extension_pct": 0.45,
+      "score": 0.5325
+    },
+    {
+      "ticker": "HALO",
+      "name": "Halozyme",
+      "indices": "S&P MidCap 400",
+      "entry_price": 113.9,
+      "shares": 87.7963,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-18",
+      "volume_ratio": 5.39,
+      "rsi14": 64.1,
+      "extension_pct": 2.83,
+      "score": 0.3987
+    },
+    {
+      "ticker": "SLAB",
+      "name": "Silicon Labs",
+      "indices": "S&P MidCap 400",
+      "entry_price": 221.24,
+      "shares": 45.1998,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-21",
+      "volume_ratio": 1.66,
+      "rsi14": 60.1,
+      "extension_pct": 0.24,
+      "score": 0.2824
+    },
+    {
+      "ticker": "ALSYDB.CO",
+      "name": "AL Sydbank",
+      "indices": "OMX Copenhagen 25",
+      "entry_price": 721.0,
+      "shares": 13.8696,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-17",
+      "volume_ratio": 2.31,
+      "rsi14": 74.8,
+      "extension_pct": 3.37,
+      "score": 0.2576
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "indices": "S&P 500",
+      "entry_price": 252.13,
+      "shares": 39.6621,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 2.8,
+      "rsi14": 62.1,
+      "extension_pct": 9.15,
+      "score": 0.2488
+    },
+    {
+      "ticker": "RVTY",
+      "name": "Revvity",
+      "indices": "S&P 500",
+      "entry_price": 151.11,
+      "shares": 66.177,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 2.46,
+      "rsi14": 73.7,
+      "extension_pct": 15.4,
+      "score": 0.2395
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices",
+      "indices": "S&P 500",
+      "entry_price": 630.63,
+      "shares": 15.8572,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-21",
+      "volume_ratio": 1.88,
+      "rsi14": 73.0,
+      "extension_pct": 8.56,
+      "score": 0.2314
+    },
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific",
+      "indices": "S&P 500",
+      "entry_price": 675.0,
+      "shares": 14.8148,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 1.59,
+      "rsi14": 72.6,
+      "extension_pct": 5.85,
+      "score": 0.1974
+    },
+    {
+      "ticker": "OKTA",
+      "name": "Okta, Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 195.19,
+      "shares": 51.2321,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 2.04,
+      "rsi14": 62.1,
+      "extension_pct": 12.8,
+      "score": 0.1959
+    },
+    {
+      "ticker": "CRBG",
+      "name": "Corebridge Financial",
+      "indices": "S&P MidCap 400",
+      "entry_price": 34.87,
+      "shares": 286.7795,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 1.51,
+      "rsi14": 61.9,
+      "extension_pct": 1.07,
+      "score": 0.1943
+    }
+  ],
+  "spy_entry": 771.3499755859375,
+  "vti_entry": 379.7699890136719,
+  "total_notional": 100000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-27",
+      "positions": {
+        "OBEL.BR": {
+          "current_price": 22.3,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "HALO": {
+          "current_price": 113.9,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "SLAB": {
+          "current_price": 221.24,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ALSYDB.CO": {
+          "current_price": 721.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "CRWD": {
+          "current_price": 252.13,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "RVTY": {
+          "current_price": 151.11,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "AMD": {
+          "current_price": 630.63,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "TMO": {
+          "current_price": 675.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "OKTA": {
+          "current_price": 195.19,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "CRBG": {
+          "current_price": 34.87,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 100000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

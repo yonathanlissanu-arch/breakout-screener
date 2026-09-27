@@ -1,0 +1,135 @@
+{
+  "cohort_id": "2026-09-28",
+  "direction": "short",
+  "scan_date": "2026-09-27",
+  "entry_week": "2026-09-28",
+  "source_csv": "results/breakdown_scan_20260927_2222.csv",
+  "positions": [
+    {
+      "ticker": "MZTI",
+      "name": "The Marzetti Company",
+      "indices": "S&P MidCap 400",
+      "entry_price": 100.47,
+      "shares": 99.5322,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-18",
+      "volume_ratio": 4.37,
+      "rsi14": 38.7,
+      "extension_pct": 0.72,
+      "score": 0.4111
+    },
+    {
+      "ticker": "PLNT",
+      "name": "Planet Fitness",
+      "indices": "S&P MidCap 400",
+      "entry_price": 42.68,
+      "shares": 234.3018,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-22",
+      "volume_ratio": 3.75,
+      "rsi14": 30.3,
+      "extension_pct": 3.02,
+      "score": 0.3912
+    },
+    {
+      "ticker": "WING",
+      "name": "Wingstop",
+      "indices": "S&P MidCap 400",
+      "entry_price": 99.07,
+      "shares": 100.9387,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 2.38,
+      "rsi14": 37.2,
+      "extension_pct": 9.28,
+      "score": 0.2338
+    },
+    {
+      "ticker": "OLED",
+      "name": "Universal Display",
+      "indices": "S&P MidCap 400",
+      "entry_price": 77.39,
+      "shares": 129.2157,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 1.7,
+      "rsi14": 44.2,
+      "extension_pct": 0.06,
+      "score": 0.21
+    },
+    {
+      "ticker": "DECK",
+      "name": "Deckers Brands",
+      "indices": "S&P 500",
+      "entry_price": 78.67,
+      "shares": 127.1133,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-15",
+      "volume_ratio": 1.57,
+      "rsi14": 35.8,
+      "extension_pct": 1.09,
+      "score": 0.1996
+    },
+    {
+      "ticker": "WHR",
+      "name": "Whirlpool Corporation",
+      "indices": "S&P MidCap 400",
+      "entry_price": 31.71,
+      "shares": 315.3579,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-14",
+      "volume_ratio": 1.55,
+      "rsi14": 31.9,
+      "extension_pct": 9.94,
+      "score": 0.1752
+    }
+  ],
+  "spy_entry": 771.3499755859375,
+  "vti_entry": 379.7699890136719,
+  "total_notional": 60000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-09-27",
+      "positions": {
+        "MZTI": {
+          "current_price": 100.47,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "PLNT": {
+          "current_price": 42.68,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "WING": {
+          "current_price": 99.07,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "OLED": {
+          "current_price": 77.39,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "DECK": {
+          "current_price": 78.67,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "WHR": {
+          "current_price": 31.71,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 60000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
