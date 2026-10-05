@@ -1,0 +1,99 @@
+{
+  "cohort_id": "2026-10-12",
+  "direction": "short",
+  "scan_date": "2026-10-05",
+  "entry_week": "2026-10-12",
+  "source_csv": "results/breakdown_scan_20261005_0040.csv",
+  "positions": [
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac",
+      "indices": "S&P 500",
+      "entry_price": 661.25,
+      "shares": 15.1229,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-29",
+      "volume_ratio": 12.91,
+      "rsi14": 26.0,
+      "extension_pct": 19.86,
+      "score": 0.4372
+    },
+    {
+      "ticker": "PLNT",
+      "name": "Planet Fitness",
+      "indices": "S&P MidCap 400",
+      "entry_price": 42.41,
+      "shares": 235.7934,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-22",
+      "volume_ratio": 3.75,
+      "rsi14": 35.7,
+      "extension_pct": 3.64,
+      "score": 0.3294
+    },
+    {
+      "ticker": "SLGN",
+      "name": "Silgan Holdings",
+      "indices": "S&P MidCap 400",
+      "entry_price": 34.87,
+      "shares": 286.7795,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-24",
+      "volume_ratio": 2.3,
+      "rsi14": 26.1,
+      "extension_pct": 3.29,
+      "score": 0.2783
+    },
+    {
+      "ticker": "ROL",
+      "name": "Rollins, Inc.",
+      "indices": "S&P 500",
+      "entry_price": 30.16,
+      "shares": 331.565,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-24",
+      "volume_ratio": 2.33,
+      "rsi14": 27.0,
+      "extension_pct": 4.59,
+      "score": 0.2482
+    }
+  ],
+  "spy_entry": 769.6400146484375,
+  "vti_entry": 377.989990234375,
+  "total_notional": 40000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-05",
+      "positions": {
+        "FICO": {
+          "current_price": 661.25,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "PLNT": {
+          "current_price": 42.41,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "SLGN": {
+          "current_price": 34.87,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "ROL": {
+          "current_price": 30.16,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 40000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

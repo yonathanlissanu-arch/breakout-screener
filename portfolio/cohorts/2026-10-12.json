@@ -1,0 +1,81 @@
+{
+  "cohort_id": "2026-10-12",
+  "direction": "long",
+  "scan_date": "2026-10-05",
+  "entry_week": "2026-10-12",
+  "source_csv": "results/breakout_scan_20261005_0040.csv",
+  "positions": [
+    {
+      "ticker": "ARW",
+      "name": "Arrow Electronics",
+      "indices": "S&P MidCap 400",
+      "entry_price": 242.01,
+      "shares": 41.3206,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-02",
+      "volume_ratio": 2.01,
+      "rsi14": 69.0,
+      "extension_pct": 3.06,
+      "score": 0.6158
+    },
+    {
+      "ticker": "SLAB",
+      "name": "Silicon Labs",
+      "indices": "S&P MidCap 400",
+      "entry_price": 222.76,
+      "shares": 44.8914,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-21",
+      "volume_ratio": 1.66,
+      "rsi14": 68.5,
+      "extension_pct": 0.93,
+      "score": 0.2396
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices",
+      "indices": "S&P 500",
+      "entry_price": 633.91,
+      "shares": 15.7751,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-21",
+      "volume_ratio": 1.88,
+      "rsi14": 70.1,
+      "extension_pct": 9.12,
+      "score": 0.1872
+    }
+  ],
+  "spy_entry": 769.6400146484375,
+  "vti_entry": 377.989990234375,
+  "total_notional": 30000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-05",
+      "positions": {
+        "ARW": {
+          "current_price": 242.01,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "SLAB": {
+          "current_price": 222.76,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "AMD": {
+          "current_price": 633.91,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 30000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
