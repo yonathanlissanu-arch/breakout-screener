@@ -1,0 +1,99 @@
+{
+  "cohort_id": "2026-10-19",
+  "direction": "long",
+  "scan_date": "2026-10-12",
+  "entry_week": "2026-10-19",
+  "source_csv": "results/breakout_scan_20261012_0115.csv",
+  "positions": [
+    {
+      "ticker": "HAE",
+      "name": "Haemonetics",
+      "indices": "S&P MidCap 400",
+      "entry_price": 118.69,
+      "shares": 84.2531,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-08",
+      "volume_ratio": 3.93,
+      "rsi14": 74.5,
+      "extension_pct": 9.09,
+      "score": 0.5073
+    },
+    {
+      "ticker": "RGA",
+      "name": "Reinsurance Group of America",
+      "indices": "S&P MidCap 400",
+      "entry_price": 255.98,
+      "shares": 39.0656,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-08",
+      "volume_ratio": 1.62,
+      "rsi14": 63.7,
+      "extension_pct": 0.03,
+      "score": 0.3898
+    },
+    {
+      "ticker": "MSM",
+      "name": "MSC Industrial Direct",
+      "indices": "S&P MidCap 400",
+      "entry_price": 129.51,
+      "shares": 77.2141,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-01",
+      "volume_ratio": 1.94,
+      "rsi14": 64.5,
+      "extension_pct": 1.75,
+      "score": 0.2387
+    },
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise",
+      "indices": "S&P 500",
+      "entry_price": 73.46,
+      "shares": 136.1285,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-30",
+      "volume_ratio": 1.61,
+      "rsi14": 71.5,
+      "extension_pct": 15.65,
+      "score": 0.1762
+    }
+  ],
+  "spy_entry": 778.5700073242188,
+  "vti_entry": 381.94000244140625,
+  "total_notional": 40000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-12",
+      "positions": {
+        "HAE": {
+          "current_price": 118.69,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "RGA": {
+          "current_price": 255.98,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "MSM": {
+          "current_price": 129.51,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "HPE": {
+          "current_price": 73.46,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 40000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

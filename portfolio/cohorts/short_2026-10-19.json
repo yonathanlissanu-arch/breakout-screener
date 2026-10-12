@@ -1,0 +1,81 @@
+{
+  "cohort_id": "2026-10-19",
+  "direction": "short",
+  "scan_date": "2026-10-12",
+  "entry_week": "2026-10-19",
+  "source_csv": "results/breakdown_scan_20261012_0115.csv",
+  "positions": [
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac",
+      "indices": "S&P 500",
+      "entry_price": 667.58,
+      "shares": 14.9795,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-29",
+      "volume_ratio": 12.91,
+      "rsi14": 31.0,
+      "extension_pct": 19.09,
+      "score": 0.3755
+    },
+    {
+      "ticker": "GPK",
+      "name": "Graphic Packaging",
+      "indices": "S&P MidCap 400",
+      "entry_price": 8.35,
+      "shares": 1197.6048,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-05",
+      "volume_ratio": 1.92,
+      "rsi14": 26.2,
+      "extension_pct": 4.2,
+      "score": 0.2614
+    },
+    {
+      "ticker": "ONTEX.BR",
+      "name": "Ontex Group",
+      "indices": "BEL 20",
+      "entry_price": 1.89,
+      "shares": 5291.0053,
+      "notional": 10000.0,
+      "breakout_date": "2026-09-29",
+      "volume_ratio": 2.63,
+      "rsi14": 36.0,
+      "extension_pct": 6.53,
+      "score": 0.2523
+    }
+  ],
+  "spy_entry": 778.5700073242188,
+  "vti_entry": 381.94000244140625,
+  "total_notional": 30000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-12",
+      "positions": {
+        "FICO": {
+          "current_price": 667.58,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "GPK": {
+          "current_price": 8.35,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "ONTEX.BR": {
+          "current_price": 1.89,
+          "pnl_pct": 0.11,
+          "value": 10010.58
+        }
+      },
+      "portfolio_value": 30010.58,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.04,
+      "alpha": 0.04
+    }
+  ],
+  "weeks_elapsed": -1
+}
