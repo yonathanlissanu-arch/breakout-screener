@@ -21,3 +21,9 @@ python3 -P figures.py                        # -> fig1_depmap.png, fig2_tumors.p
 - **VRK2-low (cell lines):** VRK2 log2(TPM+1) < 2; normal ≥ 3.
 - **Tumors:** FOCAD deletion = GISTIC −2. VRK2-low = ≥ 8-fold below the cohort median.
 - **Tests:** genome-wide Welch t with Benjamini–Hochberg FDR. Confounder checks use OLS with lineage fixed effects, MTAP deletion and MSI-high (MSIsensor2 ≥ 20) as covariates.
+
+## SWI/SNF follow-up (`swisnf_angle.py`, `swisnf_tcga.py`)
+- SWI/SNF loss = LikelyLoF mutation or homozygous deletion (DepMap); truncating mutation or GISTIC −2 (TCGA).
+- `swisnf_depmap_checks.csv`: SWI/SNF loss → PELO/HBS1L dependency; SWI/SNF loss → SKI-complex expression; FOCAD-del × SWI/SNF interaction; FOCAD-del → SWI/SNF subunit dependency.
+- `swisnf_focad_deleted_lines.csv`: the 39 FOCAD-deleted lines with their SWI/SNF status.
+- `swisnf_tcga_overlap.csv`: co-occurrence of FOCAD deletion with SWI/SNF loss in TCGA LUAD/LUSC (Fisher's exact test).

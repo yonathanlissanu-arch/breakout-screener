@@ -1,0 +1,42 @@
+question,outcome,term,coef,p,n,n_altered
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,SMARCA4_loss,-0.004064888162445129,0.9416515292725238,1178,60.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,SMARCA4_loss,0.004267822618498385,0.858768997132198,1178,60.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,ARID1A_loss,-0.10056202119597928,0.024686665700910097,1178,121.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,ARID1A_loss,-0.03484674913896051,0.07160777754700527,1178,121.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,ARID1B_loss,0.012620749183659647,0.8540463796734225,1178,42.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,ARID1B_loss,0.030443188904726734,0.30409747829478434,1178,42.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,ARID2_loss,-0.08369498660464882,0.261663794173489,1178,31.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,ARID2_loss,-0.011313356294365494,0.7254122275719109,1178,31.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,PBRM1_loss,0.14780822480826206,0.0342419047712265,1178,37.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,PBRM1_loss,0.01194666842909895,0.6922083879373234,1178,37.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,SMARCB1_loss,0.15811385207704554,0.12039340056348244,1178,16.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,SMARCB1_loss,-0.006093796247806911,0.8898233422360536,1178,16.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,SMARCA2_loss,-0.013408056994861714,0.8942489668349435,1178,16.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,SMARCA2_loss,0.06395811001274546,0.14185764334871817,1178,16.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),PELO_effect,any_swisnf_loss,0.014029343118703836,0.660194614366659,1178,240.0
+1. SWI/SNF loss -> PELO/HBS1L dependency (adj. FOCAD/MTAP/MSI/lineage),HBS1L_effect,any_swisnf_loss,-8.446286776967008e-05,0.995110225881022,1178,240.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",FOCAD_expr2,SMARCA4_loss,0.24308455108056082,0.03681852647085099,1064,58.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",SKIV2L_expr2,SMARCA4_loss,-0.05324789107663094,0.5085129130482532,1064,58.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",TTC37_expr2,SMARCA4_loss,-0.03080675471617139,0.731375280176616,1064,58.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",WDR61_expr2,SMARCA4_loss,0.13087960119248554,0.1098966218767624,1064,58.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",FOCAD_expr2,ARID1A_loss,-0.017522179930960002,0.8557853340114702,1064,115.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",SKIV2L_expr2,ARID1A_loss,0.009995135203072325,0.8807506678982691,1064,115.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",TTC37_expr2,ARID1A_loss,-0.05167563992306268,0.486292904524686,1064,115.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",WDR61_expr2,ARID1A_loss,-0.08394502626746136,0.215243589057136,1064,115.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",FOCAD_expr2,any_swisnf_loss,0.15308051754410879,0.023397092822644,1064,229.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",SKIV2L_expr2,any_swisnf_loss,-0.006043978125620367,0.8970770176777717,1064,229.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",TTC37_expr2,any_swisnf_loss,0.07474191126601183,0.1508699221017972,1064,229.0
+"2. SWI/SNF loss -> SKI-complex expression (FOCAD-intact lines, adj.)",WDR61_expr2,any_swisnf_loss,0.1395071205167444,0.0032623322620698586,1064,229.0
+3. Interaction FOCAD-del x SWI/SNF loss,PELO_effect,focad_del:any_swisnf_loss,-0.10048077445279262,0.6412538654899071,1178,
+3. Interaction FOCAD-del x SWI/SNF loss,HBS1L_effect,focad_del:any_swisnf_loss,-0.07323521957849267,0.4316643704497508,1178,
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),SMARCA4_ge,focad_del,0.0021012256111552306,0.9687094936840981,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),ARID1A_ge,focad_del,-0.0546318600943803,0.26105087307286917,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),ARID1B_ge,focad_del,0.05442061083969579,0.10016475496702051,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),ARID2_ge,focad_del,-0.029849020724148932,0.4833116846350788,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),PBRM1_ge,focad_del,0.001394814704271826,0.9706778965753975,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),SMARCB1_ge,focad_del,-0.13842335968942002,0.02557695355633558,1178,39.0
+4. FOCAD-del -> SWI/SNF subunit dependency (adj.),SMARCA2_ge,focad_del,-0.025743371742029567,0.5025244426118383,1178,39.0
+5. SKI-complex expression -> PELO dependency (FOCAD-intact lines),PELO_effect,SKIV2L_expr2,-0.014132628717586086,0.503996386489996,1064,
+5. SKI-complex expression -> PELO dependency (FOCAD-intact lines),PELO_effect,TTC37_expr2,0.08867138006791829,2.66390422907799e-06,1064,
+5. SKI-complex expression -> PELO dependency (FOCAD-intact lines),PELO_effect,WDR61_expr2,0.06692642739298696,0.0012521175108132015,1064,
+5. SKI-complex expression -> PELO dependency (FOCAD-intact lines),PELO_effect,FOCAD_expr2,0.06471691765004497,7.70086746346317e-06,1064,
