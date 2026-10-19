@@ -251,7 +251,42 @@
       "vti_value": 1.5,
       "portfolio_return_pct": 5.23,
       "alpha": 3.36
+    },
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "LULU": {
+          "current_price": 97.1,
+          "pnl_pct": 1.89,
+          "value": 10188.95
+        },
+        "STZ": {
+          "current_price": 131.35,
+          "pnl_pct": -7.27,
+          "value": 9273.17
+        },
+        "LEN": {
+          "current_price": 77.08,
+          "pnl_pct": 3.17,
+          "value": 10316.58
+        },
+        "NKE": {
+          "current_price": 37.13,
+          "pnl_pct": -0.9,
+          "value": 9910.33
+        },
+        "BLDR": {
+          "current_price": 54.65,
+          "pnl_pct": 9.47,
+          "value": 10947.49
+        }
+      },
+      "portfolio_value": 50636.52,
+      "spy_value": -0.14,
+      "vti_value": -0.6,
+      "portfolio_return_pct": 1.27,
+      "alpha": 1.41
     }
   ],
-  "weeks_elapsed": 4
+  "weeks_elapsed": 5
 }

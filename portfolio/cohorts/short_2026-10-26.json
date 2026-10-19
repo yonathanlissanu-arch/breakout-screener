@@ -1,0 +1,45 @@
+{
+  "cohort_id": "2026-10-26",
+  "direction": "short",
+  "scan_date": "2026-10-19",
+  "entry_week": "2026-10-26",
+  "source_csv": "results/breakdown_scan_20261019_0008.csv",
+  "positions": [
+    {
+      "ticker": "GPK",
+      "name": "Graphic Packaging",
+      "indices": "S&P MidCap 400",
+      "entry_price": 8.57,
+      "shares": 1166.8611,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-05",
+      "volume_ratio": 1.92,
+      "rsi14": 37.8,
+      "extension_pct": 1.68,
+      "score": 0.2218
+    }
+  ],
+  "spy_entry": 763.25,
+  "vti_entry": 374.07000732421875,
+  "total_notional": 10000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "GPK": {
+          "current_price": 8.57,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 10000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

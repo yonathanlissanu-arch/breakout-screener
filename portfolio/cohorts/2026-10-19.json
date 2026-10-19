@@ -93,7 +93,37 @@
       "vti_value": 0.0,
       "portfolio_return_pct": 0.0,
       "alpha": 0.0
+    },
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "HAE": {
+          "current_price": 118.28,
+          "pnl_pct": -0.35,
+          "value": 9965.46
+        },
+        "RGA": {
+          "current_price": 266.75,
+          "pnl_pct": 4.21,
+          "value": 10420.74
+        },
+        "MSM": {
+          "current_price": 130.38,
+          "pnl_pct": 0.67,
+          "value": 10067.18
+        },
+        "HPE": {
+          "current_price": 55.13,
+          "pnl_pct": -24.95,
+          "value": 7504.76
+        }
+      },
+      "portfolio_value": 37958.13,
+      "spy_value": -1.97,
+      "vti_value": -2.06,
+      "portfolio_return_pct": -5.1,
+      "alpha": -3.13
     }
   ],
-  "weeks_elapsed": -1
+  "weeks_elapsed": 0
 }

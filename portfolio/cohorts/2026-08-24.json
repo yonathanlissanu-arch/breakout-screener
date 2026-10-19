@@ -613,7 +613,57 @@
       "vti_value": 1.06,
       "portfolio_return_pct": 7.71,
       "alpha": 5.91
+    },
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "FCX": {
+          "current_price": 69.54,
+          "pnl_pct": -9.29,
+          "value": 9071.22
+        },
+        "ILMN": {
+          "current_price": 262.54,
+          "pnl_pct": 19.66,
+          "value": 11966.27
+        },
+        "LLY": {
+          "current_price": 1257.03,
+          "pnl_pct": 0.13,
+          "value": 10012.98
+        },
+        "TRGP": {
+          "current_price": 294.9,
+          "pnl_pct": -1.4,
+          "value": 9859.58
+        },
+        "ABNB": {
+          "current_price": 173.7,
+          "pnl_pct": -7.26,
+          "value": 9273.89
+        },
+        "ARMK": {
+          "current_price": 55.28,
+          "pnl_pct": -7.51,
+          "value": 9248.79
+        },
+        "P": {
+          "current_price": 124.01,
+          "pnl_pct": 14.24,
+          "value": 11424.23
+        },
+        "MPC": {
+          "current_price": 478.07,
+          "pnl_pct": 32.53,
+          "value": 13253.22
+        }
+      },
+      "portfolio_value": 84110.18,
+      "spy_value": -0.2,
+      "vti_value": -1.02,
+      "portfolio_return_pct": 5.14,
+      "alpha": 5.34
     }
   ],
-  "weeks_elapsed": 7
+  "weeks_elapsed": 8
 }

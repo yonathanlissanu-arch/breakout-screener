@@ -1,0 +1,189 @@
+{
+  "cohort_id": "2026-10-26",
+  "direction": "long",
+  "scan_date": "2026-10-19",
+  "entry_week": "2026-10-26",
+  "source_csv": "results/breakout_scan_20261019_0008.csv",
+  "positions": [
+    {
+      "ticker": "BKH",
+      "name": "Black Hills Corporation",
+      "indices": "S&P MidCap 400",
+      "entry_price": 76.63,
+      "shares": 130.4972,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-07",
+      "volume_ratio": 4.62,
+      "rsi14": 64.8,
+      "extension_pct": 1.65,
+      "score": 0.4649
+    },
+    {
+      "ticker": "NWE",
+      "name": "NorthWestern Energy",
+      "indices": "S&P MidCap 400",
+      "entry_price": 74.72,
+      "shares": 133.833,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-07",
+      "volume_ratio": 4.18,
+      "rsi14": 64.8,
+      "extension_pct": 2.73,
+      "score": 0.4268
+    },
+    {
+      "ticker": "TMO",
+      "name": "Thermo Fisher Scientific",
+      "indices": "S&P 500",
+      "entry_price": 690.0,
+      "shares": 14.4928,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-15",
+      "volume_ratio": 1.99,
+      "rsi14": 64.0,
+      "extension_pct": 1.53,
+      "score": 0.3977
+    },
+    {
+      "ticker": "VEEV",
+      "name": "Veeva Systems",
+      "indices": "S&P 500",
+      "entry_price": 310.36,
+      "shares": 32.2206,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-15",
+      "volume_ratio": 1.68,
+      "rsi14": 71.2,
+      "extension_pct": 1.35,
+      "score": 0.3591
+    },
+    {
+      "ticker": "HAE",
+      "name": "Haemonetics",
+      "indices": "S&P MidCap 400",
+      "entry_price": 118.28,
+      "shares": 84.5451,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-08",
+      "volume_ratio": 3.93,
+      "rsi14": 66.3,
+      "extension_pct": 8.71,
+      "score": 0.3474
+    },
+    {
+      "ticker": "HALO",
+      "name": "Halozyme",
+      "indices": "S&P MidCap 400",
+      "entry_price": 121.84,
+      "shares": 82.0749,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-14",
+      "volume_ratio": 1.62,
+      "rsi14": 70.3,
+      "extension_pct": 5.75,
+      "score": 0.2803
+    },
+    {
+      "ticker": "RNR",
+      "name": "RenaissanceRe",
+      "indices": "S&P MidCap 400",
+      "entry_price": 351.06,
+      "shares": 28.4852,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-12",
+      "volume_ratio": 1.72,
+      "rsi14": 73.2,
+      "extension_pct": 4.0,
+      "score": 0.2681
+    },
+    {
+      "ticker": "RGA",
+      "name": "Reinsurance Group of America",
+      "indices": "S&P MidCap 400",
+      "entry_price": 266.75,
+      "shares": 37.4883,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-08",
+      "volume_ratio": 1.62,
+      "rsi14": 73.5,
+      "extension_pct": 4.24,
+      "score": 0.2202
+    },
+    {
+      "ticker": "EXPD",
+      "name": "Expeditors International",
+      "indices": "S&P 500",
+      "entry_price": 195.91,
+      "shares": 51.0438,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-05",
+      "volume_ratio": 1.61,
+      "rsi14": 58.9,
+      "extension_pct": 1.04,
+      "score": 0.2042
+    }
+  ],
+  "spy_entry": 763.25,
+  "vti_entry": 374.07000732421875,
+  "total_notional": 90000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "BKH": {
+          "current_price": 76.63,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "NWE": {
+          "current_price": 74.72,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "TMO": {
+          "current_price": 690.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "VEEV": {
+          "current_price": 310.36,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "HAE": {
+          "current_price": 118.28,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "HALO": {
+          "current_price": 121.84,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "RNR": {
+          "current_price": 351.06,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "RGA": {
+          "current_price": 266.75,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "EXPD": {
+          "current_price": 195.91,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 90000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

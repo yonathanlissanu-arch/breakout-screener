@@ -213,7 +213,37 @@
       "vti_value": 1.5,
       "portfolio_return_pct": 0.08,
       "alpha": -1.79
+    },
+    {
+      "date": "2026-10-19",
+      "positions": {
+        "HPE": {
+          "current_price": 55.13,
+          "pnl_pct": -11.21,
+          "value": 8879.05
+        },
+        "ROIV": {
+          "current_price": 33.53,
+          "pnl_pct": -17.86,
+          "value": 8214.11
+        },
+        "DELL": {
+          "current_price": 451.71,
+          "pnl_pct": -20.37,
+          "value": 7962.59
+        },
+        "DE": {
+          "current_price": 641.86,
+          "pnl_pct": -5.01,
+          "value": 9498.62
+        }
+      },
+      "portfolio_value": 34554.37,
+      "spy_value": -0.14,
+      "vti_value": -0.6,
+      "portfolio_return_pct": -13.61,
+      "alpha": -13.47
     }
   ],
-  "weeks_elapsed": 4
+  "weeks_elapsed": 5
 }
