@@ -1,0 +1,25 @@
+ticker,price,sma20,sma50,sma100,sma200,pct_above_200,slope_200_6m,slope_200_1y,slope_200_2y,days_above_200,rsi14,high_52w,low_52w,pct_from_52w_high,pct_from_ath,ma_bullish_stack,phase,phase_score,phase_note,name,sector
+SOYB,26.6,27.3,27.15,26.03,24.95,6.6,9.9,14.5,3.8,181,35.8,28.14,21.71,-5.5,-9.2,False,Early Bull,58,200MA +14.5%/yr,Soybeans,Agriculture
+CPER,39.54,39.89,39.85,39.26,37.8,4.6,15.1,27.5,43.2,271,46.8,41.43,30.53,-4.6,-4.6,False,Early-Mid Bull,63,200MA +27.5%/yr,Copper,Industrial Metals
+SLX,103.36,103.23,106.15,105.22,101.43,1.9,23.9,57.5,54.8,350,46.5,113.57,74.35,-9.0,-9.0,False,Early-Mid Bull,63,200MA +57.5%/yr,Steel,Industrial Metals
+BNO,67.05,63.4,58.87,52.87,48.36,38.7,45.0,63.2,59.0,198,68.7,67.19,27.2,-0.2,-0.2,True,Mid Bull,81,200MA +63.2%/yr,Brent Crude Oil,Energy
+USO,159.8,151.22,144.88,132.96,120.63,32.5,47.7,64.1,60.8,191,63.4,161.86,66.17,-1.3,-1.3,True,Mid Bull,81,200MA +64.1%/yr,WTI Crude Oil,Energy
+XLE,68.16,64.79,63.84,60.08,57.34,18.9,22.4,37.5,37.9,254,68.0,68.24,42.14,-0.1,-0.1,True,Mid Bull,81,200MA +37.5%/yr,Energy Sector,Energy
+GSG,36.8,36.19,35.26,32.99,31.14,18.2,26.1,39.7,44.8,350,59.8,37.15,22.48,-0.9,-0.9,True,Mid Bull,81,200MA +39.7%/yr,Commodities GSCI,Broad
+DBC,33.5,32.96,32.24,30.37,28.86,16.1,23.1,35.7,38.6,295,60.3,33.74,21.39,-0.7,-0.7,True,Mid Bull,81,200MA +35.7%/yr,Broad Commodities,Broad
+PDBC,19.98,19.66,19.23,18.12,17.2,16.1,23.6,35.3,36.5,251,60.0,20.11,12.7,-0.6,-0.6,True,Mid Bull,81,200MA +35.3%/yr,Optimum Yield Commodities,Broad
+CORN,17.98,18.78,19.24,18.32,18.18,-1.1,2.8,-1.0,-5.6,0,30.4,20.29,16.47,-11.4,-40.2,False,Recovery,38,Price just below 200MA; trend unconfirmed,Corn,Agriculture
+WEAT,23.09,24.59,25.54,24.5,23.46,-1.6,9.9,2.8,-13.8,0,27.0,28.0,19.88,-17.5,-62.6,False,Recovery,38,Price just below 200MA; trend unconfirmed,Wheat,Agriculture
+PICK,57.48,59.64,62.14,61.23,60.39,-4.8,23.6,63.2,57.6,0,33.1,68.36,43.51,-15.9,-15.9,False,Recovery,38,Price just below 200MA; trend unconfirmed,Metals & Mining,Industrial Metals
+CANE,12.25,11.95,11.54,10.64,10.15,20.7,1.6,-10.2,-18.1,57,61.9,12.47,9.02,-1.8,-20.9,True,Bear / Bouncing,32,200MA declining -10.2% YoY despite price bounce,Sugar,Agriculture
+COPX,78.02,83.51,87.32,83.99,83.42,-6.5,27.3,94.5,105.4,0,32.9,96.45,55.92,-19.1,-19.1,False,Bear,27,Price 6% below 200MA,Copper Miners,Industrial Metals
+GLD,378.95,381.57,395.87,388.84,414.64,-8.6,7.0,37.6,93.2,0,43.4,495.9,362.32,-23.6,-23.6,False,Bear,26,Price 9% below 200MA,Gold,Precious Metals
+UNG,9.97,10.76,10.49,10.72,11.25,-11.4,-12.6,-31.6,-31.9,0,39.1,16.9,9.63,-41.0,-92.6,False,Bear,25,Price 11% below 200MA,Natural Gas,Energy
+PPLT,14.77,15.21,15.86,15.54,17.41,-15.2,7.4,61.7,98.9,0,40.6,25.23,13.73,-41.4,-41.4,False,Bear,23,Price 15% below 200MA,Platinum,Precious Metals
+LIT,63.2,67.71,71.32,73.2,74.77,-15.5,22.5,77.4,80.2,0,26.7,91.23,56.0,-30.7,-31.6,False,Bear,23,Price 15% below 200MA,Lithium & Battery Tech,Battery Metals
+SLV,52.26,54.02,57.37,56.82,65.18,-19.8,18.1,98.3,159.5,0,40.5,105.6,42.4,-50.5,-50.5,False,Bear,21,Price 20% below 200MA,Silver,Precious Metals
+CCJ,82.02,85.71,93.0,95.4,105.22,-22.0,9.9,71.1,127.8,0,38.4,134.09,79.29,-38.8,-38.8,False,Bear,19,Price 22% below 200MA,Cameco,Uranium
+PALL,19.78,21.01,22.88,23.05,26.17,-24.4,-1.6,33.9,45.9,0,32.5,37.18,19.78,-46.8,-66.5,False,Bear,18,Price 24% below 200MA,Palladium,Precious Metals
+URA,35.55,38.44,42.21,42.87,47.66,-25.4,2.5,47.4,78.1,0,32.4,61.81,35.18,-42.5,-42.5,False,Bear,18,Price 25% below 200MA,Uranium ETF,Uranium
+URNM,43.73,46.21,51.5,52.4,59.68,-26.7,2.1,41.6,28.9,0,36.2,83.99,42.42,-47.9,-47.9,False,Bear,17,Price 27% below 200MA,Uranium Miners,Uranium
+REMX,53.37,60.31,69.0,75.57,84.83,-37.1,14.8,83.2,86.7,0,19.1,109.53,53.36,-51.3,-55.6,False,Bear,12,Price 37% below 200MA,Rare Earth Metals,Industrial Metals
