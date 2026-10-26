@@ -365,7 +365,57 @@
       "vti_value": -0.36,
       "portfolio_return_pct": -0.42,
       "alpha": -0.62
+    },
+    {
+      "date": "2026-10-26",
+      "positions": {
+        "HALO": {
+          "current_price": 125.63,
+          "pnl_pct": 11.72,
+          "value": 11172.08
+        },
+        "ROIV": {
+          "current_price": 36.49,
+          "pnl_pct": -8.25,
+          "value": 9175.26
+        },
+        "RVTY": {
+          "current_price": 158.77,
+          "pnl_pct": 10.68,
+          "value": 11067.97
+        },
+        "CRWD": {
+          "current_price": 257.57,
+          "pnl_pct": 8.38,
+          "value": 10838.21
+        },
+        "ILMN": {
+          "current_price": 269.42,
+          "pnl_pct": 12.44,
+          "value": 11243.64
+        },
+        "OKTA": {
+          "current_price": 213.05,
+          "pnl_pct": 16.82,
+          "value": 11682.29
+        },
+        "CRBG": {
+          "current_price": 34.13,
+          "pnl_pct": -1.95,
+          "value": 9804.65
+        },
+        "HPE": {
+          "current_price": 56.69,
+          "pnl_pct": -6.7,
+          "value": 9330.15
+        }
+      },
+      "portfolio_value": 84314.25,
+      "spy_value": -0.23,
+      "vti_value": -0.64,
+      "portfolio_return_pct": 5.39,
+      "alpha": 5.62
     }
   ],
-  "weeks_elapsed": 4
+  "weeks_elapsed": 5
 }

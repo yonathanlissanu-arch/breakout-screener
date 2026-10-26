@@ -1,0 +1,45 @@
+{
+  "cohort_id": "2026-11-02",
+  "direction": "short",
+  "scan_date": "2026-10-26",
+  "entry_week": "2026-11-02",
+  "source_csv": "results/breakdown_scan_20261026_0005.csv",
+  "positions": [
+    {
+      "ticker": "BAR.BR",
+      "name": "Barco",
+      "indices": "BEL 20",
+      "entry_price": 6.47,
+      "shares": 1545.5951,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-15",
+      "volume_ratio": 4.54,
+      "rsi14": 34.9,
+      "extension_pct": 7.51,
+      "score": 0.4046
+    }
+  ],
+  "spy_entry": 759.969970703125,
+  "vti_entry": 373.010009765625,
+  "total_notional": 10000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-10-26",
+      "positions": {
+        "BAR.BR": {
+          "current_price": 6.47,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 10000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
