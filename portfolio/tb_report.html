@@ -36,7 +36,7 @@ canvas { max-height: 300px; }
 </head>
 <body>
 <h1>Triple-Bottom Paper Portfolio</h1>
-<p class="subtitle">$100k/cohort · Top 10 breakout candidates · Benchmarked vs SPY &amp; VTI · Updated 2026-10-01 06:23 UTC</p>
+<p class="subtitle">$100k/cohort · Top 10 breakout candidates · Benchmarked vs SPY &amp; VTI · Updated 2026-11-01 12:47 UTC</p>
 
 
 <div class="chart-wrap">
@@ -48,11 +48,11 @@ const ctx = document.getElementById("chart").getContext("2d");
 new Chart(ctx, {
   type: "bar",
   data: {
-    labels: ["2026-09", "2026-10"],
+    labels: ["2026-09", "2026-10", "2026-11"],
     datasets: [
-      { label: "Portfolio", data: [-4.38, 0.0], backgroundColor: "rgba(59,130,246,.7)", borderRadius: 4 },
-      { label: "SPY",       data: [-0.01, 0.0],  backgroundColor: "rgba(245,158,11,.7)", borderRadius: 4 },
-      { label: "VTI",       data: [-0.44, 0.0],  backgroundColor: "rgba(148,163,184,.5)", borderRadius: 4 }
+      { label: "Portfolio", data: [2.5, 4.6, 0.0], backgroundColor: "rgba(59,130,246,.7)", borderRadius: 4 },
+      { label: "SPY",       data: [-0.91, -0.91, 0.0],  backgroundColor: "rgba(245,158,11,.7)", borderRadius: 4 },
+      { label: "VTI",       data: [-1.15, -0.71, 0.0],  backgroundColor: "rgba(148,163,184,.5)", borderRadius: 4 }
     ]
   },
   options: {
@@ -79,7 +79,7 @@ new Chart(ctx, {
     </thead>
     <tbody>
         <tr>
-          <td>2026-10-01</td>
+          <td>2026-11-01</td>
           <td>$100,000</td>
           <td>10</td>
           <td style="color:#94a3b8;font-weight:600">0.00%</td>
@@ -87,25 +87,36 @@ new Chart(ctx, {
           <td style="color:#94a3b8">0.00%</td>
           <td style="color:#94a3b8;font-weight:600">0.00%</td>
           <td style="color:#94a3b8;font-weight:600">0.00%</td>
+          <td>2026-11-01</td>
+        </tr>
+        <tr>
           <td>2026-10-01</td>
+          <td>$100,000</td>
+          <td>10</td>
+          <td style="color:#22c55e;font-weight:600">+4.60%</td>
+          <td style="color:#ef4444">-0.91%</td>
+          <td style="color:#ef4444">-0.71%</td>
+          <td style="color:#22c55e;font-weight:600">+5.51%</td>
+          <td style="color:#22c55e;font-weight:600">+5.31%</td>
+          <td>2026-11-01</td>
         </tr>
         <tr>
           <td>2026-09-01</td>
           <td>$100,000</td>
           <td>10</td>
-          <td style="color:#ef4444;font-weight:600">-4.38%</td>
-          <td style="color:#ef4444">-0.01%</td>
-          <td style="color:#ef4444">-0.44%</td>
-          <td style="color:#ef4444;font-weight:600">-4.37%</td>
-          <td style="color:#ef4444;font-weight:600">-3.94%</td>
-          <td>2026-10-01</td>
+          <td style="color:#22c55e;font-weight:600">+2.50%</td>
+          <td style="color:#ef4444">-0.91%</td>
+          <td style="color:#ef4444">-1.15%</td>
+          <td style="color:#22c55e;font-weight:600">+3.41%</td>
+          <td style="color:#22c55e;font-weight:600">+3.65%</td>
+          <td>2026-11-01</td>
         </tr></tbody>
   </table>
 </section>
 
 
         <section class="cohort-card">
-          <h2>Cohort 2026-10 <span class="cohort-date">(2026-10-01)</span></h2>
+          <h2>Cohort 2026-11 <span class="cohort-date">(2026-11-01)</span></h2>
           <div class="kpi-row">
             <div class="kpi">
               <span class="kpi-label">Portfolio</span>
@@ -141,104 +152,242 @@ new Chart(ctx, {
             </thead>
             <tbody>
             <tr>
-              <td><strong>TWLO</strong></td>
+              <td><strong>REGN</strong></td>
               <td>US</td>
-              <td>$292.46</td>
-              <td>$292.46</td>
+              <td>$927.89</td>
+              <td>$927.89</td>
               <td>$10,000</td>
               <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$238.48</td>
-              <td>4y 5m</td>
+              <td>$859.34</td>
+              <td>1y 9m</td>
+            </tr>
+            <tr>
+              <td><strong>GPN</strong></td>
+              <td>US</td>
+              <td>$96.84</td>
+              <td>$96.84</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$95.88</td>
+              <td>1y 2m</td>
+            </tr>
+            <tr>
+              <td><strong>VLTO</strong></td>
+              <td>US</td>
+              <td>$111.10</td>
+              <td>$111.10</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$110.11</td>
+              <td>1y 3m</td>
+            </tr>
+            <tr>
+              <td><strong>MO</strong></td>
+              <td>US</td>
+              <td>$78.03</td>
+              <td>$78.03</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$77.06</td>
+              <td>1y 0m</td>
+            </tr>
+            <tr>
+              <td><strong>APA</strong></td>
+              <td>US</td>
+              <td>$52.82</td>
+              <td>$52.82</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$51.95</td>
+              <td>4y 3m</td>
+            </tr>
+            <tr>
+              <td><strong>GMAB.CO</strong></td>
+              <td>Europe</td>
+              <td>$3,912.00</td>
+              <td>$3,912.00</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$3327.0</td>
+              <td>4y 3m</td>
+            </tr>
+            <tr>
+              <td><strong>APD</strong></td>
+              <td>US</td>
+              <td>$316.43</td>
+              <td>$316.43</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$314.87</td>
+              <td>1y 1m</td>
+            </tr>
+            <tr>
+              <td><strong>HAS</strong></td>
+              <td>US</td>
+              <td>$119.09</td>
+              <td>$119.09</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$106.98</td>
+              <td>4y 2m</td>
+            </tr>
+            <tr>
+              <td><strong>CART</strong></td>
+              <td>US</td>
+              <td>$56.45</td>
+              <td>$56.45</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$52.68</td>
+              <td>1y 1m</td>
+            </tr>
+            <tr>
+              <td><strong>RRC</strong></td>
+              <td>US</td>
+              <td>$54.63</td>
+              <td>$54.63</td>
+              <td>$10,000</td>
+              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$48.31</td>
+              <td>1y 3m</td>
+            </tr></tbody>
+          </table>
+        </section>
+        <section class="cohort-card">
+          <h2>Cohort 2026-10 <span class="cohort-date">(2026-10-01)</span></h2>
+          <div class="kpi-row">
+            <div class="kpi">
+              <span class="kpi-label">Portfolio</span>
+              <span class="kpi-value" style="color:#22c55e">+4.60%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">vs SPY</span>
+              <span class="kpi-value" style="color:#22c55e">+5.51%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">vs VTI</span>
+              <span class="kpi-value" style="color:#22c55e">+5.31%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">SPY</span>
+              <span class="kpi-value" style="color:#ef4444">-0.91%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">VTI</span>
+              <span class="kpi-value" style="color:#ef4444">-0.71%</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-label">Current Value</span>
+              <span class="kpi-value">$104,598</span>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Ticker</th><th>Region</th><th>Entry</th><th>Current</th>
+                <th>Value</th><th>P&L</th><th>Neckline</th><th>Pattern Span</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><strong>GMAB.CO</strong></td>
+              <td>Europe</td>
+              <td>$2,317.00</td>
+              <td>$3,912.00</td>
+              <td>$16,884</td>
+              <td style="color:#22c55e;font-weight:600">+68.84%</td>
+              <td>$2283.0</td>
+              <td>2y 9m</td>
             </tr>
             <tr>
               <td><strong>ANF</strong></td>
               <td>US</td>
               <td>$134.69</td>
-              <td>$134.69</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$164.44</td>
+              <td>$12,209</td>
+              <td style="color:#22c55e;font-weight:600">+22.09%</td>
               <td>$133.11</td>
               <td>1y 0m</td>
-            </tr>
-            <tr>
-              <td><strong>RVTY</strong></td>
-              <td>US</td>
-              <td>$152.89</td>
-              <td>$152.89</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$150.17</td>
-              <td>3y 9m</td>
-            </tr>
-            <tr>
-              <td><strong>ILMN</strong></td>
-              <td>US</td>
-              <td>$273.68</td>
-              <td>$273.68</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$251.04</td>
-              <td>4y 3m</td>
-            </tr>
-            <tr>
-              <td><strong>GRMN</strong></td>
-              <td>US</td>
-              <td>$286.84</td>
-              <td>$286.84</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$273.32</td>
-              <td>1y 5m</td>
-            </tr>
-            <tr>
-              <td><strong>GMAB.CO</strong></td>
-              <td>Europe</td>
-              <td>$2,317.00</td>
-              <td>$2,317.00</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$2283.0</td>
-              <td>2y 9m</td>
             </tr>
             <tr>
               <td><strong>HAE</strong></td>
               <td>US</td>
               <td>$105.30</td>
-              <td>$105.30</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$119.65</td>
+              <td>$11,363</td>
+              <td style="color:#22c55e;font-weight:600">+13.63%</td>
               <td>$97.97</td>
               <td>3y 6m</td>
-            </tr>
-            <tr>
-              <td><strong>RGEN</strong></td>
-              <td>US</td>
-              <td>$192.23</td>
-              <td>$192.23</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
-              <td>$188.73</td>
-              <td>2y 4m</td>
             </tr>
             <tr>
               <td><strong>TMO</strong></td>
               <td>US</td>
               <td>$675.05</td>
-              <td>$675.05</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$697.00</td>
+              <td>$10,325</td>
+              <td style="color:#22c55e;font-weight:600">+3.25%</td>
               <td>$672.34</td>
               <td>4y 9m</td>
+            </tr>
+            <tr>
+              <td><strong>RVTY</strong></td>
+              <td>US</td>
+              <td>$152.89</td>
+              <td>$157.00</td>
+              <td>$10,269</td>
+              <td style="color:#22c55e;font-weight:600">+2.69%</td>
+              <td>$150.17</td>
+              <td>3y 9m</td>
+            </tr>
+            <tr>
+              <td><strong>GRMN</strong></td>
+              <td>US</td>
+              <td>$286.84</td>
+              <td>$272.67</td>
+              <td>$9,506</td>
+              <td style="color:#ef4444;font-weight:600">-4.94%</td>
+              <td>$273.32</td>
+              <td>1y 5m</td>
+            </tr>
+            <tr>
+              <td><strong>RGEN</strong></td>
+              <td>US</td>
+              <td>$192.23</td>
+              <td>$176.94</td>
+              <td>$9,205</td>
+              <td style="color:#ef4444;font-weight:600">-7.95%</td>
+              <td>$188.73</td>
+              <td>2y 4m</td>
             </tr>
             <tr>
               <td><strong>IVZ</strong></td>
               <td>US</td>
               <td>$30.16</td>
-              <td>$30.16</td>
-              <td>$10,000</td>
-              <td style="color:#94a3b8;font-weight:600">0.00%</td>
+              <td>$27.76</td>
+              <td>$9,204</td>
+              <td style="color:#ef4444;font-weight:600">-7.96%</td>
               <td>$29.61</td>
               <td>4y 3m</td>
+            </tr>
+            <tr>
+              <td><strong>ILMN</strong></td>
+              <td>US</td>
+              <td>$273.68</td>
+              <td>$235.99</td>
+              <td>$8,623</td>
+              <td style="color:#ef4444;font-weight:600">-13.77%</td>
+              <td>$251.04</td>
+              <td>4y 3m</td>
+            </tr>
+            <tr>
+              <td><strong>TWLO</strong></td>
+              <td>US</td>
+              <td>$292.46</td>
+              <td>$205.03</td>
+              <td>$7,011</td>
+              <td style="color:#ef4444;font-weight:600">-29.89%</td>
+              <td>$238.48</td>
+              <td>4y 5m</td>
             </tr></tbody>
           </table>
         </section>
@@ -247,27 +396,27 @@ new Chart(ctx, {
           <div class="kpi-row">
             <div class="kpi">
               <span class="kpi-label">Portfolio</span>
-              <span class="kpi-value" style="color:#ef4444">-4.38%</span>
+              <span class="kpi-value" style="color:#22c55e">+2.50%</span>
             </div>
             <div class="kpi">
               <span class="kpi-label">vs SPY</span>
-              <span class="kpi-value" style="color:#ef4444">-4.37%</span>
+              <span class="kpi-value" style="color:#22c55e">+3.41%</span>
             </div>
             <div class="kpi">
               <span class="kpi-label">vs VTI</span>
-              <span class="kpi-value" style="color:#ef4444">-3.94%</span>
+              <span class="kpi-value" style="color:#22c55e">+3.65%</span>
             </div>
             <div class="kpi">
               <span class="kpi-label">SPY</span>
-              <span class="kpi-value" style="color:#ef4444">-0.01%</span>
+              <span class="kpi-value" style="color:#ef4444">-0.91%</span>
             </div>
             <div class="kpi">
               <span class="kpi-label">VTI</span>
-              <span class="kpi-value" style="color:#ef4444">-0.44%</span>
+              <span class="kpi-value" style="color:#ef4444">-1.15%</span>
             </div>
             <div class="kpi">
               <span class="kpi-label">Current Value</span>
-              <span class="kpi-value">$95,621</span>
+              <span class="kpi-value">$102,500</span>
             </div>
           </div>
           <table>
@@ -282,9 +431,9 @@ new Chart(ctx, {
               <td><strong>RVTY</strong></td>
               <td>US</td>
               <td>$127.22</td>
-              <td>$152.89</td>
-              <td>$12,018</td>
-              <td style="color:#22c55e;font-weight:600">+20.18%</td>
+              <td>$157.00</td>
+              <td>$12,341</td>
+              <td style="color:#22c55e;font-weight:600">+23.41%</td>
               <td>$128.29</td>
               <td>1y 6m</td>
             </tr>
@@ -292,29 +441,29 @@ new Chart(ctx, {
               <td><strong>HAE</strong></td>
               <td>US</td>
               <td>$102.75</td>
-              <td>$105.30</td>
-              <td>$10,248</td>
-              <td style="color:#22c55e;font-weight:600">+2.48%</td>
+              <td>$119.65</td>
+              <td>$11,644</td>
+              <td style="color:#22c55e;font-weight:600">+16.44%</td>
               <td>$97.97</td>
               <td>3y 6m</td>
             </tr>
             <tr>
-              <td><strong>GRMN</strong></td>
+              <td><strong>ANF</strong></td>
               <td>US</td>
-              <td>$283.26</td>
-              <td>$286.84</td>
-              <td>$10,126</td>
-              <td style="color:#22c55e;font-weight:600">+1.26%</td>
-              <td>$273.32</td>
-              <td>1y 5m</td>
+              <td>$141.79</td>
+              <td>$164.44</td>
+              <td>$11,597</td>
+              <td style="color:#22c55e;font-weight:600">+15.97%</td>
+              <td>$133.11</td>
+              <td>1y 0m</td>
             </tr>
             <tr>
               <td><strong>ABBV</strong></td>
               <td>US</td>
               <td>$260.18</td>
-              <td>$261.59</td>
-              <td>$10,054</td>
-              <td style="color:#22c55e;font-weight:600">+0.54%</td>
+              <td>$294.89</td>
+              <td>$11,334</td>
+              <td style="color:#22c55e;font-weight:600">+13.34%</td>
               <td>$244.81</td>
               <td>1y 6m</td>
             </tr>
@@ -322,59 +471,59 @@ new Chart(ctx, {
               <td><strong>ROKU</strong></td>
               <td>US</td>
               <td>$157.24</td>
-              <td>$152.28</td>
-              <td>$9,685</td>
-              <td style="color:#ef4444;font-weight:600">-3.15%</td>
+              <td>$155.12</td>
+              <td>$9,865</td>
+              <td style="color:#ef4444;font-weight:600">-1.35%</td>
               <td>$139.58</td>
               <td>3y 8m</td>
-            </tr>
-            <tr>
-              <td><strong>ANF</strong></td>
-              <td>US</td>
-              <td>$141.79</td>
-              <td>$134.69</td>
-              <td>$9,499</td>
-              <td style="color:#ef4444;font-weight:600">-5.01%</td>
-              <td>$133.11</td>
-              <td>1y 0m</td>
             </tr>
             <tr>
               <td><strong>SJM</strong></td>
               <td>US</td>
               <td>$132.06</td>
-              <td>$118.91</td>
-              <td>$9,004</td>
-              <td style="color:#ef4444;font-weight:600">-9.96%</td>
+              <td>$129.90</td>
+              <td>$9,836</td>
+              <td style="color:#ef4444;font-weight:600">-1.64%</td>
               <td>$127.59</td>
               <td>2y 4m</td>
             </tr>
             <tr>
-              <td><strong>ABNB</strong></td>
+              <td><strong>GRMN</strong></td>
               <td>US</td>
-              <td>$182.28</td>
-              <td>$160.65</td>
-              <td>$8,813</td>
-              <td style="color:#ef4444;font-weight:600">-11.87%</td>
-              <td>$179.09</td>
-              <td>4y 4m</td>
+              <td>$283.26</td>
+              <td>$272.67</td>
+              <td>$9,626</td>
+              <td style="color:#ef4444;font-weight:600">-3.74%</td>
+              <td>$273.32</td>
+              <td>1y 5m</td>
             </tr>
             <tr>
               <td><strong>SLB</strong></td>
               <td>US</td>
               <td>$59.04</td>
-              <td>$48.72</td>
-              <td>$8,252</td>
-              <td style="color:#ef4444;font-weight:600">-17.48%</td>
+              <td>$53.74</td>
+              <td>$9,102</td>
+              <td style="color:#ef4444;font-weight:600">-8.98%</td>
               <td>$58.82</td>
               <td>1y 11m</td>
+            </tr>
+            <tr>
+              <td><strong>ABNB</strong></td>
+              <td>US</td>
+              <td>$182.28</td>
+              <td>$164.39</td>
+              <td>$9,019</td>
+              <td style="color:#ef4444;font-weight:600">-9.81%</td>
+              <td>$179.09</td>
+              <td>4y 4m</td>
             </tr>
             <tr>
               <td><strong>LAD</strong></td>
               <td>US</td>
               <td>$368.44</td>
-              <td>$291.83</td>
-              <td>$7,921</td>
-              <td style="color:#ef4444;font-weight:600">-20.79%</td>
+              <td>$299.72</td>
+              <td>$8,135</td>
+              <td style="color:#ef4444;font-weight:600">-18.65%</td>
               <td>$360.56</td>
               <td>1y 2m</td>
             </tr></tbody>
