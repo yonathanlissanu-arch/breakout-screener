@@ -289,7 +289,47 @@
       "vti_value": -1.78,
       "portfolio_return_pct": -9.41,
       "alpha": -7.93
+    },
+    {
+      "date": "2026-11-02",
+      "positions": {
+        "MZTI": {
+          "current_price": 109.74,
+          "pnl_pct": -9.23,
+          "value": 9077.34
+        },
+        "PLNT": {
+          "current_price": 53.58,
+          "pnl_pct": -25.54,
+          "value": 7446.11
+        },
+        "WING": {
+          "current_price": 149.73,
+          "pnl_pct": -51.14,
+          "value": 4886.44
+        },
+        "OLED": {
+          "current_price": 83.92,
+          "pnl_pct": -8.44,
+          "value": 9156.22
+        },
+        "DECK": {
+          "current_price": 81.99,
+          "pnl_pct": -4.22,
+          "value": 9577.98
+        },
+        "WHR": {
+          "current_price": 29.94,
+          "pnl_pct": 5.58,
+          "value": 10558.18
+        }
+      },
+      "portfolio_value": 50702.28,
+      "spy_value": -2.03,
+      "vti_value": -2.16,
+      "portfolio_return_pct": -15.5,
+      "alpha": -13.47
     }
   ],
-  "weeks_elapsed": 4
+  "weeks_elapsed": 5
 }

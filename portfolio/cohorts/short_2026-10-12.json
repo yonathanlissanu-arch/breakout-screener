@@ -183,7 +183,37 @@
       "vti_value": -1.32,
       "portfolio_return_pct": -18.82,
       "alpha": -17.56
+    },
+    {
+      "date": "2026-11-02",
+      "positions": {
+        "FICO": {
+          "current_price": 711.23,
+          "pnl_pct": -7.56,
+          "value": 9244.16
+        },
+        "PLNT": {
+          "current_price": 53.58,
+          "pnl_pct": -26.34,
+          "value": 7366.19
+        },
+        "SLGN": {
+          "current_price": 40.51,
+          "pnl_pct": -16.17,
+          "value": 8382.56
+        },
+        "ROL": {
+          "current_price": 34.66,
+          "pnl_pct": -14.92,
+          "value": 8507.96
+        }
+      },
+      "portfolio_value": 33500.87,
+      "spy_value": -1.81,
+      "vti_value": -1.7,
+      "portfolio_return_pct": -16.25,
+      "alpha": -14.44
     }
   ],
-  "weeks_elapsed": 2
+  "weeks_elapsed": 3
 }

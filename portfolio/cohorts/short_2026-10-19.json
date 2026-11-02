@@ -125,7 +125,32 @@
       "vti_value": -2.34,
       "portfolio_return_pct": -6.2,
       "alpha": -3.81
+    },
+    {
+      "date": "2026-11-02",
+      "positions": {
+        "FICO": {
+          "current_price": 711.23,
+          "pnl_pct": -6.54,
+          "value": 9346.15
+        },
+        "GPK": {
+          "current_price": 8.95,
+          "pnl_pct": -7.19,
+          "value": 9281.44
+        },
+        "ONTEX.BR": {
+          "current_price": 1.4,
+          "pnl_pct": 25.93,
+          "value": 12592.59
+        }
+      },
+      "portfolio_value": 31220.18,
+      "spy_value": -2.93,
+      "vti_value": -2.72,
+      "portfolio_return_pct": 4.07,
+      "alpha": 7.0
     }
   ],
-  "weeks_elapsed": 1
+  "weeks_elapsed": 2
 }

@@ -441,7 +441,67 @@
       "vti_value": -1.78,
       "portfolio_return_pct": -0.08,
       "alpha": 1.4
+    },
+    {
+      "date": "2026-11-02",
+      "positions": {
+        "OBEL.BR": {
+          "current_price": 22.2,
+          "pnl_pct": -0.45,
+          "value": 9955.16
+        },
+        "HALO": {
+          "current_price": 130.91,
+          "pnl_pct": 14.93,
+          "value": 11493.42
+        },
+        "SLAB": {
+          "current_price": 222.45,
+          "pnl_pct": 0.55,
+          "value": 10054.69
+        },
+        "ALSYDB.CO": {
+          "current_price": 712.5,
+          "pnl_pct": -1.18,
+          "value": 9882.11
+        },
+        "CRWD": {
+          "current_price": 250.43,
+          "pnl_pct": -0.67,
+          "value": 9932.57
+        },
+        "RVTY": {
+          "current_price": 157.0,
+          "pnl_pct": 3.9,
+          "value": 10389.78
+        },
+        "AMD": {
+          "current_price": 504.8,
+          "pnl_pct": -19.95,
+          "value": 8004.69
+        },
+        "TMO": {
+          "current_price": 697.0,
+          "pnl_pct": 3.26,
+          "value": 10325.93
+        },
+        "OKTA": {
+          "current_price": 208.24,
+          "pnl_pct": 6.69,
+          "value": 10668.58
+        },
+        "CRBG": {
+          "current_price": 34.81,
+          "pnl_pct": -0.17,
+          "value": 9982.79
+        }
+      },
+      "portfolio_value": 100689.72,
+      "spy_value": -2.03,
+      "vti_value": -2.16,
+      "portfolio_return_pct": 0.69,
+      "alpha": 2.72
     }
   ],
-  "weeks_elapsed": 4
+  "weeks_elapsed": 5
 }

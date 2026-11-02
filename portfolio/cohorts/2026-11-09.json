@@ -1,0 +1,135 @@
+{
+  "cohort_id": "2026-11-09",
+  "direction": "long",
+  "scan_date": "2026-11-02",
+  "entry_week": "2026-11-09",
+  "source_csv": "results/breakout_scan_20261102_0129.csv",
+  "positions": [
+    {
+      "ticker": "KDP",
+      "name": "Keurig Dr Pepper",
+      "indices": "S&P 500",
+      "entry_price": 35.84,
+      "shares": 279.0179,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-30",
+      "volume_ratio": 2.91,
+      "rsi14": 71.6,
+      "extension_pct": 0.87,
+      "score": 0.6923
+    },
+    {
+      "ticker": "EHC",
+      "name": "Encompass Health",
+      "indices": "S&P MidCap 400",
+      "entry_price": 135.9,
+      "shares": 73.5835,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-29",
+      "volume_ratio": 2.34,
+      "rsi14": 69.3,
+      "extension_pct": 6.28,
+      "score": 0.4243
+    },
+    {
+      "ticker": "CART",
+      "name": "Maplebear Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 56.45,
+      "shares": 177.1479,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-23",
+      "volume_ratio": 4.38,
+      "rsi14": 64.4,
+      "extension_pct": 6.21,
+      "score": 0.4024
+    },
+    {
+      "ticker": "MEDP",
+      "name": "Medpace",
+      "indices": "S&P MidCap 400",
+      "entry_price": 652.01,
+      "shares": 15.3372,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-21",
+      "volume_ratio": 4.35,
+      "rsi14": 54.6,
+      "extension_pct": 3.46,
+      "score": 0.3906
+    },
+    {
+      "ticker": "LH",
+      "name": "Labcorp",
+      "indices": "S&P 500",
+      "entry_price": 361.39,
+      "shares": 27.6709,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-28",
+      "volume_ratio": 2.5,
+      "rsi14": 74.6,
+      "extension_pct": 6.73,
+      "score": 0.3569
+    },
+    {
+      "ticker": "QLYS",
+      "name": "Qualys",
+      "indices": "S&P MidCap 400",
+      "entry_price": 224.12,
+      "shares": 44.619,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-22",
+      "volume_ratio": 1.81,
+      "rsi14": 64.6,
+      "extension_pct": 8.85,
+      "score": 0.2024
+    }
+  ],
+  "spy_entry": 755.719970703125,
+  "vti_entry": 371.57000732421875,
+  "total_notional": 60000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-02",
+      "positions": {
+        "KDP": {
+          "current_price": 35.84,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "EHC": {
+          "current_price": 135.9,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "CART": {
+          "current_price": 56.45,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "MEDP": {
+          "current_price": 652.01,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "LH": {
+          "current_price": 361.39,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "QLYS": {
+          "current_price": 224.12,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 60000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}
