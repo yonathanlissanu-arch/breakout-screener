@@ -1,0 +1,207 @@
+{
+  "cohort_id": "2026-11-16",
+  "direction": "long",
+  "scan_date": "2026-11-09",
+  "entry_week": "2026-11-16",
+  "source_csv": "results/breakout_scan_20261109_0140.csv",
+  "positions": [
+    {
+      "ticker": "RRC",
+      "name": "Range Resources",
+      "indices": "S&P MidCap 400",
+      "entry_price": 48.72,
+      "shares": 205.2545,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-26",
+      "volume_ratio": 10.25,
+      "rsi14": 53.8,
+      "extension_pct": 2.76,
+      "score": 0.3956
+    },
+    {
+      "ticker": "GKOS",
+      "name": "Glaukos",
+      "indices": "S&P MidCap 400",
+      "entry_price": 224.41,
+      "shares": 44.5613,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-29",
+      "volume_ratio": 6.11,
+      "rsi14": 63.5,
+      "extension_pct": 18.39,
+      "score": 0.3849
+    },
+    {
+      "ticker": "CART",
+      "name": "Maplebear Inc.",
+      "indices": "S&P MidCap 400",
+      "entry_price": 58.12,
+      "shares": 172.0578,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-26",
+      "volume_ratio": 8.21,
+      "rsi14": 64.7,
+      "extension_pct": 2.98,
+      "score": 0.3782
+    },
+    {
+      "ticker": "THC",
+      "name": "Tenet Health",
+      "indices": "S&P MidCap 400",
+      "entry_price": 283.33,
+      "shares": 35.2945,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 2.73,
+      "rsi14": 60.2,
+      "extension_pct": 0.91,
+      "score": 0.3706
+    },
+    {
+      "ticker": "AIZ",
+      "name": "Assurant",
+      "indices": "S&P 500",
+      "entry_price": 307.0,
+      "shares": 32.5733,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 2.48,
+      "rsi14": 72.9,
+      "extension_pct": 2.12,
+      "score": 0.3647
+    },
+    {
+      "ticker": "BDX",
+      "name": "Becton Dickinson",
+      "indices": "S&P 500",
+      "entry_price": 211.88,
+      "shares": 47.1965,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 2.63,
+      "rsi14": 74.6,
+      "extension_pct": 5.72,
+      "score": 0.3633
+    },
+    {
+      "ticker": "BLK",
+      "name": "BlackRock",
+      "indices": "S&P 500",
+      "entry_price": 1178.87,
+      "shares": 8.4827,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 1.77,
+      "rsi14": 58.4,
+      "extension_pct": 0.12,
+      "score": 0.3438
+    },
+    {
+      "ticker": "EDP.LS",
+      "name": "Energias de Portugal",
+      "indices": "PSI 20",
+      "entry_price": 5.0,
+      "shares": 2000.0,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 1.51,
+      "rsi14": 63.3,
+      "extension_pct": 1.63,
+      "score": 0.326
+    },
+    {
+      "ticker": "KDP",
+      "name": "Keurig Dr Pepper",
+      "indices": "S&P 500",
+      "entry_price": 36.63,
+      "shares": 273.0003,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-30",
+      "volume_ratio": 2.91,
+      "rsi14": 64.1,
+      "extension_pct": 3.1,
+      "score": 0.3143
+    },
+    {
+      "ticker": "GMAB.CO",
+      "name": "Genmab",
+      "indices": "OMX Copenhagen 25",
+      "entry_price": 3527.0,
+      "shares": 2.8353,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-26",
+      "volume_ratio": 3.78,
+      "rsi14": 67.0,
+      "extension_pct": 32.89,
+      "score": 0.3126
+    }
+  ],
+  "spy_entry": 735.2899780273438,
+  "vti_entry": 361.92999267578125,
+  "total_notional": 100000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-09",
+      "positions": {
+        "RRC": {
+          "current_price": 48.72,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "GKOS": {
+          "current_price": 224.41,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "CART": {
+          "current_price": 58.12,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "THC": {
+          "current_price": 283.33,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "AIZ": {
+          "current_price": 307.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "BDX": {
+          "current_price": 211.88,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "BLK": {
+          "current_price": 1178.87,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "EDP.LS": {
+          "current_price": 5.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "KDP": {
+          "current_price": 36.63,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "GMAB.CO": {
+          "current_price": 3527.0,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 100000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

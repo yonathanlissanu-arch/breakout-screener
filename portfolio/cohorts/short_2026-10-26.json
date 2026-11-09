@@ -69,7 +69,22 @@
       "vti_value": -0.67,
       "portfolio_return_pct": -4.43,
       "alpha": -3.44
+    },
+    {
+      "date": "2026-11-09",
+      "positions": {
+        "GPK": {
+          "current_price": 11.19,
+          "pnl_pct": -30.57,
+          "value": 6942.82
+        }
+      },
+      "portfolio_value": 6942.82,
+      "spy_value": -3.66,
+      "vti_value": -3.25,
+      "portfolio_return_pct": -30.57,
+      "alpha": -26.91
     }
   ],
-  "weeks_elapsed": 1
+  "weeks_elapsed": 2
 }

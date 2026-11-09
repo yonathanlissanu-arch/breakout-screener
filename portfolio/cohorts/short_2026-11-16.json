@@ -1,0 +1,81 @@
+{
+  "cohort_id": "2026-11-16",
+  "direction": "short",
+  "scan_date": "2026-11-09",
+  "entry_week": "2026-11-16",
+  "source_csv": "results/breakdown_scan_20261109_0140.csv",
+  "positions": [
+    {
+      "ticker": "LII",
+      "name": "Lennox International",
+      "indices": "S&P 500",
+      "entry_price": 341.97,
+      "shares": 29.2423,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-28",
+      "volume_ratio": 4.64,
+      "rsi14": 42.5,
+      "extension_pct": 1.97,
+      "score": 0.3959
+    },
+    {
+      "ticker": "ONTEX.BR",
+      "name": "Ontex Group",
+      "indices": "BEL 20",
+      "entry_price": 1.5,
+      "shares": 6666.6667,
+      "notional": 10000.0,
+      "breakout_date": "2026-10-28",
+      "volume_ratio": 14.63,
+      "rsi14": 35.4,
+      "extension_pct": 11.32,
+      "score": 0.3799
+    },
+    {
+      "ticker": "APTV",
+      "name": "Aptiv",
+      "indices": "S&P 500",
+      "entry_price": 39.44,
+      "shares": 253.5497,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-03",
+      "volume_ratio": 1.79,
+      "rsi14": 33.9,
+      "extension_pct": 7.61,
+      "score": 0.2648
+    }
+  ],
+  "spy_entry": 735.2899780273438,
+  "vti_entry": 361.92999267578125,
+  "total_notional": 30000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-09",
+      "positions": {
+        "LII": {
+          "current_price": 341.97,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "ONTEX.BR": {
+          "current_price": 1.5,
+          "pnl_pct": -0.27,
+          "value": 9973.33
+        },
+        "APTV": {
+          "current_price": 39.44,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 29973.33,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": -0.09,
+      "alpha": -0.09
+    }
+  ],
+  "weeks_elapsed": -1
+}
