@@ -1,0 +1,81 @@
+{
+  "cohort_id": "2026-11-23",
+  "direction": "short",
+  "scan_date": "2026-11-16",
+  "entry_week": "2026-11-23",
+  "source_csv": "results/breakdown_scan_20261116_0147.csv",
+  "positions": [
+    {
+      "ticker": "FIS",
+      "name": "Fidelity National Information Services",
+      "indices": "S&P 500",
+      "entry_price": 29.54,
+      "shares": 338.524,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 5.97,
+      "rsi14": 38.1,
+      "extension_pct": 8.94,
+      "score": 0.393
+    },
+    {
+      "ticker": "AGFB.BR",
+      "name": "Agfa-Gevaert",
+      "indices": "BEL 20",
+      "entry_price": 0.34,
+      "shares": 29411.7647,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-10",
+      "volume_ratio": 2.79,
+      "rsi14": 30.4,
+      "extension_pct": 7.3,
+      "score": 0.3457
+    },
+    {
+      "ticker": "APTV",
+      "name": "Aptiv",
+      "indices": "S&P 500",
+      "entry_price": 38.75,
+      "shares": 258.0645,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-03",
+      "volume_ratio": 1.79,
+      "rsi14": 32.8,
+      "extension_pct": 9.23,
+      "score": 0.2022
+    }
+  ],
+  "spy_entry": 754.3699951171875,
+  "vti_entry": 371.1099853515625,
+  "total_notional": 30000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "FIS": {
+          "current_price": 29.54,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "AGFB.BR": {
+          "current_price": 0.34,
+          "pnl_pct": -0.88,
+          "value": 9911.76
+        },
+        "APTV": {
+          "current_price": 38.75,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 29911.76,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": -0.29,
+      "alpha": -0.29
+    }
+  ],
+  "weeks_elapsed": -1
+}

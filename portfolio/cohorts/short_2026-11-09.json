@@ -100,7 +100,32 @@
       "vti_value": -2.59,
       "portfolio_return_pct": 0.41,
       "alpha": 3.11
+    },
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "LII": {
+          "current_price": 352.02,
+          "pnl_pct": -2.31,
+          "value": 9769.24
+        },
+        "GGG": {
+          "current_price": 72.42,
+          "pnl_pct": -7.38,
+          "value": 9261.57
+        },
+        "STWD": {
+          "current_price": 11.34,
+          "pnl_pct": 7.05,
+          "value": 10704.92
+        }
+      },
+      "portfolio_value": 29735.72,
+      "spy_value": -0.18,
+      "vti_value": -0.12,
+      "portfolio_return_pct": -0.88,
+      "alpha": -0.7
     }
   ],
-  "weeks_elapsed": 0
+  "weeks_elapsed": 1
 }

@@ -1,0 +1,207 @@
+{
+  "cohort_id": "2026-11-23",
+  "direction": "long",
+  "scan_date": "2026-11-16",
+  "entry_week": "2026-11-23",
+  "source_csv": "results/breakout_scan_20261116_0147.csv",
+  "positions": [
+    {
+      "ticker": "CPAY",
+      "name": "Corpay",
+      "indices": "S&P 500",
+      "entry_price": 462.22,
+      "shares": 21.6347,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-05",
+      "volume_ratio": 3.79,
+      "rsi14": 74.3,
+      "extension_pct": 8.7,
+      "score": 0.3551
+    },
+    {
+      "ticker": "VRSN",
+      "name": "Verisign",
+      "indices": "S&P 500",
+      "entry_price": 313.02,
+      "shares": 31.9468,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-03",
+      "volume_ratio": 3.26,
+      "rsi14": 58.2,
+      "extension_pct": 1.27,
+      "score": 0.3321
+    },
+    {
+      "ticker": "KDP",
+      "name": "Keurig Dr Pepper",
+      "indices": "S&P 500",
+      "entry_price": 36.34,
+      "shares": 275.1789,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-02",
+      "volume_ratio": 2.75,
+      "rsi14": 55.9,
+      "extension_pct": 1.4,
+      "score": 0.2772
+    },
+    {
+      "ticker": "THC",
+      "name": "Tenet Health",
+      "indices": "S&P MidCap 400",
+      "entry_price": 286.03,
+      "shares": 34.9614,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 2.73,
+      "rsi14": 58.7,
+      "extension_pct": 1.87,
+      "score": 0.2771
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "indices": "S&P 500",
+      "entry_price": 356.27,
+      "shares": 28.0686,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 2.16,
+      "rsi14": 60.9,
+      "extension_pct": 2.19,
+      "score": 0.2534
+    },
+    {
+      "ticker": "MSCI",
+      "name": "MSCI",
+      "indices": "S&P 500",
+      "entry_price": 658.17,
+      "shares": 15.1936,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 1.86,
+      "rsi14": 65.3,
+      "extension_pct": 2.92,
+      "score": 0.2427
+    },
+    {
+      "ticker": "BLK",
+      "name": "BlackRock",
+      "indices": "S&P 500",
+      "entry_price": 1222.91,
+      "shares": 8.1772,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 1.77,
+      "rsi14": 63.5,
+      "extension_pct": 3.86,
+      "score": 0.2355
+    },
+    {
+      "ticker": "EDP.LS",
+      "name": "Energias de Portugal",
+      "indices": "PSI 20",
+      "entry_price": 5.12,
+      "shares": 1953.125,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-04",
+      "volume_ratio": 1.51,
+      "rsi14": 65.9,
+      "extension_pct": 4.11,
+      "score": 0.2238
+    },
+    {
+      "ticker": "WTRG",
+      "name": "Essential Utilities",
+      "indices": "S&P MidCap 400",
+      "entry_price": 45.23,
+      "shares": 221.0922,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-02",
+      "volume_ratio": 1.74,
+      "rsi14": 67.2,
+      "extension_pct": 4.77,
+      "score": 0.2208
+    },
+    {
+      "ticker": "CRBG",
+      "name": "Corebridge Financial",
+      "indices": "S&P MidCap 400",
+      "entry_price": 36.35,
+      "shares": 275.1032,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-03",
+      "volume_ratio": 1.86,
+      "rsi14": 59.4,
+      "extension_pct": 2.14,
+      "score": 0.2201
+    }
+  ],
+  "spy_entry": 754.3699951171875,
+  "vti_entry": 371.1099853515625,
+  "total_notional": 100000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "CPAY": {
+          "current_price": 462.22,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "VRSN": {
+          "current_price": 313.02,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "KDP": {
+          "current_price": 36.34,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "THC": {
+          "current_price": 286.03,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "AAPL": {
+          "current_price": 356.27,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "MSCI": {
+          "current_price": 658.17,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "BLK": {
+          "current_price": 1222.91,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "EDP.LS": {
+          "current_price": 5.12,
+          "pnl_pct": 0.04,
+          "value": 10003.91
+        },
+        "WTRG": {
+          "current_price": 45.23,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        },
+        "CRBG": {
+          "current_price": 36.35,
+          "pnl_pct": -0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 100003.91,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

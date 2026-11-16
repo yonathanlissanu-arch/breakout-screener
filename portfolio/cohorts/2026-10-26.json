@@ -348,7 +348,62 @@
       "vti_value": -3.25,
       "portfolio_return_pct": -0.24,
       "alpha": 3.42
+    },
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "BKH": {
+          "current_price": 86.7,
+          "pnl_pct": 13.14,
+          "value": 11314.11
+        },
+        "NWE": {
+          "current_price": 84.91,
+          "pnl_pct": 13.64,
+          "value": 11363.76
+        },
+        "TMO": {
+          "current_price": 700.22,
+          "pnl_pct": 1.48,
+          "value": 10148.12
+        },
+        "VEEV": {
+          "current_price": 301.53,
+          "pnl_pct": -2.85,
+          "value": 9715.49
+        },
+        "HAE": {
+          "current_price": 122.94,
+          "pnl_pct": 3.94,
+          "value": 10393.98
+        },
+        "HALO": {
+          "current_price": 100.27,
+          "pnl_pct": -17.7,
+          "value": 8229.65
+        },
+        "RNR": {
+          "current_price": 353.62,
+          "pnl_pct": 0.73,
+          "value": 10072.92
+        },
+        "RGA": {
+          "current_price": 275.15,
+          "pnl_pct": 3.15,
+          "value": 10314.9
+        },
+        "EXPD": {
+          "current_price": 194.8,
+          "pnl_pct": -0.57,
+          "value": 9943.34
+        }
+      },
+      "portfolio_value": 91496.26,
+      "spy_value": -1.16,
+      "vti_value": -0.79,
+      "portfolio_return_pct": 1.66,
+      "alpha": 2.82
     }
   ],
-  "weeks_elapsed": 2
+  "weeks_elapsed": 3
 }

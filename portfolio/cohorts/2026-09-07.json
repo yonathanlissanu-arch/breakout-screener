@@ -921,7 +921,67 @@
       "vti_value": -4.11,
       "portfolio_return_pct": -2.15,
       "alpha": 1.81
+    },
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "OKTA": {
+          "current_price": 182.87,
+          "pnl_pct": 9.86,
+          "value": 10985.82
+        },
+        "CRWD": {
+          "current_price": 226.61,
+          "pnl_pct": -0.23,
+          "value": 9977.11
+        },
+        "NDSN": {
+          "current_price": 324.74,
+          "pnl_pct": 0.46,
+          "value": 10046.09
+        },
+        "MRK": {
+          "current_price": 147.76,
+          "pnl_pct": -0.08,
+          "value": 9991.88
+        },
+        "SJM": {
+          "current_price": 132.69,
+          "pnl_pct": -0.23,
+          "value": 9977.44
+        },
+        "HAE": {
+          "current_price": 122.94,
+          "pnl_pct": 20.18,
+          "value": 12017.6
+        },
+        "FCX": {
+          "current_price": 59.24,
+          "pnl_pct": -21.68,
+          "value": 7831.84
+        },
+        "TRGP": {
+          "current_price": 297.33,
+          "pnl_pct": 3.1,
+          "value": 10309.64
+        },
+        "JYSK.CO": {
+          "current_price": 1144.0,
+          "pnl_pct": 4.38,
+          "value": 10437.96
+        },
+        "ILMN": {
+          "current_price": 207.01,
+          "pnl_pct": -3.12,
+          "value": 9688.3
+        }
+      },
+      "portfolio_value": 101263.68,
+      "spy_value": -1.47,
+      "vti_value": -1.68,
+      "portfolio_return_pct": 1.26,
+      "alpha": 2.73
     }
   ],
-  "weeks_elapsed": 9
+  "weeks_elapsed": 10
 }

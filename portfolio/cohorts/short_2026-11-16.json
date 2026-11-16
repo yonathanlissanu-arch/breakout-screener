@@ -75,7 +75,32 @@
       "vti_value": 0.0,
       "portfolio_return_pct": -0.09,
       "alpha": -0.09
+    },
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "LII": {
+          "current_price": 352.02,
+          "pnl_pct": -2.94,
+          "value": 9706.11
+        },
+        "ONTEX.BR": {
+          "current_price": 1.48,
+          "pnl_pct": 1.33,
+          "value": 10133.33
+        },
+        "APTV": {
+          "current_price": 38.75,
+          "pnl_pct": 1.75,
+          "value": 10174.95
+        }
+      },
+      "portfolio_value": 30014.4,
+      "spy_value": 2.59,
+      "vti_value": 2.54,
+      "portfolio_return_pct": 0.05,
+      "alpha": -2.54
     }
   ],
-  "weeks_elapsed": -1
+  "weeks_elapsed": 0
 }

@@ -201,7 +201,67 @@
       "vti_value": 0.0,
       "portfolio_return_pct": 0.0,
       "alpha": 0.0
+    },
+    {
+      "date": "2026-11-16",
+      "positions": {
+        "RRC": {
+          "current_price": 51.83,
+          "pnl_pct": 6.38,
+          "value": 10638.34
+        },
+        "GKOS": {
+          "current_price": 245.72,
+          "pnl_pct": 9.5,
+          "value": 10949.6
+        },
+        "CART": {
+          "current_price": 58.87,
+          "pnl_pct": 1.29,
+          "value": 10129.04
+        },
+        "THC": {
+          "current_price": 286.03,
+          "pnl_pct": 0.95,
+          "value": 10095.3
+        },
+        "AIZ": {
+          "current_price": 322.11,
+          "pnl_pct": 4.92,
+          "value": 10492.18
+        },
+        "BDX": {
+          "current_price": 218.03,
+          "pnl_pct": 2.9,
+          "value": 10290.26
+        },
+        "BLK": {
+          "current_price": 1222.91,
+          "pnl_pct": 3.74,
+          "value": 10373.58
+        },
+        "EDP.LS": {
+          "current_price": 5.12,
+          "pnl_pct": 2.44,
+          "value": 10244.0
+        },
+        "KDP": {
+          "current_price": 36.34,
+          "pnl_pct": -0.79,
+          "value": 9920.83
+        },
+        "GMAB.CO": {
+          "current_price": 3448.0,
+          "pnl_pct": -2.24,
+          "value": 9776.01
+        }
+      },
+      "portfolio_value": 102909.14,
+      "spy_value": 2.59,
+      "vti_value": 2.54,
+      "portfolio_return_pct": 2.91,
+      "alpha": 0.32
     }
   ],
-  "weeks_elapsed": -1
+  "weeks_elapsed": 0
 }
