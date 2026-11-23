@@ -225,7 +225,32 @@
       "vti_value": -1.82,
       "portfolio_return_pct": -12.21,
       "alpha": -10.23
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "ARW": {
+          "current_price": 171.79,
+          "pnl_pct": -29.02,
+          "value": 7098.47
+        },
+        "SLAB": {
+          "current_price": 220.21,
+          "pnl_pct": -1.14,
+          "value": 9885.53
+        },
+        "AMD": {
+          "current_price": 424.39,
+          "pnl_pct": -33.05,
+          "value": 6694.8
+        }
+      },
+      "portfolio_value": 23678.79,
+      "spy_value": -10.37,
+      "vti_value": -10.05,
+      "portfolio_return_pct": -21.07,
+      "alpha": -10.7
     }
   ],
-  "weeks_elapsed": 5
+  "weeks_elapsed": 6
 }

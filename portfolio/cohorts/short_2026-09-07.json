@@ -234,7 +234,22 @@
       "vti_value": -1.68,
       "portfolio_return_pct": 14.8,
       "alpha": 16.27
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "APTV": {
+          "current_price": 35.33,
+          "pnl_pct": 22.32,
+          "value": 12231.75
+        }
+      },
+      "portfolio_value": 12231.75,
+      "spy_value": -9.9,
+      "vti_value": -9.91,
+      "portfolio_return_pct": 22.32,
+      "alpha": 32.22
     }
   ],
-  "weeks_elapsed": 10
+  "weeks_elapsed": 11
 }

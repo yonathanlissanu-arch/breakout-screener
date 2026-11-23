@@ -84,7 +84,22 @@
       "vti_value": -0.51,
       "portfolio_return_pct": 3.63,
       "alpha": 4.37
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "BAR.BR": {
+          "current_price": 5.68,
+          "pnl_pct": 12.21,
+          "value": 11221.02
+        }
+      },
+      "portfolio_value": 11221.02,
+      "spy_value": -9.23,
+      "vti_value": -8.84,
+      "portfolio_return_pct": 12.21,
+      "alpha": 21.44
     }
   ],
-  "weeks_elapsed": 2
+  "weeks_elapsed": 3
 }

@@ -1,0 +1,63 @@
+{
+  "cohort_id": "2026-11-30",
+  "direction": "long",
+  "scan_date": "2026-11-23",
+  "entry_week": "2026-11-30",
+  "source_csv": "results/breakout_scan_20261123_0512.csv",
+  "positions": [
+    {
+      "ticker": "ISS.CO",
+      "name": "ISS",
+      "indices": "OMX Copenhagen 25",
+      "entry_price": 311.2,
+      "shares": 32.1337,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-09",
+      "volume_ratio": 2.74,
+      "rsi14": 59.1,
+      "extension_pct": 2.3,
+      "score": 0.2872
+    },
+    {
+      "ticker": "AFG",
+      "name": "American Financial Group",
+      "indices": "S&P MidCap 400",
+      "entry_price": 157.99,
+      "shares": 63.2951,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-09",
+      "volume_ratio": 1.67,
+      "rsi14": 66.8,
+      "extension_pct": 3.29,
+      "score": 0.2114
+    }
+  ],
+  "spy_entry": 689.8099975585938,
+  "vti_entry": 340.0199890136719,
+  "total_notional": 20000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "ISS.CO": {
+          "current_price": 311.2,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        },
+        "AFG": {
+          "current_price": 157.99,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 20000.0,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.0,
+      "alpha": 0.0
+    }
+  ],
+  "weeks_elapsed": -1
+}

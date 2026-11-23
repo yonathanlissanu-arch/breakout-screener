@@ -209,7 +209,47 @@
       "vti_value": -0.12,
       "portfolio_return_pct": -1.77,
       "alpha": -1.59
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "KDP": {
+          "current_price": 34.84,
+          "pnl_pct": -2.79,
+          "value": 9720.98
+        },
+        "EHC": {
+          "current_price": 133.65,
+          "pnl_pct": -1.66,
+          "value": 9834.44
+        },
+        "CART": {
+          "current_price": 57.31,
+          "pnl_pct": 1.52,
+          "value": 10152.35
+        },
+        "MEDP": {
+          "current_price": 610.54,
+          "pnl_pct": -6.36,
+          "value": 9363.97
+        },
+        "LH": {
+          "current_price": 367.13,
+          "pnl_pct": 1.59,
+          "value": 10158.83
+        },
+        "QLYS": {
+          "current_price": 185.92,
+          "pnl_pct": -17.04,
+          "value": 8295.56
+        }
+      },
+      "portfolio_value": 57526.12,
+      "spy_value": -8.72,
+      "vti_value": -8.49,
+      "portfolio_return_pct": -4.12,
+      "alpha": 4.6
     }
   ],
-  "weeks_elapsed": 1
+  "weeks_elapsed": 2
 }

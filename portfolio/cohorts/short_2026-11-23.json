@@ -75,7 +75,32 @@
       "vti_value": 0.0,
       "portfolio_return_pct": -0.29,
       "alpha": -0.29
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "FIS": {
+          "current_price": 25.83,
+          "pnl_pct": 12.56,
+          "value": 11255.92
+        },
+        "AGFB.BR": {
+          "current_price": 0.33,
+          "pnl_pct": 3.38,
+          "value": 10338.24
+        },
+        "APTV": {
+          "current_price": 35.33,
+          "pnl_pct": 8.83,
+          "value": 10882.58
+        }
+      },
+      "portfolio_value": 32476.74,
+      "spy_value": -8.56,
+      "vti_value": -8.38,
+      "portfolio_return_pct": 8.26,
+      "alpha": 16.82
     }
   ],
-  "weeks_elapsed": -1
+  "weeks_elapsed": 0
 }

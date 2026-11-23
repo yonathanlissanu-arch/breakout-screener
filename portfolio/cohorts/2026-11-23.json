@@ -201,7 +201,67 @@
       "vti_value": 0.0,
       "portfolio_return_pct": 0.0,
       "alpha": 0.0
+    },
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "CPAY": {
+          "current_price": 429.84,
+          "pnl_pct": -7.01,
+          "value": 9299.47
+        },
+        "VRSN": {
+          "current_price": 306.87,
+          "pnl_pct": -1.96,
+          "value": 9803.53
+        },
+        "KDP": {
+          "current_price": 34.84,
+          "pnl_pct": -4.13,
+          "value": 9587.23
+        },
+        "THC": {
+          "current_price": 263.19,
+          "pnl_pct": -7.99,
+          "value": 9201.48
+        },
+        "AAPL": {
+          "current_price": 342.56,
+          "pnl_pct": -3.85,
+          "value": 9615.18
+        },
+        "MSCI": {
+          "current_price": 610.48,
+          "pnl_pct": -7.25,
+          "value": 9275.41
+        },
+        "BLK": {
+          "current_price": 1101.72,
+          "pnl_pct": -9.91,
+          "value": 9009.0
+        },
+        "EDP.LS": {
+          "current_price": 4.87,
+          "pnl_pct": -4.94,
+          "value": 9505.86
+        },
+        "WTRG": {
+          "current_price": 45.19,
+          "pnl_pct": -0.09,
+          "value": 9991.16
+        },
+        "CRBG": {
+          "current_price": 32.57,
+          "pnl_pct": -10.4,
+          "value": 8960.11
+        }
+      },
+      "portfolio_value": 94248.43,
+      "spy_value": -8.56,
+      "vti_value": -8.38,
+      "portfolio_return_pct": -5.75,
+      "alpha": 2.81
     }
   ],
-  "weeks_elapsed": -1
+  "weeks_elapsed": 0
 }

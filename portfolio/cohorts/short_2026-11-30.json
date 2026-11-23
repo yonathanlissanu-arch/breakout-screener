@@ -1,0 +1,63 @@
+{
+  "cohort_id": "2026-11-30",
+  "direction": "short",
+  "scan_date": "2026-11-23",
+  "entry_week": "2026-11-30",
+  "source_csv": "results/breakdown_scan_20261123_0512.csv",
+  "positions": [
+    {
+      "ticker": "AGFB.BR",
+      "name": "Agfa-Gevaert",
+      "indices": "BEL 20",
+      "entry_price": 0.33,
+      "shares": 30303.0303,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-10",
+      "volume_ratio": 2.79,
+      "rsi14": 31.5,
+      "extension_pct": 11.22,
+      "score": 0.2788
+    },
+    {
+      "ticker": "FIS",
+      "name": "Fidelity National Information Services",
+      "indices": "S&P 500",
+      "entry_price": 25.83,
+      "shares": 387.1467,
+      "notional": 10000.0,
+      "breakout_date": "2026-11-09",
+      "volume_ratio": 1.92,
+      "rsi14": 30.2,
+      "extension_pct": 10.09,
+      "score": 0.2028
+    }
+  ],
+  "spy_entry": 689.8099975585938,
+  "vti_entry": 340.0199890136719,
+  "total_notional": 20000.0,
+  "hold_weeks": 52,
+  "status": "active",
+  "snapshots": [
+    {
+      "date": "2026-11-23",
+      "positions": {
+        "AGFB.BR": {
+          "current_price": 0.33,
+          "pnl_pct": 0.45,
+          "value": 10045.45
+        },
+        "FIS": {
+          "current_price": 25.83,
+          "pnl_pct": 0.0,
+          "value": 10000.0
+        }
+      },
+      "portfolio_value": 20045.45,
+      "spy_value": 0.0,
+      "vti_value": 0.0,
+      "portfolio_return_pct": 0.23,
+      "alpha": 0.23
+    }
+  ],
+  "weeks_elapsed": -1
+}
